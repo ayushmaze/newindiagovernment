@@ -1,0 +1,105 @@
+name: ngi
+recipe: custom
+
+config:
+  proxy:
+    app:
+      - ngi.lndo.site
+
+services:
+
+  # ── PostgreSQL 16 ────────────────────────────────────────────────────────────
+  db:
+    type: postgres:16
+    portforward: 5432
+    creds:
+      user: payload
+      password: payload
+      database: payload
+    config:
+      database: config/postgres.conf
+
+  # ── Mailpit (email catcher) ──────────────────────────────────────────────────
+  mailpit:
+    type: compose
+    services:
+      image: axllent/mailpit:latest
+      ports:
+        - "1025:1025"
+        - "8025:8025"
+    portforward:
+      - "8025:8025"
+
+  # ── Next.js / Payload app ────────────────────────────────────────────────────
+  app:
+    type: node:22
+    ssl: true
+    sslExpose: true
+    port: 3000
+    scanner: false
+
+    # Env vars — override in .env.local for secrets
+    overrides:
+      environment:
+        DATABASE_URI: postgres://payload:payload@database/payload
+        PAYLOAD_SECRET: b3f8a2d1c4e7f0a9b2c5d8e1f4a7b0c3d6e9f2a5b8c1d4e7f0a3b6c9d2e5f8a1
+        PAYLOAD_PUBLIC_SERVER_URL: "https://ngi.lndo.site"
+        NEXT_PUBLIC_SITE_URL: "https://ngi.lndo.site"
+        NEXT_PUBLIC_TURNSTILE_SITE_KEY: "1x00000000000000000000AA"
+        TURNSTILE_SECRET_KEY: "1x0000000000000000000000000000000AA"
+        VOTE_SALT: b3f8a2d1c4e7f0a9b2c5d8e1f4a7b0c3
+        REVALIDATE_SECRET: c4e7f0a9b2c5d8e1f4a7b0c3d6e9f2a5
+        SMTP_HOST: mailpit
+        SMTP_PORT: "1025"
+        SMTP_FROM: "The New India Government <noreply@ngi.lndo.site>"
+        SEED_ADMIN_EMAIL: admin@thenewindiagov.test
+        SEED_ADMIN_PASSWORD: ChangeMe!2026
+        SEED_COWORK_EMAIL: cowork@thenewindiagov.test
+        NODE_ENV: development
+
+    run_as_root:
+      - npm install -g pnpm@9
+
+    run:
+      - pnpm install
+
+    command: pnpm dev
+
+proxy:
+  app:
+    - ngi.lndo.site
+
+tooling:
+  pnpm:
+    service: app
+    description: Run pnpm commands inside the app container
+
+  seed:
+    service: app
+    cmd: pnpm seed
+    description: Seed the database with demo content
+
+  build:
+    service: app
+    cmd: pnpm build
+    description: Create a production build
+
+  tsc:
+    service: app
+    cmd: pnpm exec tsc --noEmit
+    description: Run TypeScript type check
+
+  test:
+    service: app
+    cmd: pnpm test:unit
+    description: Run unit tests
+
+  psql:
+    service: db
+    cmd: psql -U payload payload
+    description: Open psql shell
+
+  # Convenience: lando logs --follow
+  db-logs:
+    service: db
+    description: Tail database logs

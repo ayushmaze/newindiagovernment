@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "new-india-gov": {
+      "url": "http://localhost:3000/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${COWORK_API_KEY}"
+      }
+    }
+  }
+}

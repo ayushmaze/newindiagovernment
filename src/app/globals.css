@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+:root {
+  /* Surfaces */
+  --bg: #ffffff;
+  --bg-soft: #fafaf8;
+
+  /* Text */
+  --ink: #1a1a1a;
+  --ink-2: #4a4a4a;
+  --ink-3: #8a8a8a;
+
+  /* Accents from screenshots */
+  --pink-ticker-bg: #fbe0e8;
+  --pink-chip: #fac9d8;
+  --blue-promo: #d6e9f2;
+  --lavender-hover: #bca5c7;
+  --lavender-stripe: #c9b8d9;
+
+  /* Editorial accents */
+  --red-tag: #c81e1e;
+  --gold-petition: #b8923a;
+
+  /* Structure */
+  --hairline: #e5e5e5;
+  --divider: #1a1a1a;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+/* Global base */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+}
+
+/* Skip link */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  z-index: 9999;
+  padding: 8px 16px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+}
+
+.skip-to-content:focus {
+  left: 8px;
+  top: 8px;
+}
+
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid var(--lavender-hover);
+  outline-offset: 2px;
+}
+
+/* Masthead fluid type */
+.masthead-title {
+  font-size: clamp(36px, 8vw, 88px);
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+}
+
+/* Lavender stripe background (from screenshots) */
+.bg-lavender-stripe {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 24px,
+    var(--lavender-stripe) 24px,
+    var(--lavender-stripe) 25px
+  );
+  background-color: rgba(201, 184, 217, 0.08);
+}
+
+/* Editorial image filter */
+.editorial-img {
+  filter: grayscale(100%) contrast(1.05);
+}
+
+/* Progress bar animation */
+@keyframes progress-fill {
+  from {
+    width: 0;
+  }
+}

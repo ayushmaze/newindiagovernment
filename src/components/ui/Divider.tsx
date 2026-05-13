@@ -1,0 +1,12 @@
+interface DividerProps {
+  className?: string
+}
+
+export function Divider({ className = '' }: DividerProps) {
+  return (
+    <hr
+      className={`border-0 border-t border-[var(--hairline)] my-6 ${className}`}
+      aria-hidden
+    />
+  )
+}

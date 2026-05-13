@@ -1,0 +1,62 @@
+{
+  "name": "the-new-india-government",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "payload": "payload",
+    "seed": "node --loader ./node_modules/.pnpm/ts-node@10.9.2_@types+node@20.19.41_typescript@5.9.3/node_modules/ts-node/dist/bin-esm.js src/seed/seed.ts",
+    "test": "vitest run && playwright test",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
+    "analyze": "ANALYZE=true next build",
+    "lighthouse": "pnpm build && pnpm start & sleep 3 && lighthouse http://localhost:3000 --output=json --output-path=./LIGHTHOUSE-home.json --chrome-flags='--headless' && lighthouse http://localhost:3000/article/government-gdp-growth-claim --output=json --output-path=./LIGHTHOUSE-article.json --chrome-flags='--headless'"
+  },
+  "dependencies": {
+    "@marsidev/react-turnstile": "^1.0.0",
+    "@payloadcms/db-postgres": "^3.0.0",
+    "@payloadcms/next": "^3.0.0",
+    "@payloadcms/plugin-mcp": "^3.84.1",
+    "@payloadcms/richtext-lexical": "^3.0.0",
+    "dotenv": "^17.4.2",
+    "graphql": "^16.8.1",
+    "next": "^16.2.6",
+    "nodemailer": "^6.9.0",
+    "payload": "^3.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sharp": "^0.33.0",
+    "swr": "^2.2.0"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^16.2.6",
+    "@playwright/test": "^1.48.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^20.0.0",
+    "@types/nodemailer": "^6.4.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.6",
+    "postcss": "^8.0.0",
+    "prettier": "^3.0.0",
+    "tailwindcss": "^4.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "sharp",
+      "esbuild"
+    ]
+  }
+}
