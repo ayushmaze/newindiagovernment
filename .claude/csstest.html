@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html data-theme="light" dir="LTR" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Payload CSS Test</title>
+  <!-- Load the real Payload admin CSS from the dev server -->
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+  </style>
+</head>
+<body>
+<script>
+// Fetch the CSS URL from the admin page and inject it
+fetch('/admin')
+  .then(r => r.text())
+  .then(html => {
+    var match = html.match(/href="(\/_next\/static\/chunks\/[^"]+\.css)"/);
+    if (match) {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = match[1];
+      document.head.appendChild(link);
+      document.getElementById('css-status').textContent = 'CSS loaded: ' + match[1];
+    }
+  });
+</script>
+
+<div class="template-default template-default--nav-hydrated">
+  <nav class="nav nav--nav-open">
+    <div class="nav__scroll">
+      <div class="nav__header">
+        <div class="nav__brand">
+          <span style="color: white; font-weight: bold; padding: 1rem; display:block">The New India Government</span>
+        </div>
+      </div>
+      <div class="nav__groups">
+        <div class="nav__group">
+          <span class="nav__group-label">Collections</span>
+          <a class="nav__link nav__link--active" href="#">Articles</a>
+          <a class="nav__link" href="#">Petitions</a>
+          <a class="nav__link" href="#">Users</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="template-default__wrap">
+    <div class="dashboard">
+      <div class="dashboard__content">
+        <h1 class="heading heading--level-1">Dashboard</h1>
+        <p id="css-status" style="color: gray; font-size: 0.8rem;">Loading CSS...</p>
+        <div class="collection-list">
+          <div class="collection-list__header">
+            <h2>Collections</h2>
+          </div>
+        </div>
+        <div class="btn-wrap">
+          <a class="btn btn--style-primary btn--size-medium" href="#">Create New Article</a>
+          <a class="btn btn--style-secondary btn--size-medium" href="#">View Petitions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

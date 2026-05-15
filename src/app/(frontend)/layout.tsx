@@ -3,13 +3,15 @@ import Link from 'next/link'
 import { Masthead } from '@/components/masthead/Masthead'
 import { FactCheckTicker } from '@/components/ticker/FactCheckTicker'
 import { PrimaryNav } from '@/components/nav/PrimaryNav'
+import { PerformancePatch } from '@/components/util/PerformancePatch'
 import { display, ui, body } from '@/app/fonts'
 import '../globals.css'
 
 export default function FrontendLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${ui.variable} ${body.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${display.variable} ${ui.variable} ${body.variable}`}>
       <body className="font-body bg-[var(--bg)] text-[var(--ink)]">
+        <PerformancePatch />
         {/* Skip to content */}
         <a href="#main-content" className="skip-to-content">
           Skip to content

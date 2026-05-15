@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Lando dev server",
+      "runtimeExecutable": "/opt/homebrew/bin/node",
+      "runtimeArgs": ["/Users/ayushp/thenewindiagoverment/.claude/proxy.mjs"],
+      "port": 51972
+    }
+  ]
+}

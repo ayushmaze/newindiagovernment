@@ -46,6 +46,7 @@ export default async function PetitionDetailPage({ params }: PageProps) {
       sort: '-createdAt',
       limit: 20,
       depth: 0,
+      overrideAccess: true,
     }),
   ]).catch(() => [{ docs: [] }, { docs: [] }] as const)
 

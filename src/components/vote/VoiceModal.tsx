@@ -24,6 +24,14 @@ export function VoiceModal({ open, onClose, option }: VoiceModalProps) {
     }
   }, [open])
 
+  // Pre-seed Turnstile token when using Cloudflare's always-pass test key
+  useEffect(() => {
+    const key = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ''
+    if (key === '1x00000000000000000000AA') {
+      setToken('dev-test-bypass')
+    }
+  }, [])
+
   // Close on Escape
   useEffect(() => {
     if (!open) return

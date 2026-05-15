@@ -19,8 +19,11 @@ import { Voices } from './collections/Voices.ts'
 import { TickerItems } from './collections/TickerItems.ts'
 import { AdBanners } from './collections/AdBanners.ts'
 import { NewsletterSubscribers } from './collections/NewsletterSubscribers.ts'
+import { FactCheckSubmissions } from './collections/FactCheckSubmissions.ts'
 import { Users } from './collections/Users.ts'
 import { SiteSettings } from './globals/SiteSettings.ts'
+import { Integrations } from './globals/Integrations.ts'
+import { invalidateIntegrationsCache } from './lib/integrations.ts'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -46,16 +49,33 @@ export default buildConfig({
     TickerItems,
     AdBanners,
     NewsletterSubscribers,
+    FactCheckSubmissions,
     Users,
   ],
-  globals: [SiteSettings],
+  globals: [
+    SiteSettings,
+    {
+      ...Integrations,
+      hooks: {
+        afterChange: [
+          () => {
+            invalidateIntegrationsCache()
+          },
+        ],
+      },
+    },
+  ],
   editor: lexicalEditor({}),
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI ?? '',
     },
-    // push:true auto-applies schema without migration files (dev only)
-    push: process.env.NODE_ENV !== 'production',
+    // push:true auto-applies schema without migration files. Defaults to off
+    // in production unless PAYLOAD_DB_PUSH=1 is set explicitly — used for the
+    // first Render deploy when the DB is empty and no migration files exist.
+    push:
+      process.env.NODE_ENV !== 'production' ||
+      process.env.PAYLOAD_DB_PUSH === '1',
   }),
   localization: {
     locales: ['en', 'hi'],
@@ -86,6 +106,7 @@ export default buildConfig({
         'ticker-items': { enabled: { find: true, create: true, update: true, delete: true } },
         voices: { enabled: { find: true, update: true } },
         petitions: { enabled: { find: true, create: true, update: true } },
+        'fact-check-submissions': { enabled: { find: true, create: true, update: true } },
       },
     }),
   ],

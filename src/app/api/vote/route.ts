@@ -60,8 +60,13 @@ export async function POST(req: NextRequest) {
     })
     return NextResponse.json({ ok: true })
   } catch (e: unknown) {
-    const err = e as { code?: string; message?: string }
-    if (err?.code === '23505' || /duplicate|unique/i.test(err?.message ?? '')) {
+    const err = e as { code?: string; message?: string; name?: string }
+    // Payload wraps postgres 23505 (unique violation) in a ValidationError referencing the field
+    const isDuplicate =
+      err?.code === '23505' ||
+      /duplicate|unique/i.test(err?.message ?? '') ||
+      (err?.name === 'ValidationError' && /voterHash/i.test(String(e)))
+    if (isDuplicate) {
       return NextResponse.json({ ok: true, already: true }, { status: 409 })
     }
     console.error('[vote POST]', e)

@@ -30,6 +30,16 @@ export function VoteWidget({
     setVoted(localStorage.getItem('ngi:voted'))
   }, [])
 
+  // With Cloudflare's always-pass test site key the iframe auto-fires onSuccess,
+  // but it still needs to load from the CDN first. Pre-seed the token in dev so
+  // the buttons are immediately clickable without a cold-start delay.
+  useEffect(() => {
+    const key = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ''
+    if (key === '1x00000000000000000000AA') {
+      setToken('dev-test-bypass')
+    }
+  }, [])
+
   const pct = (k: string) =>
     !data || data.total === 0
       ? 0

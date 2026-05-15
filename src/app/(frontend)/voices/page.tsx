@@ -21,6 +21,7 @@ export default async function VoicesPage() {
     sort: '-createdAt',
     limit: 50,
     depth: 0,
+    overrideAccess: true,
   }).catch(() => ({ docs: [] }))
 
   const voices = docs as Array<{

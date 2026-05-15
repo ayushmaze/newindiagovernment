@@ -8,14 +8,14 @@ const withBundleAnalyzer = bundleAnalyzer({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
+  // Allow Lando proxy origin so HMR websocket and hydration work correctly
+  allowedDevOrigins: ['newindiagoverment.lndo.site'],
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
     remotePatterns: [
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-      },
+      { protocol: 'http', hostname: 'localhost' },
+      { protocol: 'https', hostname: 'newindiagoverment.lndo.site' },
     ],
   },
   async headers() {
@@ -48,24 +48,23 @@ const nextConfig = {
           },
         ],
       },
-      {
-        source: '/_next/static/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/media/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
+      // Only cache-bust static assets in production.
+      // In dev, Turbopack compiles chunks on-demand; immutable caching causes
+      // the browser to serve stale chunks after a .next wipe/restart.
+      ...(process.env.NODE_ENV === 'production' ? [
+        {
+          source: '/_next/static/(.*)',
+          headers: [
+            { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+          ],
+        },
+        {
+          source: '/media/(.*)',
+          headers: [
+            { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+          ],
+        },
+      ] : []),
     ]
   },
 }

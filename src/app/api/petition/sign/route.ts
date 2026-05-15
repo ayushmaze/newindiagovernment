@@ -36,11 +36,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'missing_fields' }, { status: 400 })
   }
 
+  // Payload (postgres) expects a numeric relationship ID
+  const petitionIdNum = Number(petitionId)
+  if (!Number.isInteger(petitionIdNum) || petitionIdNum <= 0) {
+    return NextResponse.json({ error: 'invalid_petition_id' }, { status: 400 })
+  }
+
   const ok = await verifyTurnstile(turnstileToken ?? null, ip)
   if (!ok) return NextResponse.json({ error: 'turnstile' }, { status: 403 })
 
   const salt = process.env.VOTE_SALT ?? 'default-salt'
-  const voterHash = sha256(`${salt}|${petitionId}|${ip}|${ua}|petition-sign-v1`)
+  const voterHash = sha256(`${salt}|${petitionIdNum}|${ip}|${ua}|petition-sign-v1`)
 
   const payload = await getPayload({ config })
 
@@ -48,7 +54,7 @@ export async function POST(req: NextRequest) {
     await payload.create({
       collection: 'petition-signatures',
       data: {
-        petition: petitionId,
+        petition: petitionIdNum,
         firstName: firstName.trim().slice(0, 60),
         lastName: lastName.trim().slice(0, 60),
         city: city?.trim().slice(0, 80),
@@ -61,10 +67,22 @@ export async function POST(req: NextRequest) {
     })
     return NextResponse.json({ ok: true })
   } catch (e: unknown) {
-    const err = e as { code?: string; message?: string }
-    if (err?.code === '23505' || /duplicate|unique/i.test(err?.message ?? '')) {
+    const err = e as { code?: string; message?: string; name?: string }
+    const eStr = String(e)
+    // Payload wraps postgres 23505 (unique violation) in a ValidationError referencing the field
+    const isDuplicate =
+      err?.code === '23505' ||
+      /duplicate|unique/i.test(err?.message ?? '') ||
+      (err?.name === 'ValidationError' && /voterHash/i.test(eStr))
+    if (isDuplicate) {
       // Already signed — return success silently
       return NextResponse.json({ ok: true, already: true })
+    }
+    // Petition relationship failed — petitionId doesn't exist in DB
+    const isPetitionNotFound =
+      err?.name === 'ValidationError' && /Petition/i.test(eStr)
+    if (isPetitionNotFound) {
+      return NextResponse.json({ error: 'petition_not_found' }, { status: 404 })
     }
     console.error('[petition/sign]', e)
     return NextResponse.json({ error: 'server' }, { status: 500 })

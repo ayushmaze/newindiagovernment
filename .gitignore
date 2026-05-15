@@ -41,3 +41,10 @@ test-results/
 # Misc
 *.tsbuildinfo
 .cache/
+
+# Lando + Claude worktrees + local-only tooling
+.claude/worktrees/
+.claude/projects/
+.claude/proxy.mjs
+LIGHTHOUSE-*.json
+

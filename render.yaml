@@ -1,0 +1,82 @@
+# Render Blueprint — newindiagovernment.com
+#
+# Spins up:
+#   • Postgres 16 (Singapore, free)
+#   • Next.js + Payload web service (Docker, Singapore, free)
+#
+# Free-tier caveats you should know:
+#   • Web service spins down after ~15 min of no traffic → cold start ~30s.
+#   • Free Postgres is removed after 30 days. Upgrade to `basic-256mb` ($7/mo)
+#     for persistent storage. The app survives a swap — just paste new
+#     connection details into the Integrations dashboard.
+#   • Free web: 512 MB RAM. Builds run on bigger machines, so `next build`
+#     succeeds; only runtime is constrained.
+#
+# Secrets are NOT in this file. Render generates / accepts them at
+# `envVarGroups` apply time. After first deploy, manage them through the
+# Payload Integrations dashboard at /admin → Globals → Integrations.
+
+databases:
+  - name: nig-postgres
+    databaseName: payload
+    user: payload
+    plan: free
+    region: singapore
+    postgresMajorVersion: '16'
+
+services:
+  - type: web
+    name: newindiagovernment
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./docker/Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      # ── Database (auto-wired from the `nig-postgres` block above) ──────────
+      - key: DATABASE_URI
+        fromDatabase:
+          name: nig-postgres
+          property: connectionString
+
+      # ── Core ───────────────────────────────────────────────────────────────
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: '3000'
+      # First-deploy auto-schema-sync. Remove this after switching to
+      # migration files (`pnpm payload migrate:create`).
+      - key: PAYLOAD_DB_PUSH
+        value: '1'
+
+      # ── Public URLs (will be re-pointed to custom domain after first deploy)
+      - key: PAYLOAD_PUBLIC_SERVER_URL
+        value: https://newindiagovernment.com
+      - key: NEXT_PUBLIC_SITE_URL
+        value: https://newindiagovernment.com
+
+      # ── Secrets — set via Render API after blueprint applies ───────────────
+      - key: PAYLOAD_SECRET
+        sync: false
+      - key: VOTE_SALT
+        sync: false
+      - key: REVALIDATE_SECRET
+        sync: false
+      - key: FACT_CHECK_INGEST_SECRET
+        sync: false
+
+      # ── CAPTCHA — Cloudflare TEST keys (replace via Integrations dashboard) ─
+      - key: NEXT_PUBLIC_TURNSTILE_SITE_KEY
+        value: 1x00000000000000000000AA
+      - key: TURNSTILE_SECRET_KEY
+        value: 1x0000000000000000000000000000000AA
+
+      # ── SMTP — placeholders (replace via Integrations dashboard) ───────────
+      - key: SMTP_HOST
+        value: ''
+      - key: SMTP_PORT
+        value: '587'
+      - key: SMTP_FROM
+        value: The New India Government <noreply@newindiagovernment.com>

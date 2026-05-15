@@ -1,34 +1,45 @@
-name: ngi
-recipe: custom
+name: newindiagoverment
 
-config:
-  proxy:
-    app:
-      - ngi.lndo.site
+# Runs alongside other Lando apps without port collisions:
+#   • App name is unique, so container/network prefixes don't clash.
+#   • All host-side ports use `portforward: true` (dynamic) instead of fixed
+#     numbers — Lando assigns a free port per service. Look them up with
+#     `lando info` after `lando start`.
+#   • The site is reached via the Traefik proxy at the URL below, not via a
+#     fixed host port — that's the canonical entry point.
 
 services:
 
   # ── PostgreSQL 16 ────────────────────────────────────────────────────────────
   db:
     type: postgres:16
-    portforward: 5432
+    # Dynamic host port (avoids collision with other Lando postgres apps).
+    portforward: true
     creds:
       user: payload
       password: payload
       database: payload
     config:
       database: config/postgres.conf
+    healthcheck: pg_isready -U postgres -d payload
+    overrides:
+      volumes:
+        - ./config/postgres-init.sql:/docker-entrypoint-initdb.d/init.sql
 
   # ── Mailpit (email catcher) ──────────────────────────────────────────────────
+  # Internal hostname for the app container is still `mailpit` (SMTP on :1025).
+  # Host-side SMTP + UI ports are dynamic so multiple Lando apps with Mailpit
+  # can run in parallel. The UI is also routed through the Lando proxy below
+  # (mail.newindiagoverment.lndo.site) so you don't need to remember the port.
   mailpit:
     type: compose
     services:
       image: axllent/mailpit:latest
+      command: /mailpit
       ports:
-        - "1025:1025"
-        - "8025:8025"
-    portforward:
-      - "8025:8025"
+        - "1025"
+        - "8025"
+    portforward: true
 
   # ── Next.js / Payload app ────────────────────────────────────────────────────
   app:
@@ -41,33 +52,34 @@ services:
     # Env vars — override in .env.local for secrets
     overrides:
       environment:
-        DATABASE_URI: postgres://payload:payload@database/payload
+        DATABASE_URI: postgres://payload:payload@db/payload
         PAYLOAD_SECRET: b3f8a2d1c4e7f0a9b2c5d8e1f4a7b0c3d6e9f2a5b8c1d4e7f0a3b6c9d2e5f8a1
-        PAYLOAD_PUBLIC_SERVER_URL: "https://ngi.lndo.site"
-        NEXT_PUBLIC_SITE_URL: "https://ngi.lndo.site"
+        PAYLOAD_PUBLIC_SERVER_URL: "https://newindiagoverment.lndo.site"
+        NEXT_PUBLIC_SITE_URL: "https://newindiagoverment.lndo.site"
         NEXT_PUBLIC_TURNSTILE_SITE_KEY: "1x00000000000000000000AA"
         TURNSTILE_SECRET_KEY: "1x0000000000000000000000000000000AA"
         VOTE_SALT: b3f8a2d1c4e7f0a9b2c5d8e1f4a7b0c3
         REVALIDATE_SECRET: c4e7f0a9b2c5d8e1f4a7b0c3d6e9f2a5
         SMTP_HOST: mailpit
         SMTP_PORT: "1025"
-        SMTP_FROM: "The New India Government <noreply@ngi.lndo.site>"
+        SMTP_FROM: "The New India Government <noreply@newindiagoverment.lndo.site>"
         SEED_ADMIN_EMAIL: admin@thenewindiagov.test
         SEED_ADMIN_PASSWORD: ChangeMe!2026
         SEED_COWORK_EMAIL: cowork@thenewindiagov.test
         NODE_ENV: development
 
-    run_as_root:
-      - npm install -g pnpm@9
+    globals:
+      pnpm: 9
 
-    run:
-      - pnpm install
+    command: pnpm install && pnpm dev
 
-    command: pnpm dev
-
+# Lando proxy — Traefik routes by domain, so any number of apps can share
+# host port 80/443 without colliding.
 proxy:
   app:
-    - ngi.lndo.site
+    - newindiagoverment.lndo.site:3000
+  mailpit:
+    - mail.newindiagoverment.lndo.site:8025
 
 tooling:
   pnpm:
