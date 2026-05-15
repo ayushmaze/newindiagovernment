@@ -21,6 +21,13 @@ FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NODE_ENV=production
+# Stubs only used during `next build` prerender (when Payload initialises but
+# never actually connects). Render overrides them at runtime with the real
+# values. Do not hard-code real secrets here.
+ENV PAYLOAD_SECRET=build-time-placeholder-not-used-at-runtime
+ENV DATABASE_URI=postgres://build:build@localhost:5432/build
+ENV NEXT_PUBLIC_SITE_URL=https://newindiagovernment.com
+ENV PAYLOAD_PUBLIC_SERVER_URL=https://newindiagovernment.com
 RUN pnpm build
 
 # ─── Production runner ──────────────────────────────────────────────────────────
