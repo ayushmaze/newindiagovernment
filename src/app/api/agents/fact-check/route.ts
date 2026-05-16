@@ -5,7 +5,9 @@ import { runFactCheck } from '@/lib/factCheck/run'
 
 export const runtime = 'nodejs'
 // Long-running route — agent loop with web_search/web_fetch can take 2–5 minutes.
-export const maxDuration = 600
+// 300s is the Vercel Hobby cap; Pro/Enterprise allow up to 800. Sticking to 300
+// keeps the same value across hosts (Docker honours it too, just not enforced).
+export const maxDuration = 300
 
 /**
  * POST /api/agents/fact-check
