@@ -66,6 +66,46 @@ saved there override env vars at runtime.
 3. **Switch off `PAYLOAD_DB_PUSH`** once you start using migrations
    (see "Migrations" below).
 
+## First-deploy DB bootstrap (one-shot)
+
+Payload's `push: true` schema sync is **hard-disabled in production** by
+the Postgres adapter (`if (process.env.NODE_ENV !== 'production') …` in
+`@payloadcms/db-postgres/dist/connect.js`). On Render, NODE_ENV is
+always `production`, so the running container will never create tables
+on a fresh DB — the admin returns 500 on every page until tables exist.
+
+Workaround: from a local machine, push the schema directly via
+`scripts/push-prod-schema.mjs`, which sets NODE_ENV=development and
+runs Payload init against the production DATABASE_URI.
+
+```bash
+# 1. Temporarily open the Render Postgres IP allowlist
+RENDER=rnd_...   # rotate me
+DB=dpg-d83p1377f7vs739ckds0-a
+curl -X PATCH "https://api.render.com/v1/postgres/$DB" \
+  -H "Authorization: Bearer $RENDER" -H "Content-Type: application/json" \
+  -d '{"ipAllowList":[{"cidrBlock":"0.0.0.0/0","description":"temp open for schema push"}]}'
+
+# 2. Get the external connection string
+EXT=$(curl -sS "https://api.render.com/v1/postgres/$DB/connection-info" \
+  -H "Authorization: Bearer $RENDER" \
+  | python3 -c "import json,sys;print(json.load(sys.stdin)['externalConnectionString'])")
+EXT="${EXT}?sslmode=require"
+
+# 3. Push the schema
+DATABASE_URI="$EXT" PAYLOAD_SECRET=push-only \
+  node scripts/push-prod-schema.mjs
+
+# 4. RE-LOCK the allowlist
+curl -X PATCH "https://api.render.com/v1/postgres/$DB" \
+  -H "Authorization: Bearer $RENDER" -H "Content-Type: application/json" \
+  -d '{"ipAllowList":[]}'
+```
+
+Long-term, generate proper Payload migrations (`pnpm payload
+migrate:create initial`), commit them, set `prodMigrations` in the
+postgresAdapter config, and retire this script.
+
 ## Migrations (after first deploy)
 
 `PAYLOAD_DB_PUSH=1` is convenient for the first deploy but unsafe long-term

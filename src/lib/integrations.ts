@@ -13,18 +13,29 @@
  */
 
 import { getPayload } from 'payload'
-import config from '@payload-config'
 
 type IntegrationsDoc = Record<string, unknown>
 
 const CACHE_TTL_MS = 30_000
 let cached: { at: number; doc: IntegrationsDoc | null } | null = null
 
+// Lazy load to avoid a circular dependency between payload.config.ts (which
+// references invalidateIntegrationsCache here in its afterChange hook) and
+// this module. Resolved on first call.
+let _configPromise: Promise<unknown> | null = null
+async function loadConfig(): Promise<unknown> {
+  if (!_configPromise) {
+    _configPromise = import('@payload-config').then((m) => (m as { default: unknown }).default)
+  }
+  return _configPromise
+}
+
 export async function getIntegrations(): Promise<IntegrationsDoc | null> {
   const now = Date.now()
   if (cached && now - cached.at < CACHE_TTL_MS) return cached.doc
 
   try {
+    const config = (await loadConfig()) as Parameters<typeof getPayload>[0]['config']
     const payload = await getPayload({ config })
     const doc = (await payload.findGlobal({ slug: 'integrations', depth: 0 })) as IntegrationsDoc
     cached = { at: now, doc }
