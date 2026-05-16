@@ -2,11 +2,14 @@ import type { MetadataRoute } from 'next'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
+// Sitemap pulls from Payload. Force dynamic so Next doesn't try to
+// pre-render it at `next build` time (when Postgres isn't available
+// inside the Docker build container on Render).
+export const dynamic = 'force-dynamic'
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const payload = await getPayload({ config })
-
   const staticPages: MetadataRoute.Sitemap = [
     { url: siteUrl, lastModified: new Date(), changeFrequency: 'hourly', priority: 1 },
     { url: `${siteUrl}/petitions`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
@@ -16,6 +19,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]
 
   try {
+    const payload = await getPayload({ config })
+
     const [articlesResult, petitionsResult, categoriesResult] = await Promise.all([
       payload.find({
         collection: 'articles',
