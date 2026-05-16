@@ -7,6 +7,16 @@ import { PerformancePatch } from '@/components/util/PerformancePatch'
 import { display, ui, body } from '@/app/fonts'
 import '../globals.css'
 
+// Force dynamic rendering for the entire (frontend) route group.
+// The layout renders <FactCheckTicker /> which calls getPayload(), and
+// transitively most pages also pull live data from Payload. Letting Next
+// try to statically pre-render these at build time tries to open a Postgres
+// connection — which doesn't exist inside the Docker build container.
+//
+// All pages stay fast at runtime: Next's data cache still memoises Payload
+// reads, and the homepage / article pages use ISR via fetch cache tags.
+export const dynamic = 'force-dynamic'
+
 export default function FrontendLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${display.variable} ${ui.variable} ${body.variable}`}>
