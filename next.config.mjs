@@ -7,7 +7,10 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  // 'standalone' is only needed for Docker / self-hosted (Render).
+  // Vercel manages its own output format and does NOT want standalone.
+  // VERCEL=1 is set automatically in Vercel's build env.
+  output: process.env.VERCEL ? undefined : 'standalone',
   // Allow Lando proxy origin so HMR websocket and hydration work correctly
   allowedDevOrigins: ['newindiagoverment.lndo.site'],
   images: {
