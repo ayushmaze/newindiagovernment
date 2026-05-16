@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" aria-label="The Citizen's Press badge">
+  <!-- Outer circle -->
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+  <!-- Inner circle -->
+  <circle cx="60" cy="60" r="40" fill="none" stroke="#1a1a1a" stroke-width="0.6"/>
+
+  <!-- Arc paths centered on r=49 (middle of the 18-unit band between r=40 and r=58) -->
+  <defs>
+    <!-- Top arc: 9→3 o'clock going OVER the top. sweep=1 in SVG y-down = clockwise visually = up first. -->
+    <path id="top-arc" d="M 11,60 A 49,49 0 0,1 109,60" fill="none"/>
+    <!-- Bottom arc: 9→3 o'clock going UNDER the bottom (sweep=0 = counterclockwise = down through 6).
+         Going left→right means text reads right-side-up at the bottom of the badge. -->
+    <path id="bottom-arc" d="M 11,60 A 49,49 0 0,0 109,60" fill="none"/>
+  </defs>
+
+  <!-- Top text: "THE CITIZEN'S PRESS" -->
+  <text font-family="ui-sans-serif, system-ui, sans-serif" font-size="7" font-weight="700" fill="#1a1a1a" letter-spacing="2.2" text-anchor="middle">
+    <textPath href="#top-arc" startOffset="50%">THE CITIZEN&apos;S PRESS</textPath>
+  </text>
+
+  <!-- Bottom text: "DELHI · MUMBAI · BENGALURU" — right-side up because path runs right→left under the bottom -->
+  <text font-family="ui-sans-serif, system-ui, sans-serif" font-size="5.4" font-weight="500" fill="#1a1a1a" letter-spacing="1.4" text-anchor="middle">
+    <textPath href="#bottom-arc" startOffset="50%">DELHI · MUMBAI · BENGALURU</textPath>
+  </text>
+
+  <!-- Separator dots at 3 o'clock and 9 o'clock, on the same r=49 ring -->
+  <circle cx="11" cy="60" r="1.1" fill="#1a1a1a"/>
+  <circle cx="109" cy="60" r="1.1" fill="#1a1a1a"/>
+
+  <!-- Center icon: simplified Ashoka Chakra at exact center -->
+  <g transform="translate(60 60)">
+    <circle r="13" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+    <circle r="2.2" fill="#1a1a1a"/>
+    <g stroke="#1a1a1a" stroke-width="0.6">
+      <line x1="0" y1="-13" x2="0" y2="-3"/>
+      <g transform="rotate(15)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(30)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(45)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(60)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(75)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(90)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(105)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(120)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(135)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(150)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(165)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(180)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(195)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(210)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(225)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(240)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(255)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(270)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(285)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(300)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(315)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(330)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+      <g transform="rotate(345)"><line x1="0" y1="-13" x2="0" y2="-3"/></g>
+    </g>
+  </g>
+
+  <!-- Est. text inside the inner circle, below the chakra -->
+  <text x="60" y="86" font-family="ui-sans-serif, system-ui, sans-serif" font-size="4.8" font-weight="600" fill="#1a1a1a" text-anchor="middle" letter-spacing="1.6">ESTD 2026</text>
+</svg>
