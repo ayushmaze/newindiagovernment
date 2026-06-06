@@ -7,7 +7,7 @@ const NAV_ITEMS = [
   { label: 'Latest', href: '/' },
   { label: 'Jumla Meter', href: '/promises' },
   { label: 'Real or Jumla?', href: '/quiz' },
-  { label: 'The Swarm', href: '/the-swarm' },
+  { label: 'The Movement', href: '/movement' },
   { label: 'Fact-Check', href: '/category/fact-check' },
   { label: 'Policy', href: '/category/policy' },
   { label: 'Investigations', href: '/category/investigations' },

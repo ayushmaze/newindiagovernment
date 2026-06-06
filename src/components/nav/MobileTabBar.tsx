@@ -11,7 +11,7 @@ const I = {
   ),
   meter: <><path d="M12 3a9 9 0 109 9" /><path d="M12 12l5-3" /><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none" /></>,
   quiz: <><circle cx="12" cy="12" r="9" /><path d="M9.5 9a2.5 2.5 0 015 0c0 1.7-2.5 2-2.5 4" /><circle cx="12" cy="17" r="0.9" fill="currentColor" stroke="none" /></>,
-  swarm: <><ellipse cx="12" cy="13" rx="4" ry="6" /><path d="M12 7c-1.5-3-3-4-5-5M12 7c1.5-3 3-4 5-5M8 11L4 9M8 14l-4 1M16 11l4-2M16 14l4 1" /></>,
+  movement: <><circle cx="9" cy="7" r="3" /><path d="M3 21v-1a6 6 0 016-6 6 6 0 016 6v1" /><path d="M17 11V6M14.5 8.5h5" /></>,
   vote: <><path d="M4 12l5 5L20 6" /><path d="M3 20h18" /></>,
 }
 
@@ -19,7 +19,7 @@ const TABS: Tab[] = [
   { href: '/', label: 'Home', icon: I.home },
   { href: '/promises', label: 'Jumla', icon: I.meter },
   { href: '/quiz', label: 'Quiz', icon: I.quiz },
-  { href: '/the-swarm', label: 'Swarm', icon: I.swarm },
+  { href: '/movement', label: 'Join', icon: I.movement },
   { href: '/#vote', label: 'Vote', icon: I.vote },
 ]
 

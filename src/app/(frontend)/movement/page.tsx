@@ -1,16 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Reveal } from '@/components/animation/Reveal'
-import { SwarmField } from '@/components/swarm/SwarmField'
-import { SwarmMascot } from '@/components/swarm/SwarmMascot'
-import { SwarmBanner } from '@/components/swarm/SwarmBanner'
+import { MarchField } from '@/components/movement/MarchField'
+import { Marcher } from '@/components/movement/Marcher'
+import { MovementBanner } from '@/components/movement/MovementBanner'
 import { ShareButton } from '@/components/share/ShareButton'
 import { generateBaseMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  ...generateBaseMetadata('The Swarm'),
+  ...generateBaseMetadata('The Movement'),
   description:
-    'The Swarm is every citizen who refuses to be ignored — reading the evidence, asking the hard question, and sharing the answer. No leaders, no party, just numbers that can’t be hidden.',
+    'The New India Government is a citizens’ movement — every Indian who reads the evidence, asks the hard question, and shares the answer. No leaders, no party, just numbers that can’t be hidden.',
 }
 
 type Principle = { num: string; title: string; body: string }
@@ -19,7 +19,7 @@ const PRINCIPLES: Principle[] = [
   {
     num: '01',
     title: 'Numbers can’t be hidden',
-    body: 'A single complaint is easy to wave away. A million people asking the same question, at the same time, with the same receipts, is not. The Swarm’s only weapon is its size.',
+    body: 'A single complaint is easy to wave away. A million people asking the same question, at the same time, with the same receipts, is not. The movement’s only weapon is its size.',
   },
   {
     num: '02',
@@ -29,7 +29,7 @@ const PRINCIPLES: Principle[] = [
   {
     num: '03',
     title: 'No leaders to buy off',
-    body: 'There is no headquarters, no high command, no single face to silence. The Swarm belongs to whoever shows up with a question and a source.',
+    body: 'There is no headquarters, no high command, no single face to silence. The New India Government belongs to whoever shows up with a question and a source.',
   },
   {
     num: '04',
@@ -53,23 +53,23 @@ const STEPS: { label: string; body: string; href: string; cta: string }[] = [
   },
   {
     label: 'Make it count',
-    body: 'Sign a petition, add your voice, and share what you learn. One tap multiplies the swarm.',
+    body: 'Sign a petition, add your voice, and share what you learn. One tap grows the movement.',
     href: '/petitions',
     cta: 'Take action →',
   },
 ]
 
-export default function TheSwarmPage() {
+export default function MovementPage() {
   return (
     <>
       {/* Hero */}
       <section className="relative overflow-hidden border-b-2 border-[var(--divider)] bg-[var(--bg)]">
-        <SwarmField count={6} />
+        <MarchField count={6} />
         <div className="relative mx-auto max-w-[1440px] px-6 py-16 md:py-24">
           <Reveal>
             <div className="flex items-center gap-3 mb-6">
               <span className="float-y inline-block">
-                <SwarmMascot size={36} color="var(--red-tag)" />
+                <Marcher size={36} color="var(--red-tag)" />
               </span>
               <span className="font-ui font-black uppercase tracking-[0.28em] text-[11px] text-[var(--red-tag)]">
                 A citizens&apos; movement · Est. 2026
@@ -77,20 +77,19 @@ export default function TheSwarmPage() {
             </div>
           </Reveal>
           <Reveal delay={80}>
-            <h1 className="font-display font-black uppercase tracking-[-0.01em] leading-[0.9] text-[clamp(46px,10vw,128px)] text-[var(--ink)] max-w-[13ch]">
-              The
+            <h1 className="font-display font-black uppercase tracking-[-0.01em] leading-[0.9] text-[clamp(40px,9vw,116px)] text-[var(--ink)] max-w-[15ch]">
+              The New India
               <br />
               <span className="relative inline-block">
-                Swarm.
+                Government.
                 <span aria-hidden className="absolute -bottom-2 left-0 h-3 w-full bg-[var(--pink-chip)] -z-10" />
               </span>
             </h1>
           </Reveal>
           <Reveal delay={160}>
             <p className="font-display text-[clamp(18px,2.3vw,28px)] leading-snug text-[var(--ink-2)] mt-8 max-w-[60ch]">
-              Small things, in great numbers, are impossible to ignore. The Swarm is every citizen
-              who reads the evidence, asks the hard question, and shares the answer — until the truth
-              is too widespread to bury.
+              Not a party. Not a personality. A movement of citizens who read the evidence, ask the
+              hard question, and share the answer — until the truth is too widespread to bury.
             </p>
           </Reveal>
 
@@ -100,12 +99,12 @@ export default function TheSwarmPage() {
                 href="#join"
                 className="group inline-flex items-center gap-3 bg-[var(--ink)] text-[var(--bg)] px-7 py-4 hover:bg-[var(--red-tag)] transition-colors"
               >
-                <span className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]">Join the swarm</span>
+                <span className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]">Join the movement</span>
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
               <ShareButton
-                text="Too many to step on. Too loud to ignore. Join the Swarm — citizens who refuse to be ignored."
-                url="/the-swarm"
+                text="One voice asks. A million can't be ignored. Join The New India Government — a citizens' movement for truth and accountability."
+                url="/movement"
                 label="Share the movement"
                 className="border-2 border-[var(--ink)] px-7 py-4 text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--bg)]"
               />
@@ -119,7 +118,7 @@ export default function TheSwarmPage() {
         <div className="mx-auto max-w-[1440px] px-6 py-16 md:py-24">
           <Reveal>
             <p className="font-ui font-black uppercase tracking-[0.28em] text-[11px] text-[var(--red-tag)] mb-4">
-              What the Swarm believes
+              What the movement believes
             </p>
             <h2 className="font-display font-black uppercase tracking-[-0.01em] leading-[0.95] text-[clamp(32px,5vw,64px)] text-[var(--ink)] mb-12 max-w-[16ch]">
               Four rules. No leaders.
@@ -149,7 +148,7 @@ export default function TheSwarmPage() {
         <div className="mx-auto max-w-[1440px] px-6 py-16 md:py-24">
           <Reveal>
             <h2 className="font-display font-black uppercase tracking-[-0.01em] leading-[0.95] text-[clamp(30px,5vw,60px)] max-w-[18ch] mb-12">
-              Three ways to make the swarm bigger.
+              Three ways to grow the movement.
             </h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[var(--bg)]/15">
@@ -176,9 +175,9 @@ export default function TheSwarmPage() {
         </div>
       </section>
 
-      {/* Live swarm CTA */}
+      {/* Live movement CTA */}
       <div id="join">
-        <SwarmBanner />
+        <MovementBanner />
       </div>
     </>
   )

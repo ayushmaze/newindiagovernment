@@ -95,7 +95,7 @@
 .reveal-blur { filter: blur(8px); }
 .reveal.is-visible.reveal-blur { filter: blur(0); }
 
-/* ── Swarm scuttle (decorative mascots) ──────────────────────────────── */
+/* ── March scuttle (decorative marching citizens) ────────────────────── */
 @keyframes scuttle {
   0% { transform: translateX(-8vw) rotate(8deg); }
   50% { transform: translateX(50vw) rotate(-6deg); }

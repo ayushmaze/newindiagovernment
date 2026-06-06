@@ -10,7 +10,7 @@ import { Pillars } from '@/components/home/Pillars'
 import { JoinMovement } from '@/components/home/JoinMovement'
 import { JumlaMeter } from '@/components/promises/JumlaMeter'
 import { QuizTeaser } from '@/components/home/QuizTeaser'
-import { SwarmBanner } from '@/components/swarm/SwarmBanner'
+import { MovementBanner } from '@/components/movement/MovementBanner'
 import { generateBaseMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 
@@ -168,7 +168,7 @@ export default async function HomePage() {
 
       <QuizTeaser />
 
-      <SwarmBanner />
+      <MovementBanner />
 
       <VoteWidget question={voteQuestion} options={voteOptions} />
 
