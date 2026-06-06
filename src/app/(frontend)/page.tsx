@@ -11,6 +11,8 @@ import { JoinMovement } from '@/components/home/JoinMovement'
 import { JumlaMeter } from '@/components/promises/JumlaMeter'
 import { QuizTeaser } from '@/components/home/QuizTeaser'
 import { MovementBanner } from '@/components/movement/MovementBanner'
+import { DailyJumlaBar } from '@/components/home/DailyJumlaBar'
+import { LiveActivityStrip } from '@/components/home/LiveActivityStrip'
 import { generateBaseMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 
@@ -154,24 +156,38 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
       />
 
+      {/* 1. Breaking-news red ribbon — first thing in the eye-path */}
+      <DailyJumlaBar />
+
+      {/* 2. Hero — punchier, with the Jumla scorecard */}
       <HeroManifesto
         factChecks={factChecks}
         petitionSignatures={signatures}
         articlesPublished={articlesPublished}
       />
 
-      <CrisisGrid />
+      {/* 3. Social proof + tiny news ticker — feels alive */}
+      <LiveActivityStrip />
 
-      <LiesVsTruth />
-
+      {/* 4. The Jumla Meter (compact) — the viral hook */}
       <JumlaMeter compact />
 
+      {/* 5. Real or Jumla? — interactive moment */}
       <QuizTeaser />
 
+      {/* 6. Movement banner — join the cause, live counter */}
       <MovementBanner />
 
+      {/* 7. The Reckoning — the four data-shock cards */}
+      <CrisisGrid />
+
+      {/* 8. Claim vs Truth — receipts on the table */}
+      <LiesVsTruth />
+
+      {/* 9. People's poll */}
       <VoteWidget question={voteQuestion} options={voteOptions} />
 
+      {/* 10. Latest investigations (empty until content publishes) */}
       <LatestInvestigations articles={articles} />
 
       {petitions.length > 0 && (
