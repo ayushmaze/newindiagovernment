@@ -19,7 +19,7 @@ const TABS: Tab[] = [
   { href: '/', label: 'Home', icon: I.home },
   { href: '/promises', label: 'Jumla', icon: I.meter },
   { href: '/quiz', label: 'Quiz', icon: I.quiz },
-  { href: '/cockroach-janta-party', label: 'Swarm', icon: I.swarm },
+  { href: '/the-swarm', label: 'Swarm', icon: I.swarm },
   { href: '/#vote', label: 'Vote', icon: I.vote },
 ]
 

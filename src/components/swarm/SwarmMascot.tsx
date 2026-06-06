@@ -1,7 +1,10 @@
 type Props = { size?: number; className?: string; color?: string }
 
-/** A small, friendly cockroach mascot — the symbol of the Swarm. */
-export function Cockroach({ size = 40, className = '', color = 'currentColor' }: Props) {
+/**
+ * The Swarm mascot — a small, resilient creature drawn from many legs and
+ * antennae. The metaphor: tiny, countless, and impossible to stamp out.
+ */
+export function SwarmMascot({ size = 40, className = '', color = 'currentColor' }: Props) {
   return (
     <svg
       width={size}

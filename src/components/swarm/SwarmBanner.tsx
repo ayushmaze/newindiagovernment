@@ -1,11 +1,10 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { CockroachField } from './CockroachField'
-import { Cockroach } from './Cockroach'
+import { SwarmField } from './SwarmField'
+import { SwarmMascot } from './SwarmMascot'
 import { ShareButton } from '@/components/share/ShareButton'
 
-/** Base count nods to the real ~22M followers the CJP movement crossed in 2026. */
 const BASE = 21_900_000
 
 export function SwarmBanner() {
@@ -31,32 +30,32 @@ export function SwarmBanner() {
   return (
     <section
       className="relative overflow-hidden border-y-2 border-[var(--divider)] bg-[var(--ink)] text-[var(--bg)]"
-      aria-label="The Swarm — solidarity with India's youth"
+      aria-label="The Swarm — a movement that refuses to be ignored"
     >
-      <CockroachField count={8} />
+      <SwarmField count={8} />
 
       <div className="relative mx-auto max-w-[1440px] px-6 py-16 md:py-24">
         <div className="flex items-center gap-3 mb-6">
           <span className="float-y inline-block">
-            <Cockroach size={34} color="var(--pink-chip)" />
+            <SwarmMascot size={34} color="var(--pink-chip)" />
           </span>
           <span className="font-ui font-black uppercase tracking-[0.28em] text-[11px] text-[var(--pink-chip)]">
-            Inspired by the Cockroach Janta Party
+            The Swarm · A citizens&apos; movement
           </span>
         </div>
 
         <h2 className="font-display font-black uppercase tracking-[-0.01em] leading-[0.92] text-[clamp(38px,8vw,104px)] max-w-[14ch]">
-          They called the
+          Too many
           <br />
-          unemployed
+          to step on.
           <br />
-          <span className="text-[var(--pink-chip)]">cockroaches.</span>
+          <span className="text-[var(--pink-chip)]">Too loud to ignore.</span>
         </h2>
 
         <p className="font-display text-[19px] md:text-[26px] leading-snug text-[var(--bg)]/80 mt-8 max-w-[58ch]">
-          So millions wore it like a badge. A satirical movement became the largest youth
-          mobilisation of 2026 — overtaking the ruling party&apos;s own following in days. We
-          stand with the right to ask questions without being called a pest.
+          One voice is easy to dismiss. Millions, moving together, are not. The Swarm is every
+          citizen who refuses to be told to wait quietly — who reads the evidence, asks the hard
+          question, and shares the answer. No leaders. No party. Just numbers that can&apos;t be hidden.
         </p>
 
         {/* Live counter */}
@@ -81,17 +80,17 @@ export function SwarmBanner() {
               className="tap-shrink relative overflow-hidden bg-[var(--pink-chip)] text-[var(--ink)] px-8 py-4 font-ui font-black uppercase tracking-[0.16em] text-[13px] hover:bg-[var(--bg)] transition-colors disabled:opacity-90"
             >
               {!joined && <span className="sheen absolute inset-0" aria-hidden />}
-              <span className="relative">{joined ? '✓ You’re in the swarm' : 'Join the swarm 🪳'}</span>
+              <span className="relative">{joined ? '✓ You’re in the swarm' : 'Join the swarm'}</span>
             </button>
             <Link
-              href="/cockroach-janta-party"
+              href="/the-swarm"
               className="tap-shrink inline-flex items-center gap-2 border-2 border-[var(--bg)]/40 px-7 py-4 font-ui font-bold uppercase tracking-[0.16em] text-[12px] hover:border-[var(--bg)] transition-colors"
             >
-              The full story →
+              What is the Swarm? →
             </Link>
             <ShareButton
-              text="They called India's unemployed youth 'cockroaches'. Millions joined the Swarm. 🪳"
-              url="/cockroach-janta-party"
+              text="Too many to step on. Too loud to ignore. Join the Swarm — citizens who refuse to be ignored."
+              url="/the-swarm"
               label="Spread the swarm"
               className="px-5 py-4 text-[var(--bg)]/70 hover:text-[var(--bg)]"
             />

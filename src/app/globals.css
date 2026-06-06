@@ -95,7 +95,7 @@
 .reveal-blur { filter: blur(8px); }
 .reveal.is-visible.reveal-blur { filter: blur(0); }
 
-/* ── Cockroach scuttle (CJP-inspired swarm) ──────────────────────────── */
+/* ── Swarm scuttle (decorative mascots) ──────────────────────────────── */
 @keyframes scuttle {
   0% { transform: translateX(-8vw) rotate(8deg); }
   50% { transform: translateX(50vw) rotate(-6deg); }
