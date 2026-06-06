@@ -5,13 +5,13 @@ import { usePathname } from 'next/navigation'
 
 const NAV_ITEMS = [
   { label: 'Latest', href: '/' },
+  { label: 'Jumla Meter', href: '/promises' },
+  { label: 'Real or Jumla?', href: '/quiz' },
+  { label: 'The Swarm', href: '/cockroach-janta-party' },
   { label: 'Fact-Check', href: '/category/fact-check' },
   { label: 'Policy', href: '/category/policy' },
-  { label: 'Elections', href: '/category/elections' },
-  { label: 'Leaders', href: '/category/leaders' },
   { label: 'Investigations', href: '/category/investigations' },
   { label: 'Petitions', href: '/petitions' },
-  { label: 'Opinion', href: '/category/opinion' },
   { label: 'Vote', href: '/#vote' },
 ]
 

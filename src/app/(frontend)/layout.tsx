@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Masthead } from '@/components/masthead/Masthead'
 import { FactCheckTicker } from '@/components/ticker/FactCheckTicker'
 import { PrimaryNav } from '@/components/nav/PrimaryNav'
+import { MobileTabBar } from '@/components/nav/MobileTabBar'
 import { PerformancePatch } from '@/components/util/PerformancePatch'
 import { display, ui, body } from '@/app/fonts'
 import '../globals.css'
@@ -31,11 +32,11 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
         <FactCheckTicker />
         <PrimaryNav />
 
-        <div id="main-content">
+        <div id="main-content" className="pb-16 lg:pb-0">
           {children}
         </div>
 
-        <footer className="border-t-2 border-[var(--divider)] bg-[var(--bg)] mt-16 py-12">
+        <footer className="border-t-2 border-[var(--divider)] bg-[var(--bg)] mt-16 py-12 pb-28 lg:pb-12">
           <div className="mx-auto max-w-[1440px] px-6">
             {/* Wordmark */}
             <div className="text-center mb-10">
@@ -135,6 +136,8 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
             </div>
           </div>
         </footer>
+
+        <MobileTabBar />
       </body>
     </html>
   )

@@ -8,6 +8,9 @@ import { LiesVsTruth } from '@/components/home/LiesVsTruth'
 import { LatestInvestigations } from '@/components/home/LatestInvestigations'
 import { Pillars } from '@/components/home/Pillars'
 import { JoinMovement } from '@/components/home/JoinMovement'
+import { JumlaMeter } from '@/components/promises/JumlaMeter'
+import { QuizTeaser } from '@/components/home/QuizTeaser'
+import { SwarmBanner } from '@/components/swarm/SwarmBanner'
 import { generateBaseMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 
@@ -160,6 +163,12 @@ export default async function HomePage() {
       <CrisisGrid />
 
       <LiesVsTruth />
+
+      <JumlaMeter compact />
+
+      <QuizTeaser />
+
+      <SwarmBanner />
 
       <VoteWidget question={voteQuestion} options={voteOptions} />
 
