@@ -274,6 +274,255 @@ export const ARTICLES: StaticArticle[] = [
     ],
     tags: ['democracy', 'press-freedom', 'media', 'rsf'],
   },
+  {
+    slug: 'rti-dilution-dpdp-act',
+    title: 'How a privacy law quietly weakened your Right to Information',
+    kicker: 'GOVERNANCE · LAW',
+    category: 'Democracy',
+    publishedAt: '2026-03-10',
+    readMins: 5,
+    keyStat: { value: 'Section 8(1)(j)', label: 'the RTI clause the DPDP Act rewrote' },
+    excerpt:
+      'The Digital Personal Data Protection Act amended the RTI Act — removing the public-interest test that let citizens access officials’ records.',
+    dek: 'A data-protection law sounds protective. One clause inside it may turn the Right to Information into a right to be refused.',
+    body: [
+      {
+        paragraphs: [
+          'The Right to Information (RTI) Act is the tool citizens use to prise records out of government. Its Section 8(1)(j) let authorities withhold "personal information" — but with a crucial override: it had to be disclosed if a larger public interest justified it.',
+          'The Digital Personal Data Protection (DPDP) Act, 2023 amended that clause and removed the public-interest proviso. Critics say this creates a near-blanket exemption: an official can decline a request simply by labelling the record "personal data".',
+        ],
+      },
+      {
+        heading: 'Why transparency advocates are alarmed',
+        paragraphs: [
+          'RTI activist Anjali Bhardwaj warned the change "undermines transparency, weakens the public’s ability to hold authorities accountable, and restricts access to critical government records". Former Delhi High Court Chief Justice A. P. Shah called the amendments "manifestly ill-thought-out" and "ripe for constitutional challenge".',
+          'The information most often sought through RTI — officials’ assets, beneficiary lists, file notings — frequently involves named individuals. Remove the public-interest test and much of it becomes deniable.',
+        ],
+      },
+      {
+        heading: 'Where it stands',
+        paragraphs: [
+          'The Supreme Court has referred petitions challenging the amendment to a five-judge Constitution Bench, to balance the genuine right to privacy against the equally genuine right to know. The constructive outcome would restore a clear public-interest override — privacy and transparency are not actually in conflict when the test is "does the public need to know this".',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'Down To Earth: how the Data Act dilutes RTI', url: 'https://www.downtoearth.org.in/governance/how-the-strict-data-act-is-diluting-rti-91640' },
+      { label: 'IDR: new data rules put the state above citizens', url: 'https://idronline.org/article/rights/indias-new-data-rules-put-the-state-above-citizens/' },
+      { label: 'ForumIAS: RTI amendment via DPDP Act explained', url: 'https://forumias.com/blog/rti-amendment-via-dpdp-act-2023-explained-pointwise/' },
+    ],
+    tags: ['governance', 'rti', 'transparency', 'dpdp'],
+  },
+  {
+    slug: 'adani-hindenburg-where-it-stands',
+    title: 'Adani–Hindenburg: what the Supreme Court and SEBI actually concluded',
+    kicker: 'ECONOMY · MARKETS',
+    category: 'Economy',
+    publishedAt: '2026-02-02',
+    readMins: 6,
+    keyStat: { value: '24 probes', label: 'SEBI investigations; 22 concluded' },
+    excerpt:
+      'A short-seller’s report wiped out billions in market value and triggered a regulator probe and a Supreme Court case. Here’s the verified state of play.',
+    dek: 'Stripped of the noise: what was alleged, what the regulator investigated, and what the courts have so far held.',
+    body: [
+      {
+        paragraphs: [
+          'In January 2023 the US short-seller Hindenburg Research published allegations of stock-price manipulation and accounting concerns against the Adani Group. The report preceded a steep fall in group share values.',
+          'On 3 January 2024 the Supreme Court declined to transfer the matter away from the market regulator SEBI, upheld SEBI’s investigation as comprehensive — "inspiring confidence" — and directed it to wrap up its remaining probes promptly. A review petition against that order was later dismissed.',
+        ],
+      },
+      {
+        heading: 'What SEBI has said',
+        paragraphs: [
+          'SEBI stated it had undertaken 24 investigations into the matter, of which 22 had concluded — covering alleged related-party-transaction violations, insider trading, price manipulation and foreign-portfolio-investment rules.',
+          'In a later twist, SEBI issued a show-cause notice to Hindenburg itself, alleging it shared an advance copy of its report with a hedge-fund manager. That is an allegation about the short-seller’s conduct — separate from the questions about the Adani Group, which remain the subject of regulatory findings.',
+        ],
+      },
+      {
+        heading: 'Why it still matters',
+        paragraphs: [
+          'This is, at its core, a test of whether India’s market regulator can investigate a politically connected conglomerate independently and transparently. The courts have backed SEBI’s process; the open question for citizens is whether the concluded findings are published in full, so markets and voters can judge them on the evidence.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'Business Today: why the SC ruling matters', url: 'https://www.businesstoday.in/magazine/the-buzz/story/adani-hindenburg-issue-heres-why-the-recent-supreme-court-ruling-is-so-important-414192-2024-01-19' },
+      { label: 'Bloomberg: SC asks SEBI to close probe in 3 months', url: 'https://www.bloomberg.com/news/articles/2024-01-03/top-india-court-asks-sebi-to-close-adani-probe-in-three-months' },
+      { label: 'Business Today: the backstory', url: 'https://www.businesstoday.in/markets/stocks/story/hindenburgs-charge-against-sebi-chief-sc-ruling-a-46-page-showcause-notice-then-a-report-the-backstory-441053-2024-08-11' },
+    ],
+    tags: ['economy', 'adani', 'sebi', 'markets'],
+  },
+  {
+    slug: 'manipur-two-years-of-displacement',
+    title: 'Manipur: two years on, tens of thousands still can’t go home',
+    kicker: 'GOVERNANCE · HUMAN COST',
+    category: 'Governance',
+    publishedAt: '2026-02-10',
+    readMins: 6,
+    keyStat: { value: '~60,000+', label: 'people displaced since May 2023' },
+    excerpt:
+      'Ethnic violence that began in May 2023 left hundreds dead and tens of thousands in relief camps. A look at the human toll and the road back.',
+    dek: 'Behind the headlines and the politics are families who have spent years in relief camps. This is the verified scale of it.',
+    body: [
+      {
+        paragraphs: [
+          'Ethnic violence erupted in Manipur on 3 May 2023, between the valley-majority Meitei community and the hill-based Kuki-Zo tribal communities, triggered by a court order on Scheduled Tribe status.',
+          'By government figures cited in late 2024, at least 258 people had been killed and around 60,000 displaced; other tallies put deaths above 260 and displacement over 70,000. More than 58,000 people were reported living across 281 relief camps.',
+        ],
+      },
+      {
+        heading: 'Governance timeline',
+        paragraphs: [
+          'President’s Rule was imposed in February 2025, suspending the state government. It was revoked on 4 February 2026 with a new chief minister sworn in. Authorities announced a phased plan to close relief camps and rebuild, with compensation of about ₹3 lakh per household whose home was destroyed.',
+          'Rights groups including Amnesty International and Human Rights Watch have pressed for urgent, dignified rehabilitation, noting camp conditions with limited healthcare, sanitation and nutrition, and warning of renewed clashes.',
+        ],
+      },
+      {
+        heading: 'The test ahead',
+        paragraphs: [
+          'Peace is measured not by the absence of headlines but by whether displaced families can safely return, rebuild, and trust the institutions meant to protect them. Transparent rehabilitation — counted, funded and verifiable — is the benchmark every government, state and central, should be held to here.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'Amnesty: rehabilitate the displaced', url: 'https://www.amnesty.org/en/latest/news/2025/05/authorities-should-urgently-rehabilitate-thousands-displaced-in-two-years-of-ethnic-violence-in-manipur/' },
+      { label: '2023–2025 Manipur violence · Wikipedia', url: 'https://en.wikipedia.org/wiki/2023%E2%80%932025_Manipur_violence' },
+      { label: 'Human Rights Watch: clashes restart', url: 'https://www.hrw.org/news/2025/03/27/india-ethnic-clashes-restart-manipur' },
+    ],
+    tags: ['governance', 'manipur', 'human-rights', 'displacement'],
+  },
+  {
+    slug: 'gst-2-the-biggest-reset-since-2017',
+    title: 'GST 2.0: a simpler tax — and a ₹48,000 crore question',
+    kicker: 'ECONOMY · TAX',
+    category: 'Economy',
+    publishedAt: '2026-01-12',
+    readMins: 5,
+    keyStat: { value: '6 → 3 slabs', label: 'GST structure after Sept 2025 reset' },
+    excerpt:
+      'In September 2025 India collapsed its tangle of GST slabs into a simpler structure — a genuine fix that also carries a real revenue cost.',
+    dek: 'The reform addressed years of valid criticism about complexity. The trade-off is a sizeable hit to revenue.',
+    body: [
+      {
+        paragraphs: [
+          'GST’s biggest, fairest criticism since 2017 was complexity — most memorably the popcorn example, where loose salted popcorn (5%), packaged (12%) and caramelised (18%) attracted three different rates.',
+          'Effective 22 September 2025, the government reset the structure: from six slabs down to a simpler system built around two main rates of 5% and 18%, with 0% for essentials and a 40% rate for luxury and "sin" goods. Removing the 12% and 28% slabs is a real simplification.',
+        ],
+      },
+      {
+        heading: 'The fiscal trade-off',
+        paragraphs: [
+          'Simplicity has a price. The government estimated a revenue loss of about ₹93,000 crore from the rate cuts, partly offset by roughly ₹45,000 crore from the new 40% slab — a net hit of around ₹48,000 crore. Analysts cautioned this could strain spending on infrastructure if collections don’t pick up.',
+          'Credit where due: a long-stalled reform finally happened, after years of Centre–State disagreement. The open question is whether the simpler structure broadens compliance enough to recover the lost revenue.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'Goods and Services Tax (India) · Wikipedia', url: 'https://en.wikipedia.org/wiki/Goods_and_Services_Tax_(India)' },
+      { label: 'A2Z Taxcorp: GST in 2025, the biggest reset since 2017', url: 'https://a2ztaxcorp.net/gst-in-2025-the-year-indias-indirect-tax-system-got-its-biggest-reset-since-2017/' },
+      { label: 'ICRA: GST rationalisation note', url: 'https://www.icra.in/Rating/DownloadResearchSpecialCommentReport?id=6512' },
+    ],
+    tags: ['economy', 'gst', 'tax', 'reform'],
+  },
+  {
+    slug: 'farm-laws-aftermath-msp-promise',
+    title: 'After the farm-law repeal: the MSP promise still unkept',
+    kicker: 'GOVERNANCE · AGRICULTURE',
+    category: 'Governance',
+    publishedAt: '2026-01-28',
+    readMins: 5,
+    keyStat: { value: '23 crops', label: 'farmers want covered by a legal MSP' },
+    excerpt:
+      'The three farm laws were repealed in 2021. The central promise that followed — a committee on MSP — has yet to deliver, and farmers are back at Delhi’s borders.',
+    dek: 'A repeal ended one fight and began another: the demand for a legal guarantee on minimum support prices.',
+    body: [
+      {
+        paragraphs: [
+          'After a year-long agitation, the government repealed its three farm laws in November 2021. Alongside the repeal came assurances — including a committee to examine a legal guarantee for Minimum Support Price (MSP).',
+          'In February 2024, farmers from Punjab and Haryana resumed protests at Delhi’s borders, demanding a law guaranteeing MSP for 23 crops (in line with the Swaminathan Commission formula), debt relief, and action on other promises.',
+        ],
+      },
+      {
+        heading: 'The committee that hasn’t reported',
+        paragraphs: [
+          'The MSP committee formed in July 2022 had not submitted a report as the protests reignited, and rounds of talks between farm unions and the government repeatedly ended in deadlock.',
+          'There are honest arguments on both sides about a legal MSP — its fiscal cost, its market effects. But a promise to "examine" it, left unresolved for years, is itself a accountability gap: either deliver the mechanism or explain transparently why not.',
+        ],
+      },
+    ],
+    sources: [
+      { label: '2024 Indian farmers’ protest · Wikipedia', url: "https://en.wikipedia.org/wiki/2024_Indian_farmers'_protest" },
+      { label: 'House of Commons Library: farmers’ protests & reforms', url: 'https://commonslibrary.parliament.uk/research-briefings/cbp-9226/' },
+      { label: 'Via Campesina: MSP legal guarantee demand', url: 'https://viacampesina.org/en/2024/02/indian-farmers-are-protesting-again-legal-guarantee-on-minimum-support-price-is-the-key-demand/' },
+    ],
+    tags: ['governance', 'farmers', 'msp', 'agriculture'],
+  },
+  {
+    slug: 'food-inflation-the-kitchen-test',
+    title: 'The kitchen test: what food inflation did to your thali',
+    kicker: 'ECONOMY · PRICES',
+    category: 'Economy',
+    publishedAt: '2025-12-20',
+    readMins: 4,
+    keyStat: { value: '8.39%', label: 'food inflation, Dec 2024 (YoY)' },
+    excerpt:
+      'Headline inflation can look calm while food prices swing hard. Tomatoes, onions and potatoes told the real story of 2024-25.',
+    dek: 'The number that matters at the dinner table isn’t the headline CPI — it’s what vegetables cost this week.',
+    body: [
+      {
+        paragraphs: [
+          'India’s monetary policy targets overall inflation around 4%. But the figure households feel most is food inflation — and it has been volatile. In December 2024, food inflation ran at about 8.39% year-on-year (rural 8.65%, urban 7.90%).',
+          'The Economic Survey flagged tomato, onion and potato — the "TOP" vegetables — as the leading drivers. When these spike, the cost of an ordinary thali jumps even if the headline number looks tame.',
+        ],
+      },
+      {
+        heading: 'The other side of the swing',
+        paragraphs: [
+          'Volatility cuts both ways: by late 2025, food inflation had swung into deflation in some months (around -3.9% YoY in November 2025) as vegetable prices fell — which hurts farmers even as it helps consumers.',
+          'The constructive lesson isn’t to cheer or jeer a single month’s print. It’s to build supply chains, storage and price data good enough that families and farmers aren’t whipsawed by the next tomato cycle.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'MoSPI: CPI press release', url: 'https://www.mospi.gov.in/sites/default/files/press_release/CPI_PR_13May25.pdf' },
+      { label: 'PIB: CPI November 2025', url: 'https://www.pib.gov.in/PressReleasePage.aspx?PRID=2202940&reg=3&lang=1' },
+      { label: 'Trading Economics: India food inflation', url: 'https://tradingeconomics.com/india/food-inflation' },
+    ],
+    tags: ['economy', 'inflation', 'food', 'prices'],
+  },
+  {
+    slug: 'health-spending-the-2-5-percent-mirage',
+    title: 'The 2.5% promise: India’s health-spending target keeps slipping',
+    kicker: 'HEALTH · BUDGET',
+    category: 'Health',
+    publishedAt: '2026-02-25',
+    readMins: 5,
+    keyStat: { value: '1.9%', label: 'public health spend (% GDP) vs 2.5% target' },
+    excerpt:
+      'The National Health Policy set a goal: 2.5% of GDP on public health by 2025. The combined Centre-plus-State figure is stuck near 1.9%.',
+    dek: 'A target set in 2017, due in 2025, still unmet — and the central government’s share has been shrinking, not growing.',
+    body: [
+      {
+        paragraphs: [
+          'The National Health Policy of 2017 set a clear, measurable goal: raise public health expenditure to 2.5% of GDP by 2025. It is the kind of promise that is easy to check.',
+          'As of 2025-26, combined Centre-plus-State public health spending sits around 1.9% of GDP — well short of the target. Notably, the Union government’s own share fell from about 0.37% of GDP during the pandemic to roughly 0.29% in 2025-26; states have carried more of the load, rising to about 1.1%.',
+        ],
+      },
+      {
+        heading: 'Why the gap is felt, not just counted',
+        paragraphs: [
+          'Under-funded public health pushes families toward expensive private care — a leading cause of households falling into debt. Closing the 0.6-point gap to 2.5% isn’t a rounding error; it is the difference between a clinic that’s staffed and one that isn’t.',
+          'The honest scorecard: real money has gone in, and state spending has grown — but the headline national promise remains unmet, largely because the central share dipped. Meeting it is a budgeting choice, not a mystery.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'World Bank: current health expenditure (% GDP), India', url: 'https://data.worldbank.org/indicator/SH.XPD.CHEX.GD.ZS?locations=IN' },
+      { label: 'PRS: Demand for Grants 2025-26, Health', url: 'https://prsindia.org/files/budget/budget_parliament/2025/DFG_Analysis_2025-26-Health.pdf' },
+      { label: 'IMPRI: where India’s health budget stands', url: 'https://www.impriindia.com/insights/indias-health-budget-stand/' },
+    ],
+    tags: ['health', 'budget', 'public-health', 'nhp'],
+  },
 ]
 
 export function getArticle(slug: string): StaticArticle | undefined {
