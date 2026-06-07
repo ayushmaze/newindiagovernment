@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { StatCounter } from './StatCounter'
+import { AnimatedShockStat } from './AnimatedShockStat'
 import { PROMISES } from '@/lib/promises'
 import { T } from '@/components/i18n/T'
 
@@ -128,19 +129,23 @@ export function HeroManifesto({
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
-            <ShockStat
-              big={`${BROKEN_OR_JUMLA}/${TOTAL}`}
+            <AnimatedShockStat
+              endNumber={BROKEN_OR_JUMLA}
+              suffix={`/${TOTAL}`}
               label="Promises broken or jumla"
               sub="Across jobs, money, farmers, GDP"
               accent="red"
             />
-            <ShockStat
-              big={`${AVG_DELIVERED}%`}
+            <AnimatedShockStat
+              endNumber={AVG_DELIVERED}
+              suffix="%"
               label="Average delivery"
               sub="Weighted across every tracked headline"
             />
-            <ShockStat
-              big="~70L"
+            <AnimatedShockStat
+              endNumber={70}
+              prefix="~"
+              suffix="L"
               label="Net jobs lost"
               sub="2016-17 → 2022-23 (CMIE)"
               accent="red"
@@ -157,30 +162,5 @@ export function HeroManifesto({
   )
 }
 
-function ShockStat({
-  big,
-  label,
-  sub,
-  accent,
-}: {
-  big: string
-  label: string
-  sub: string
-  accent?: 'red'
-}) {
-  return (
-    <div className="border-l-2 border-[var(--ink)]/15 pl-4">
-      <div
-        className={`font-display font-black tabular-nums leading-none text-[clamp(40px,5.5vw,64px)] ${
-          accent === 'red' ? 'text-[var(--red-tag)]' : 'text-[var(--ink)]'
-        }`}
-      >
-        {big}
-      </div>
-      <p className="font-ui font-black uppercase tracking-[0.16em] text-[11px] text-[var(--ink)] mt-3">
-        {label}
-      </p>
-      <p className="font-ui text-[12px] text-[var(--ink-3)] mt-1 leading-snug">{sub}</p>
-    </div>
-  )
-}
+// (ShockStat replaced with AnimatedShockStat — see ./AnimatedShockStat.tsx)
+
