@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Reveal } from '@/components/animation/Reveal'
 
 type Crisis = {
   num: string
@@ -56,30 +57,32 @@ export function CrisisGrid() {
     >
       <div className="mx-auto max-w-[1440px] px-6 py-20 md:py-28">
         {/* Section header */}
-        <div className="max-w-[60ch] mb-16">
-          <p className="font-ui font-black uppercase tracking-[0.28em] text-[11px] text-[var(--pink-chip)] mb-5">
-            The Reckoning
-          </p>
-          <h2 className="font-display font-black uppercase tracking-[-0.01em] leading-[0.95] text-[clamp(36px,6vw,80px)]">
-            Four truths
-            <br />
-            the headlines
-            <br />
-            won&apos;t tell you.
-          </h2>
-          <p className="font-display text-[18px] md:text-[22px] leading-snug text-[var(--bg)]/70 mt-8">
-            Every claim below is sourced, dated, and cross-referenced. No spin. No partisan framing.
-            Just what the government&apos;s own data quietly admits.
-          </p>
-        </div>
+        <Reveal>
+          <div className="max-w-[60ch] mb-16">
+            <p className="font-ui font-black uppercase tracking-[0.28em] text-[11px] text-[var(--pink-chip)] mb-5">
+              The Reckoning
+            </p>
+            <h2 className="font-display font-black uppercase tracking-[-0.01em] leading-[0.95] text-[clamp(36px,6vw,80px)]">
+              Four truths
+              <br />
+              the headlines
+              <br />
+              won&apos;t tell you.
+            </h2>
+            <p className="font-display text-[18px] md:text-[22px] leading-snug text-[var(--bg)]/70 mt-8">
+              Every claim below is sourced, dated, and cross-referenced. No spin. No partisan framing.
+              Just what the government&apos;s own data quietly admits.
+            </p>
+          </div>
+        </Reveal>
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--bg)]/15">
-          {CRISES.map((c) => (
+          {CRISES.map((c, idx) => (
+            <Reveal key={c.num} delay={idx * 80}>
             <Link
-              key={c.num}
               href={c.href}
-              className="group bg-[var(--ink)] p-8 md:p-10 hover:bg-[var(--bg)]/5 transition-colors block"
+              className="group bg-[var(--ink)] p-8 md:p-10 hover:bg-[var(--bg)]/5 transition-colors block h-full hover:translate-y-[-2px] duration-200"
             >
               <div className="flex items-start justify-between gap-6">
                 <span className="font-ui uppercase tracking-[0.22em] text-[11px] text-[var(--bg)]/40">
@@ -113,6 +116,7 @@ export function CrisisGrid() {
                 </span>
               </div>
             </Link>
+            </Reveal>
           ))}
         </div>
       </div>
