@@ -41,20 +41,9 @@ export function LangProvider({ children }: { children: ReactNode }) {
       if (stored && (LANGS as readonly string[]).includes(stored)) {
         setLangState(stored as Lang)
       } else {
-        // Detect a sensible default from the browser
+        // Detect a sensible default from the browser (English + Hindi only)
         const nav = navigator.language?.toLowerCase() ?? 'en'
-        const candidate = nav.startsWith('hi')
-          ? 'hi'
-          : nav.startsWith('ta')
-            ? 'ta'
-            : nav.startsWith('te')
-              ? 'te'
-              : nav.startsWith('bn')
-                ? 'bn'
-                : nav.startsWith('mr')
-                  ? 'mr'
-                  : 'en'
-        setLangState(candidate as Lang)
+        setLangState(nav.startsWith('hi') ? 'hi' : 'en')
       }
     } catch {
       /* ignore storage errors */

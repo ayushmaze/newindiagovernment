@@ -15,7 +15,7 @@
  * point.
  */
 
-export const LANGS = ['en', 'hi', 'ta', 'te', 'bn', 'mr'] as const
+export const LANGS = ['en', 'hi'] as const
 export type Lang = (typeof LANGS)[number]
 
 export const LANG_META: Record<
@@ -24,10 +24,6 @@ export const LANG_META: Record<
 > = {
   en: { label: 'English', native: 'English', flag: '🇮🇳' },
   hi: { label: 'Hindi', native: 'हिन्दी', flag: '🇮🇳' },
-  ta: { label: 'Tamil', native: 'தமிழ்', flag: '🇮🇳' },
-  te: { label: 'Telugu', native: 'తెలుగు', flag: '🇮🇳' },
-  bn: { label: 'Bengali', native: 'বাংলা', flag: '🇮🇳' },
-  mr: { label: 'Marathi', native: 'मराठी', flag: '🇮🇳' },
 }
 
 /** All translatable string keys in one type so refactors are safe. */
@@ -237,136 +233,9 @@ const hi: Dict = {
     'यह वादे निभाने के लिए है। हम हर सरकार को — आज की और आने वाली — एक ही कसौटी पर परखते हैं: क्या वादा था, क्या पूरा हुआ, और अब भी क्या मुमकिन है।',
 }
 
-const ta: Dict = {
-  'nav.signIn': 'உள்நுழைய',
-  'nav.latest': 'சமீபத்தியவை',
-  'nav.factCheck': 'உண்மை சரிபார்ப்பு',
-  'nav.policy': 'கொள்கை',
-  'nav.elections': 'தேர்தல்கள்',
-  'nav.leaders': 'தலைவர்கள்',
-  'nav.investigations': 'விசாரணைகள்',
-  'nav.petitions': 'மனுக்கள்',
-  'nav.opinion': 'கருத்து',
-  'nav.vote': 'வாக்கு',
-  'nav.movement': 'இயக்கம்',
-  'nav.jumlaMeter': 'ஜும்லா மீட்டர்',
-  'nav.realOrJumla': 'உண்மையா ஜும்லாவா?',
-
-  'dailyJumla.kicker': 'இன்றைய ஜும்லா',
-  'dailyJumla.cta': 'ஆதாரம் பார்க்க',
-
-  'live.nowReading': 'இப்போது படிக்கிறவர்கள்',
-
-  'hero.kicker': 'நாங்கள் கணக்கு வைத்திருக்கிறோம் · 2026 முதல்',
-  'hero.headline1': 'இந்தியா',
-  'hero.headline2': 'இதைவிட',
-  'hero.headline3': 'சிறந்ததற்கு தகுதியானது.',
-  'hero.subPromisesTracked': 'வாக்குறுதிகள் கண்காணிக்கப்பட்டன.',
-  'hero.subBrokenOrJumla': 'மீறப்பட்டவை அல்லது ஜும்லா எனப்பட்டவை.',
-  'hero.subEvery': 'ஒவ்வொரு கூற்றுக்கும் ஆதாரம், ஒவ்வொரு தீர்ப்பும் சரிபார்க்கக்கூடியது.',
-  'hero.subReceipts':
-    'எந்த கட்சி வரியும் இல்லை. வெறும் ஆதாரங்கள் — அவற்றை வெளிச்சத்தில் வைக்கும் தைரியமும்.',
-  'hero.ctaPrimary': 'ஜும்லா மீட்டரை பார்க்க',
-  'hero.ctaSecondary': 'உண்மையா ஜும்லாவா? விளையாட',
-  'hero.ctaTertiary': 'இயக்கம் பற்றி',
-  'hero.scorecard': 'மதிப்பெண் அட்டை',
-  'hero.verified': 'சரிபார்க்கப்பட்டது',
-  'hero.stat1Label': 'மீறப்பட்ட/ஜும்லா வாக்குறுதிகள்',
-  'hero.stat1Sub': 'வேலை, பணம், விவசாயி, GDP',
-  'hero.stat2Label': 'சராசரி நிறைவேற்றம்',
-  'hero.stat2Sub': 'எல்லா தலைப்புகளின் சராசரி',
-  'hero.stat3Label': 'இழந்த வேலைகள்',
-  'hero.stat3Sub': '2016-17 → 2022-23 (CMIE)',
-  'hero.stat4Label': 'சரிபார்க்கப்பட்ட கூற்றுக்கள்',
-  'hero.stat4Sub': 'சுதந்திரம் · ஆதாரம் · திறந்த மூலம்',
-
-  'wim.kicker': 'குடிமக்கள் தளம் ஏன் இப்போது',
-  'wim.heading': 'எண்கள் சரிபடவில்லை என்றால், வாக்குறுதியும் சரிபடாது.',
-  'wim.sub':
-    'கீழே உள்ள ஒவ்வொரு வரியும் பொது, ஆதாரத்துடன் கூடிய தரவு. படிக்கவும், பகிரவும், பதிலைக் கோரவும் — அதுவே அடுத்த வாக்குறுதியை மீற கடினமாக்கும்.',
-  'wim.point1Title': 'வேலைகள் உருவாகவில்லை, இழந்தோம்',
-  'wim.point1Body':
-    '2016-17 முதல் 2022-23 வரை ~70 லட்சம் வேலைகள் இழப்பு (CMIE) — வாக்குறுதி: ஆண்டுக்கு 2 கோடி.',
-  'wim.point2Title': 'உற்பத்தித் துறை சுருங்குகிறது',
-  'wim.point2Body':
-    'வாக்குறுதி: 2025-க்குள் GDP-யில் 25%. நிஜம்: 20 ஆண்டு குறைவான ~14% (NSO).',
-  'wim.point3Title': 'பதிவு செய்யப்பட்ட ஜும்லா',
-  'wim.point3Body':
-    'அமித் ஷாவே ₹15 லட்சம் கணக்குப் பணம் வாக்குறுதியை “ஜும்லா” என அழைத்தார்.',
-  'wim.point4Title': 'விவசாயி வருவாய் இரட்டிப்பு — இன்னும் தொலைவில்',
-  'wim.point4Body':
-    'ICRIER ஆய்வு: 2022 இலக்கின் பாதியும் எட்டவில்லை.',
-  'wim.cta': 'எல்லா வாக்குறுதியும் பார்க்க',
-
-  'sticky.label': 'உண்மையா ஜும்லாவா?',
-
-  'stance.strong': 'இது எந்தக் கட்சிக்கோ நபருக்கோ எதிரானது அல்ல.',
-  'stance.text':
-    'இது வாக்குறுதிகளை நிறைவேற்றுவதற்காக. ஒவ்வொரு அரசையும் — இன்றையதையும் வருங்காலத்தையும் — ஒரே அளவுகோலில் சோதிக்கிறோம்: என்ன வாக்குறுதி, என்ன நிறைவேற்றப்பட்டது, இன்னும் என்ன சாத்தியம்.',
-}
-
-// Telugu, Bengali, Marathi — partial coverage, falls back to English where blank.
-const te: Partial<Dict> = {
-  'nav.signIn': 'సైన్ ఇన్',
-  'nav.movement': 'ఉద్యమం',
-  'nav.jumlaMeter': 'జుమ్లా మీటర్',
-  'nav.realOrJumla': 'నిజమా జుమ్లానా?',
-  'dailyJumla.kicker': 'నేటి జుమ్లా',
-  'dailyJumla.cta': 'రుజువు చూడండి',
-  'live.nowReading': 'ఇప్పుడు చదువుతున్నారు',
-  'hero.kicker': 'మేము స్కోర్ ఉంచుతున్నాం · 2026 నుండి',
-  'hero.headline1': 'భారత్‌కు',
-  'hero.headline2': 'మెరుగైనది',
-  'hero.headline3': 'అర్హత.',
-  'hero.ctaPrimary': 'జుమ్లా మీటర్ చూడండి',
-  'hero.ctaSecondary': 'నిజమా జుమ్లానా? ఆడండి',
-  'hero.ctaTertiary': 'ఉద్యమం గురించి',
-  'sticky.label': 'నిజమా జుమ్లానా?',
-}
-
-const bn: Partial<Dict> = {
-  'nav.signIn': 'সাইন ইন',
-  'nav.movement': 'আন্দোলন',
-  'nav.jumlaMeter': 'জুমলা মিটার',
-  'nav.realOrJumla': 'সত্য নাকি জুমলা?',
-  'dailyJumla.kicker': 'আজকের জুমলা',
-  'dailyJumla.cta': 'প্রমাণ দেখুন',
-  'live.nowReading': 'এখন পড়ছেন',
-  'hero.kicker': 'আমরা হিসাব রাখছি · ২০২৬ থেকে',
-  'hero.headline1': 'ভারত',
-  'hero.headline2': 'এর চেয়ে',
-  'hero.headline3': 'ভালো প্রাপ্য।',
-  'hero.ctaPrimary': 'জুমলা মিটার দেখুন',
-  'hero.ctaSecondary': 'সত্য নাকি জুমলা খেলুন',
-  'hero.ctaTertiary': 'আন্দোলন সম্পর্কে',
-  'sticky.label': 'সত্য নাকি জুমলা?',
-}
-
-const mr: Partial<Dict> = {
-  'nav.signIn': 'साइन इन',
-  'nav.movement': 'चळवळ',
-  'nav.jumlaMeter': 'जुमला मीटर',
-  'nav.realOrJumla': 'खरं की जुमला?',
-  'dailyJumla.kicker': 'आजचा जुमला',
-  'dailyJumla.cta': 'पुरावा पाहा',
-  'live.nowReading': 'आता वाचत आहेत',
-  'hero.kicker': 'आम्ही गुण ठेवत आहोत · 2026 पासून',
-  'hero.headline1': 'भारत',
-  'hero.headline2': 'याहून',
-  'hero.headline3': 'चांगल्याचा हक्कदार.',
-  'hero.ctaPrimary': 'जुमला मीटर पाहा',
-  'hero.ctaSecondary': 'खरं की जुमला खेळा',
-  'hero.ctaTertiary': 'चळवळीबद्दल',
-  'sticky.label': 'खरं की जुमला?',
-}
-
 export const DICT: Record<Lang, Dict> = {
   en,
   hi,
-  ta,
-  te: { ...en, ...te } as Dict,
-  bn: { ...en, ...bn } as Dict,
-  mr: { ...en, ...mr } as Dict,
 }
 
 export function translate(lang: Lang, key: DictKey): string {
