@@ -92,4 +92,85 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
       'Harvard’s registrar has no such record. The claim quietly disappeared from official bios after public scrutiny.',
     source: { label: 'NIG Fact-Check Desk', url: '/category/fact-check' },
   },
+  {
+    id: 'q-demonetisation',
+    claim: '“Demonetisation wiped out India’s black money.”',
+    context: 'The stated goal of the 2016 note ban.',
+    truth: 'jumla',
+    explanation:
+      'The RBI’s own 2018 report found ~99.3% of the demonetised cash came back into the banking system — leaving almost nothing as unreturned "black money".',
+    source: { label: '2016 demonetisation · Wikipedia (RBI data)', url: 'https://en.wikipedia.org/wiki/2016_Indian_banknote_demonetisation' },
+  },
+  {
+    id: 'q-upi-largest',
+    claim: '“India runs the world’s largest real-time digital payments system.”',
+    context: 'On UPI’s scale.',
+    truth: 'real',
+    explanation:
+      'True — and worth saying plainly. Per an IMF note, UPI handles close to half of all real-time payment transactions on Earth. Credit where the record earns it.',
+    source: { label: 'PIB: UPI, world’s largest RTP platform', url: 'https://www.pib.gov.in/PressReleasePage.aspx?PRID=2257087&reg=3&lang=2' },
+  },
+  {
+    id: 'q-villages-electrified',
+    claim: '“Every inhabited census village in India has been electrified.”',
+    context: 'On the rural electrification drive.',
+    truth: 'real',
+    explanation:
+      'Largely true: all inhabited un-electrified census villages were declared electrified by April 2018, and ~2.86 crore homes were connected under Saubhagya. The open question is reliability of supply, not access.',
+    source: { label: 'PIB: Saubhagya household electrification', url: 'https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=1907728' },
+  },
+  {
+    id: 'q-odf-100',
+    claim: '“India became 100% open-defecation-free in 2019.”',
+    context: 'The Swachh Bharat milestone declaration.',
+    truth: 'jumla',
+    explanation:
+      'Toilet-building was real and large — but NSO, NFHS-5 and a CAG report found big shares of rural households in "ODF" states still lacked working toilets. The clean 100% figure doesn’t survive the surveys.',
+    source: { label: 'ORF: ODF claims vs reality', url: 'https://www.orfonline.org/expert-speak/odf-status-claims-vs-reality-swachh-bharat-mission' },
+  },
+  {
+    id: 'q-ujjwala-connections',
+    claim: '“Crores of poor households got an LPG cooking-gas connection under Ujjwala.”',
+    context: 'On the cooking-gas scheme.',
+    truth: 'real',
+    explanation:
+      'True on connections — that part delivered. The weak spot is sustained use: a CAG audit and later data show many households can’t afford regular refills, so clean-fuel use lagged the connection numbers.',
+    source: { label: 'National Herald: CAG on Ujjwala', url: 'https://www.nationalheraldindia.com/india/lpg-refill-declines-in-pm-modis-flagship-ujjwala-yojana-cylinders-diverted-for-commercial-use-cag' },
+  },
+  {
+    id: 'q-youth-unemployment',
+    claim: '“Nearly every second young Indian was jobless in 2022-23.”',
+    context: 'On youth unemployment.',
+    truth: 'real',
+    explanation:
+      'Sadly close to true: CMIE data put youth unemployment around 45% in FY2022-23. Headline GDP growth has not translated into jobs for young people.',
+    source: { label: 'People’s Democracy / CMIE', url: 'https://peoplesdemocracy.in/2024/0407_pd/where-are-promised-two-crore-jobs-every-year' },
+  },
+  {
+    id: 'q-fastest-growing',
+    claim: '“India is among the fastest-growing major economies.”',
+    context: 'A common macro talking point.',
+    truth: 'real',
+    explanation:
+      'Largely true on the headline growth rate — but it’s a half-picture: median incomes have stayed flat for years and job creation has lagged, so the growth isn’t reaching most households evenly.',
+    source: { label: 'People’s Democracy / CMIE', url: 'https://peoplesdemocracy.in/2024/0407_pd/where-are-promised-two-crore-jobs-every-year' },
+  },
+  {
+    id: 'q-make-in-india-jobs',
+    claim: '“Make in India created 100 million new manufacturing jobs by 2022.”',
+    context: 'A target set at the 2014 launch.',
+    truth: 'jumla',
+    explanation:
+      'Not met. Manufacturing’s share of GDP fell rather than rose, and the 100-million-jobs goal went unachieved.',
+    source: { label: 'Down To Earth: 10 years of Make in India', url: 'https://www.downtoearth.org.in/governance/but-did-we-really-make-in-india' },
+  },
+  {
+    id: 'q-tap-water-reliable',
+    claim: '“Every rural home with a tap actually gets reliable, safe water.”',
+    context: 'On Jal Jeevan Mission outcomes.',
+    truth: 'jumla',
+    explanation:
+      'Taps reached ~98% of rural homes — genuinely big. But a 2024 government-commissioned survey found only ~75% get regular, safe, adequate water; the gap between a tap and a working tap is the story.',
+    source: { label: 'Jal Jeevan Mission · Wikipedia', url: 'https://en.wikipedia.org/wiki/Jal_Jeevan_Mission' },
+  },
 ]
