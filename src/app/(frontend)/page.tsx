@@ -16,6 +16,7 @@ import { LiveActivityStrip } from '@/components/home/LiveActivityStrip'
 import { WhyItMatters } from '@/components/home/WhyItMatters'
 import { StickyPlayCTA } from '@/components/home/StickyPlayCTA'
 import { RecentVerdicts } from '@/components/home/RecentVerdicts'
+import { StanceStrip } from '@/components/home/StanceStrip'
 import { generateBaseMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 
@@ -161,6 +162,9 @@ export default async function HomePage() {
 
       {/* 1. Breaking-news red ribbon — first thing in the eye-path */}
       <DailyJumlaBar />
+
+      {/* 1.5 Constructive stance — accountability, not attack */}
+      <StanceStrip />
 
       {/* 2. Hero — punchier, with the Jumla scorecard */}
       <HeroManifesto

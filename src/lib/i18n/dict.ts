@@ -88,6 +88,9 @@ export type DictKey =
   | 'wim.cta'
   // Sticky CTA
   | 'sticky.label'
+  // Stance strip (constructive framing)
+  | 'stance.text'
+  | 'stance.strong'
 
 type Dict = Record<DictKey, string>
 
@@ -159,6 +162,11 @@ const en: Dict = {
 
   // Sticky CTA
   'sticky.label': 'Play Real or Jumla?',
+
+  // Stance strip
+  'stance.strong': 'This isn’t against any party or person.',
+  'stance.text':
+    'It’s for promises kept. We hold every government — present and future — to the same test: what was promised, what was delivered, what’s still possible.',
 }
 
 const hi: Dict = {
@@ -223,6 +231,10 @@ const hi: Dict = {
   'wim.cta': 'हर वादा देखें',
 
   'sticky.label': 'सच या जुमला खेलें',
+
+  'stance.strong': 'यह किसी पार्टी या व्यक्ति के ख़िलाफ़ नहीं है।',
+  'stance.text':
+    'यह वादे निभाने के लिए है। हम हर सरकार को — आज की और आने वाली — एक ही कसौटी पर परखते हैं: क्या वादा था, क्या पूरा हुआ, और अब भी क्या मुमकिन है।',
 }
 
 const ta: Dict = {
