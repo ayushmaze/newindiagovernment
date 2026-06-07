@@ -665,6 +665,114 @@ export const ARTICLES: StaticArticle[] = [
     ],
     tags: ['environment', 'air-pollution', 'health', 'delhi'],
   },
+  {
+    slug: 'crimes-against-women-ncrb',
+    title: 'A crime against a woman is reported every 70 seconds',
+    kicker: 'GOVERNANCE · SAFETY',
+    category: 'Governance',
+    publishedAt: '2026-01-22',
+    readMins: 4,
+    keyStat: { value: '4.45 lakh', label: 'crimes against women reported in 2022 (NCRB)' },
+    excerpt:
+      'The government’s own crime bureau recorded 4.45 lakh crimes against women in 2022 — about 51 every hour, and rising.',
+    dek: 'These are the cases that were reported. The real number is, by every expert account, higher.',
+    body: [
+      {
+        paragraphs: [
+          'The National Crime Records Bureau (NCRB) — a government body — recorded 4,45,256 crimes against women in 2022, up 4% on the previous year and over 30% higher than in 2014. That is roughly 51 complaints every hour, or one every 70 seconds.',
+          'The largest categories were cruelty by a husband or his relatives (31.4%), kidnapping and abduction (19.2%), assault with intent to outrage modesty (18.7%), and rape (7.1%).',
+        ],
+      },
+      {
+        heading: 'Where, and the caveat',
+        paragraphs: [
+          'Uttar Pradesh recorded the most cases; by rate per lakh women, Delhi (144), Haryana (119) and Telangana (118) were far above the national average of 66.',
+          'A crucial caveat cuts the other way from the usual political spin: higher reported numbers can partly reflect more women coming forward, which is good. But researchers consistently find large under-reporting — so the recorded figure is a floor, not a ceiling.',
+        ],
+      },
+      {
+        heading: 'What moves the needle',
+        paragraphs: [
+          'Fast-track courts that actually run, trained and accountable policing, and conviction rates that don’t collapse on appeal are what convert reports into deterrence. Publishing district-level data and conviction outcomes — not just totals — is how citizens can hold the system to account.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'NCRB: Crime in India 2022', url: 'https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1701607577CrimeinIndia2022Book1.pdf' },
+      { label: 'ThePrint: 4% rise, UP tops cases', url: 'https://theprint.in/india/ncrb-data-shows-4-rise-in-crimes-against-women-in-india-up-has-most-rape-posco-cases/1871133/' },
+    ],
+    tags: ['governance', 'women', 'safety', 'ncrb'],
+  },
+  {
+    slug: 'wealth-inequality-oxfam',
+    title: 'The richest 1% of Indians own more than 40% of the wealth',
+    kicker: 'ECONOMY · INEQUALITY',
+    category: 'Economy',
+    publishedAt: '2026-02-08',
+    readMins: 4,
+    keyStat: { value: '40%+', label: 'of national wealth held by the top 1%' },
+    excerpt:
+      'Oxfam’s analysis finds India among the most unequal economies on earth — the top 1% hold over 40% of wealth while the bottom half own 3%.',
+    dek: 'Growth is real. The question this raises is simpler and sharper: growth for whom?',
+    body: [
+      {
+        paragraphs: [
+          'According to Oxfam’s "Survival of the Richest: The India Story," the richest 1% of Indians control more than 40% of the country’s total wealth, while the bottom 50% own about 3%. The top 10% hold roughly 65%.',
+          'On income, the gap is similar: the top 10% take home about 58% of national income; the bottom half, about 15%.',
+        ],
+      },
+      {
+        heading: 'Why it matters even when GDP grows',
+        paragraphs: [
+          'A rising GDP can coexist with most people feeling poorer — if the gains concentrate at the top. That is the through-line connecting flat median incomes, weak consumption and the jobs squeeze documented elsewhere on this site.',
+          'This isn’t an argument against wealth creation; it’s an argument for asking who the system is set up to reward. Progressive taxation, public services that work, and closing loopholes are the standard, non-partisan levers economists point to.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'Oxfam: India extreme inequality in numbers', url: 'https://www.oxfam.org/en/india-extreme-inequality-numbers' },
+      { label: 'Sabrang: top 1% holds 40% of wealth', url: 'https://sabrangindia.in/in-india-wealth-inequality-among-highest-in-the-world-top-1-holds-40-wealth-study/' },
+    ],
+    tags: ['economy', 'inequality', 'oxfam', 'wealth'],
+  },
+  {
+    slug: 'balasore-train-crash-rail-safety',
+    title: 'Balasore: 275 dead, and a safety warning that went unheeded',
+    kicker: 'GOVERNANCE · SAFETY',
+    category: 'Governance',
+    publishedAt: '2025-12-28',
+    readMins: 5,
+    keyStat: { value: '275', label: 'killed in the June 2023 Balasore crash' },
+    excerpt:
+      'India’s deadliest rail disaster in decades was traced to a signalling error — months after an official had warned of exactly that risk.',
+    dek: 'A preventable disaster is the hardest kind: the warning existed, in writing, before the crash.',
+    body: [
+      {
+        paragraphs: [
+          'On 2 June 2023, a signalling error sent a passenger train onto the wrong track near Balasore, Odisha, where it struck a stationary freight train. About 275 people were killed and over 1,000 injured — one of India’s worst rail disasters in decades.',
+          'Critically, in February 2023, a railway operating manager had formally reported a near-identical signalling error elsewhere and warned it could cause a collision if unresolved.',
+        ],
+      },
+      {
+        heading: 'The funding picture',
+        paragraphs: [
+          'Reporting around the crash noted that money allocated for railway safety had fallen short of targets for years, and that safety funds were sometimes diverted to other uses. The Railways disputed that the crash reflected systemic safety problems.',
+          'India has also rolled out "Kavach," an indigenous anti-collision system — genuine progress — but its coverage across the vast network remains partial.',
+        ],
+      },
+      {
+        heading: 'Accountability, not blame',
+        paragraphs: [
+          'The constructive test after a tragedy isn’t to assign political blame — it’s to publish the inquiry in full, fund safety to target, and accelerate collision-avoidance coverage so a written warning never again goes unheeded.',
+        ],
+      },
+    ],
+    sources: [
+      { label: '2023 Odisha train collision · Wikipedia', url: 'https://en.wikipedia.org/wiki/2023_Odisha_train_collision' },
+      { label: 'NPR: signalling error caused the crash', url: 'https://www.npr.org/2023/06/04/1180028370/an-indian-railway-official-says-a-signaling-error-caused-a-deadly-train-crash' },
+    ],
+    tags: ['governance', 'railways', 'safety', 'balasore'],
+  },
 ]
 
 export function getArticle(slug: string): StaticArticle | undefined {
