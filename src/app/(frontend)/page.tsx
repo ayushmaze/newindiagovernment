@@ -17,6 +17,7 @@ import { WhyItMatters } from '@/components/home/WhyItMatters'
 import { StickyPlayCTA } from '@/components/home/StickyPlayCTA'
 import { RecentVerdicts } from '@/components/home/RecentVerdicts'
 import { StanceStrip } from '@/components/home/StanceStrip'
+import { GoodNewsWorld } from '@/components/home/GoodNewsWorld'
 import { generateBaseMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 
@@ -200,7 +201,10 @@ export default async function HomePage() {
       {/* 9. People's poll */}
       <VoteWidget question={voteQuestion} options={voteOptions} />
 
-      {/* 10. Latest investigations (empty until content publishes) */}
+      {/* 9.5 Good news worldwide — hope beat: proof change is possible */}
+      <GoodNewsWorld />
+
+      {/* 10. Latest investigations (now populated by sourced explainers) */}
       <LatestInvestigations articles={articles} />
 
       {petitions.length > 0 && (
