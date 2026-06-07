@@ -1,28 +1,63 @@
 'use client'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useLang } from '@/components/i18n/LangProvider'
+import type { DictKey } from '@/lib/i18n/dict'
 
-const NAV_ITEMS = [
-  { label: 'Latest', href: '/' },
-  { label: 'Jumla Meter', href: '/promises' },
-  { label: 'Real or Jumla?', href: '/quiz' },
-  { label: 'The Movement', href: '/movement' },
-  { label: 'Fact-Check', href: '/category/fact-check' },
-  { label: 'Policy', href: '/category/policy' },
-  { label: 'Investigations', href: '/category/investigations' },
-  { label: 'Petitions', href: '/petitions' },
-  { label: 'Vote', href: '/#vote' },
+type NavItem = { labelKey: DictKey; fallback: string; href: string }
+
+const NAV_ITEMS: NavItem[] = [
+  { labelKey: 'nav.latest', fallback: 'Latest', href: '/' },
+  { labelKey: 'nav.jumlaMeter', fallback: 'Jumla Meter', href: '/promises' },
+  { labelKey: 'nav.realOrJumla', fallback: 'Real or Jumla?', href: '/quiz' },
+  { labelKey: 'nav.movement', fallback: 'The Movement', href: '/movement' },
+  { labelKey: 'nav.factCheck', fallback: 'Fact-Check', href: '/category/fact-check' },
+  { labelKey: 'nav.policy', fallback: 'Policy', href: '/category/policy' },
+  { labelKey: 'nav.investigations', fallback: 'Investigations', href: '/category/investigations' },
+  { labelKey: 'nav.petitions', fallback: 'Petitions', href: '/petitions' },
+  { labelKey: 'nav.vote', fallback: 'Vote', href: '/#vote' },
 ]
 
 export function PrimaryNav() {
   const [open, setOpen] = useState(false)
+  const [closing, setClosing] = useState(false)
   const pathname = usePathname()
+  const { t, hydrated } = useLang()
+
+  const label = useCallback(
+    (item: NavItem) => (hydrated ? t(item.labelKey) : item.fallback),
+    [hydrated, t],
+  )
+
+  // Animated close — let the exit animation play before unmounting
+  const close = useCallback(() => {
+    setClosing(true)
+    window.setTimeout(() => {
+      setOpen(false)
+      setClosing(false)
+    }, 210)
+  }, [])
+
+  // Lock body scroll + Escape to close while the drawer is open
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close()
+    }
+    document.addEventListener('keydown', onKey)
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prevOverflow
+    }
+  }, [open, close])
 
   return (
     <>
       <nav
-        className="sticky top-0 z-50 bg-[var(--bg)] border-b border-[var(--hairline)] shadow-sm"
+        className="sticky top-0 z-50 bg-[var(--bg)]/95 backdrop-blur border-b border-[var(--hairline)] shadow-sm"
         aria-label="Primary navigation"
       >
         <div className="mx-auto max-w-[1440px] px-6 flex items-center gap-4 h-12">
@@ -31,11 +66,11 @@ export function PrimaryNav() {
             onClick={() => setOpen(true)}
             aria-label="Open navigation menu"
             aria-expanded={open}
-            className="shrink-0 flex flex-col gap-1.5 p-1"
+            className="shrink-0 flex flex-col gap-1.5 p-1 group tap-shrink"
           >
+            <span className="block w-5 h-0.5 bg-[var(--ink)] transition-transform group-hover:translate-x-0.5" />
             <span className="block w-5 h-0.5 bg-[var(--ink)]" />
-            <span className="block w-5 h-0.5 bg-[var(--ink)]" />
-            <span className="block w-5 h-0.5 bg-[var(--ink)]" />
+            <span className="block w-4 h-0.5 bg-[var(--ink)] transition-all group-hover:w-5" />
           </button>
 
           {/* Desktop nav items */}
@@ -50,7 +85,7 @@ export function PrimaryNav() {
                       ${active ? 'text-[var(--ink)] underline underline-offset-4' : 'text-[var(--ink)] hover:text-[var(--lavender-hover)]'}`}
                     aria-current={active ? 'page' : undefined}
                   >
-                    {item.label}
+                    {label(item)}
                   </Link>
                 </li>
               )
@@ -66,7 +101,7 @@ export function PrimaryNav() {
           <Link
             href="/search"
             aria-label="Search articles"
-            className="shrink-0 ml-auto p-1 hover:text-[var(--lavender-hover)]"
+            className="shrink-0 ml-auto p-1 hover:text-[var(--lavender-hover)] transition-colors"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
               <circle cx="11" cy="11" r="8" />
@@ -76,40 +111,80 @@ export function PrimaryNav() {
         </div>
       </nav>
 
-      {/* Mobile drawer */}
+      {/* Animated drawer */}
       {open && (
         <>
           <div
-            className="fixed inset-0 z-40 bg-black/40"
-            onClick={() => setOpen(false)}
+            className={`fixed inset-0 z-[60] bg-black/45 ${closing ? 'drawer-backdrop-closing' : 'drawer-backdrop'}`}
+            onClick={close}
             aria-hidden
           />
           <div
             role="dialog"
-            aria-modal
+            aria-modal="true"
             aria-label="Navigation menu"
-            className="fixed inset-y-0 left-0 z-50 w-72 bg-[var(--bg)] shadow-2xl p-6"
+            className={`fixed inset-y-0 left-0 z-[70] w-[80vw] max-w-[320px] bg-[var(--bg)] shadow-2xl flex flex-col ${
+              closing ? 'drawer-panel-closing' : 'drawer-panel'
+            }`}
           >
-            <button
-              onClick={() => setOpen(false)}
-              aria-label="Close navigation menu"
-              className="mb-6 font-ui uppercase tracking-[0.16em] text-[11px] text-[var(--ink-3)] flex items-center gap-2"
-            >
-              <span aria-hidden>✕</span> Close
-            </button>
-            <ul className="space-y-1">
-              {NAV_ITEMS.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="block font-ui font-semibold uppercase tracking-[0.12em] text-[16px] py-3 border-b border-[var(--hairline)] hover:text-[var(--lavender-hover)]"
+            {/* Drawer header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b-2 border-[var(--divider)]">
+              <span className="font-display font-black uppercase tracking-[0.04em] text-[16px] text-[var(--ink)]">
+                Menu
+              </span>
+              <button
+                onClick={close}
+                aria-label="Close navigation menu"
+                className="p-2 -mr-2 text-[var(--ink-3)] hover:text-[var(--ink)] transition-colors tap-shrink"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden>
+                  <path d="M3 3 L13 13 M13 3 L3 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Links */}
+            <ul className="flex-1 overflow-y-auto px-4 py-3">
+              {NAV_ITEMS.map((item, i) => {
+                const active = pathname === item.href
+                return (
+                  <li
+                    key={item.href}
+                    className="drawer-link"
+                    style={{ animationDelay: `${60 + i * 35}ms` }}
                   >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+                    <Link
+                      href={item.href}
+                      onClick={close}
+                      className={`flex items-center justify-between font-ui font-semibold uppercase tracking-[0.12em] text-[15px] py-3.5 px-2 border-b border-[var(--hairline)] transition-colors ${
+                        active
+                          ? 'text-[var(--red-tag)]'
+                          : 'text-[var(--ink)] hover:text-[var(--lavender-hover)]'
+                      }`}
+                      aria-current={active ? 'page' : undefined}
+                    >
+                      {label(item)}
+                      <span aria-hidden className="text-[var(--ink-3)] text-[13px]">→</span>
+                    </Link>
+                  </li>
+                )
+              })}
             </ul>
+
+            {/* Drawer footer CTA */}
+            <div
+              className="drawer-link p-4 border-t-2 border-[var(--divider)] bg-[var(--ink)]"
+              style={{ animationDelay: `${60 + NAV_ITEMS.length * 35}ms` }}
+            >
+              <Link
+                href="/quiz"
+                onClick={close}
+                className="flex items-center justify-center gap-2 bg-[var(--pink-chip)] text-[var(--ink)] py-3 font-ui font-bold uppercase tracking-[0.16em] text-[12px] tap-shrink"
+              >
+                <span aria-hidden>🎯</span>
+                {hydrated ? t('sticky.label') : 'Play Real or Jumla?'}
+              </Link>
+            </div>
           </div>
         </>
       )}
