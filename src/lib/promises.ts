@@ -250,4 +250,52 @@ export const PROMISES: GovPromise[] = [
       { label: 'Worldline: 228bn UPI transactions in 2025', url: 'https://worldline.com/en-in/home/top-navigation/media-relations/press-releases/worldline-reports-that-india-digital-payments-cross-new-milestones-as-upi-reaches-228-billion-transactions-in-2025' },
     ],
   },
+  {
+    id: 'bullet-train',
+    promise: 'Mumbai–Ahmedabad bullet train running by 2023',
+    attribution: 'High-speed rail project launch · 2017',
+    year: '2017',
+    category: 'Cities',
+    verdict: 'delayed',
+    progress: 35,
+    reality:
+      'India’s first bullet train was meant to run by 2022-23. Land-acquisition disputes pushed it back years — officials now target around 2028, with a short Surat–Bilimora stretch slated to open first. The cost estimate has climbed from about ₹1.08 lakh crore to roughly ₹1.98 lakh crore, an ~83% overrun.',
+    punchline: 'Promised by 2023. Now aimed at ~2028, at nearly double the cost.',
+    sources: [
+      { label: 'Metro Rail Today: HSR delay & cost', url: 'https://metrorailtoday.com/news/delay-in-indias-first-bullet-train-mumbai-ahmedabad-hsr-line-may-double-the-project-cost' },
+      { label: 'Angel One: ₹90,000 cr cost overrun', url: 'https://www.angelone.in/news/economy/indian-railways-may-cover-90-000-crore-cost-overrun-in-bullet-train-project' },
+    ],
+  },
+  {
+    id: 'housing-for-all',
+    promise: 'Housing for All by 2022 (PMAY)',
+    attribution: 'Pradhan Mantri Awas Yojana · 2015',
+    year: '2015',
+    category: 'Welfare',
+    verdict: 'delayed',
+    progress: 55,
+    reality:
+      'PMAY aimed to deliver homes for all by 2022 — about 1.12 crore urban and 2.95 crore rural. Crores of houses were genuinely built, but the 2022 target was missed, the urban target was trimmed, and the mission was extended to 31 December 2025 to finish sanctioned homes.',
+    punchline: 'Real houses got built — but "Housing for All by 2022" slipped to at least 2025.',
+    sources: [
+      { label: 'Pradhan Mantri Awas Yojana · Wikipedia', url: 'https://en.wikipedia.org/wiki/Pradhan_Mantri_Awas_Yojana' },
+      { label: 'PMAY-Urban: about the mission', url: 'https://pmay-urban.gov.in/about' },
+    ],
+  },
+  {
+    id: 'fuel-prices',
+    promise: 'Fuel prices would fall as global crude fell',
+    attribution: 'Deregulation framing · 2014 onward',
+    year: '2014',
+    category: 'Money',
+    verdict: 'broken',
+    progress: 20,
+    reality:
+      'Fuel was deregulated so pump prices would track global crude — including downward. In practice, when crude fell sharply after 2014, central excise and state VAT rose to absorb the gap, so consumers saw little benefit. Taxes have at times made up nearly half the retail price.',
+    punchline: 'When crude crashed, taxes rose to fill the gap — so your pump price barely moved.',
+    sources: [
+      { label: 'EPW: how taxes keep fuel prices high', url: 'https://www.epw.in/engage/article/petrol-diesel-government-taxes-keep-retail-prices-high' },
+      { label: 'ORF: India’s fuel-tax revenue', url: 'https://www.orfonline.org/expert-speak/indias-tax-revenue-from-petroleum-products' },
+    ],
+  },
 ]

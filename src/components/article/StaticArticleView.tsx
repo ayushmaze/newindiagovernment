@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { StaticArticle } from '@/lib/articles'
 import { listArticles } from '@/lib/articles'
+import { ArticleCover } from './ArticleCover'
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-IN', {
@@ -23,6 +24,9 @@ export function StaticArticleView({ article }: { article: StaticArticle }) {
 
   return (
     <article className="bg-[var(--bg)]">
+      {/* Cover banner */}
+      <ArticleCover category={article.category} kicker={article.kicker} />
+
       {/* Header */}
       <header className="border-b-2 border-[var(--divider)]">
         <div className="mx-auto max-w-[760px] px-6 py-12 md:py-16">

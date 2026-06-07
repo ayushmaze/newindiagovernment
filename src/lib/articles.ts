@@ -29,7 +29,15 @@ export type StaticArticle = {
   title: string
   kicker: string
   excerpt: string
-  category: 'Economy' | 'Jobs' | 'Governance' | 'Welfare' | 'Health' | 'Democracy'
+  category:
+    | 'Economy'
+    | 'Jobs'
+    | 'Governance'
+    | 'Welfare'
+    | 'Health'
+    | 'Democracy'
+    | 'Education'
+    | 'Environment'
   publishedAt: string // ISO
   readMins: number
   /** Headline stat shown in the article header strip */
@@ -522,6 +530,140 @@ export const ARTICLES: StaticArticle[] = [
       { label: 'IMPRI: where India’s health budget stands', url: 'https://www.impriindia.com/insights/indias-health-budget-stand/' },
     ],
     tags: ['health', 'budget', 'public-health', 'nhp'],
+  },
+  {
+    slug: 'neet-2024-paper-leak',
+    title: 'NEET 2024: the exam leak the Supreme Court called "undisputed"',
+    kicker: 'EDUCATION · EXAMS',
+    category: 'Education',
+    publishedAt: '2026-03-02',
+    readMins: 5,
+    keyStat: { value: '24 lakh', label: 'students who sat NEET-UG 2024' },
+    excerpt:
+      'India’s single medical-entrance exam was hit by a paper leak. The court confirmed it happened — then let the result stand. Both facts matter.',
+    dek: 'For 24 lakh aspirants, one exam decides everything. In 2024, that exam was compromised.',
+    body: [
+      {
+        paragraphs: [
+          'NEET-UG is the sole gateway to undergraduate medical seats in India; about 2.4 million (24 lakh) students sat it on 5 May 2024. Within hours, allegations spread that the paper had leaked.',
+          'Investigations found a real racket: some aspirants paid brokers ₹30–50 lakh for the paper in advance, and arrested candidates confirmed the leaked questions matched the actual exam.',
+        ],
+      },
+      {
+        heading: 'What the court found',
+        paragraphs: [
+          'The Supreme Court called the paper leak an "undisputed fact" and found that 155 students directly benefited. But it ruled the leak was localised (Patna and Hazaribagh), said there was no proof it was systemic, and declined to order a full re-test.',
+          'So both things are true: the exam was genuinely compromised, and the court let the overall result stand. For honest students who lost rank to cheats, that is a hard outcome to accept.',
+        ],
+      },
+      {
+        heading: 'The fix',
+        paragraphs: [
+          'A single high-stakes national exam is only as trustworthy as its security. The constructive demands are concrete: leak-proof question logistics, real-time anomaly detection, and an independent body to audit the NTA — so the next 24 lakh students can trust the result.',
+        ],
+      },
+    ],
+    sources: [
+      { label: '2024 NEET controversy · Wikipedia', url: 'https://en.wikipedia.org/wiki/2024_NEET_controversy' },
+      { label: 'Supreme Court Observer: leak an "undisputed fact"', url: 'https://www.scobserver.in/journal/paper-leak-in-neet-ug-2024-is-an-undisputed-fact-says-supreme-court-directs-nta-to-disclose-exam-details-by-10-july/' },
+    ],
+    tags: ['education', 'neet', 'exams', 'nta'],
+  },
+  {
+    slug: 'internet-shutdowns-india',
+    title: 'India switches off the internet more than almost anyone',
+    kicker: 'DEMOCRACY · RIGHTS',
+    category: 'Democracy',
+    publishedAt: '2026-02-14',
+    readMins: 4,
+    keyStat: { value: '84', label: 'internet shutdowns in India in 2024' },
+    excerpt:
+      'India ordered 84 internet shutdowns in 2024 — the most of any democracy, second only to military-run Myanmar.',
+    dek: 'A blackout is invisible to everyone except the people living through it. India orders them more than almost any country on earth.',
+    body: [
+      {
+        paragraphs: [
+          'According to Access Now’s global tracker, India imposed 84 internet shutdowns in 2024 — the highest of any democracy, and second worldwide only to Myanmar’s military junta. Other trackers count differently (SFLC.in logged 60, totalling over 3,100 hours), but every count puts India near the top.',
+          'The economic cost alone was estimated at about $322 million in 2024, affecting tens of millions of users.',
+        ],
+      },
+      {
+        heading: 'Who loses connectivity, and why',
+        paragraphs: [
+          'Of the 2024 shutdowns, 41 were tied to protests, 23 to communal violence, and several to government job exams. The most-affected regions were Manipur (21), Haryana (12) and Jammu & Kashmir (12).',
+          'Shutdowns are often justified as keeping order — but they also switch off ambulances’ apps, students’ classes, traders’ payments and citizens’ ability to document what’s happening. Courts have held that indefinite blanket shutdowns are unconstitutional.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'MediaNama: India 84 shutdowns in 2024', url: 'https://www.medianama.com/2025/02/223-india-records-84-internet-shutdowns-2024-second-highest-world/' },
+      { label: 'Inc42: shutdowns cost India $322M', url: 'https://inc42.com/buzz/internet-shutdowns-cost-india-322-mn-in-2024-report/' },
+    ],
+    tags: ['democracy', 'internet-shutdowns', 'rights', 'access-now'],
+  },
+  {
+    slug: 'agnipath-four-year-soldier',
+    title: 'Agnipath: the four-year soldier, and the questions it raised',
+    kicker: 'GOVERNANCE · DEFENCE',
+    category: 'Governance',
+    publishedAt: '2026-01-18',
+    readMins: 5,
+    keyStat: { value: '25%', label: 'of Agniveers retained beyond four years' },
+    excerpt:
+      'A 2022 overhaul made most new soldiers four-year contract recruits. It sparked nationwide protests and a debate that hasn’t settled.',
+    dek: 'It changed what it means to join the army — from a career to a four-year contract for most recruits.',
+    body: [
+      {
+        paragraphs: [
+          'Approved in June 2022, the Agnipath scheme recruits most non-officer soldiers as "Agniveers" on a four-year term, after which only about 25% are retained for a full career.',
+          'The announcement triggered widespread protests by aspirants — trains were torched, roads blocked — prompting the government to raise the 2022 age cap from 21 to 23 as a one-off.',
+        ],
+      },
+      {
+        heading: 'The open questions',
+        paragraphs: [
+          'Veterans and analysts raised serious concerns: shorter service may weaken unit cohesion and the "way of life" ethos of the forces; 75% of trained Agniveers leaving after four years raises questions about their livelihoods; and some commentators worried about absorbing large numbers of arms-trained youth back into the economy.',
+          'Supporters argue it lowers the pension bill and creates a younger, more agile force. The honest position is that this is a major, contested change — and it deserves transparent data on outcomes (retention, re-employment, readiness) rather than slogans.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'Agnipath Scheme · Wikipedia', url: 'https://en.wikipedia.org/wiki/Agnipath_Scheme' },
+      { label: 'Outlook: why Agnipath faced the heat', url: 'https://www.outlookindia.com/national/why-is-agnipath-scheme-facing-the-heat-news-203154' },
+    ],
+    tags: ['governance', 'agnipath', 'defence', 'jobs'],
+  },
+  {
+    slug: 'air-pollution-the-invisible-toll',
+    title: 'The air is killing thousands — and the data is disputed',
+    kicker: 'ENVIRONMENT · HEALTH',
+    category: 'Environment',
+    publishedAt: '2025-12-10',
+    readMins: 5,
+    keyStat: { value: '~33,000', label: 'annual deaths in 10 cities from PM2.5 (Lancet)' },
+    excerpt:
+      'A 2024 Lancet study links thousands of deaths in India’s cities to air pollution. The government calls the figures inconclusive.',
+    dek: 'You can’t see PM2.5, and you can’t un-breathe it. The argument is over how many it kills — not whether it does.',
+    body: [
+      {
+        paragraphs: [
+          'A 2024 study in The Lancet Planetary Health found that, on average, 7.2% of daily deaths across 10 of India’s most polluted cities were attributable to PM2.5 above WHO guideline levels — at least ~33,000 deaths a year in those cities alone. Delhi had the highest share.',
+          'A larger, earlier Lancet analysis attributed about 1.24 million deaths in India in 2017 to air pollution.',
+        ],
+      },
+      {
+        heading: 'The data fight',
+        paragraphs: [
+          'The central government has at times called such estimates "inconclusive", noting deaths are rarely certified as caused by pollution alone. That’s a fair methodological point — but Delhi’s own statistics show respiratory-disease deaths rising (9,211 in 2024, up from 7,432 in 2022).',
+          'Disputing the exact count shouldn’t stall action. Cleaner public transport, curbs on stubble burning and construction dust, and honest real-time AQI reporting are measures that help regardless of which death toll is precisely right.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'The Lancet Planetary Health: air pollution & mortality', url: 'https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(24)00114-1/fulltext' },
+      { label: 'Business Standard: the air-death data divide', url: 'https://www.business-standard.com/health/air-pollution-deaths-government-contradiction-moefcc-icmr-delhi-aqi-126020200279_1.html' },
+    ],
+    tags: ['environment', 'air-pollution', 'health', 'delhi'],
   },
 ]
 
