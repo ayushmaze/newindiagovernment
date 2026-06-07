@@ -49,8 +49,8 @@ export function Masthead() {
             The New India Government
           </h1>
 
-          {/* Right: Subscribe ornament */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Right: Subscribe ornament — only on wide screens with room to spare */}
+          <div className="hidden lg:flex items-center gap-3">
             <svg width="36" height="36" viewBox="0 0 48 48" fill="none" aria-hidden="true">
               <circle cx="24" cy="24" r="10" fill="none" stroke="currentColor" strokeWidth="1"/>
               <circle cx="24" cy="24" r="3" fill="currentColor"/>

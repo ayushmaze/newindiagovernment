@@ -2,6 +2,8 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { notFound } from 'next/navigation'
 import { ArticleCard } from '@/components/article/ArticleCard'
+import { StaticCategoryView } from '@/components/article/StaticCategoryView'
+import { getArticlesForCategory } from '@/lib/articles'
 import { generateBaseMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 
@@ -23,7 +25,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     })
     .catch(() => ({ docs: [] }))
   const cat = docs[0] as { name?: string } | undefined
-  return generateBaseMetadata(cat?.name ?? slug)
+  const fallbackTitle = getArticlesForCategory(slug)?.title
+  return generateBaseMetadata(cat?.name ?? fallbackTitle ?? slug)
 }
 
 const PAGE_SIZE = 12
@@ -52,14 +55,20 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
       page,
       depth: 2,
     }),
-  ]).catch(() => {
+  ]).catch(() => [null, null] as const)
+
+  const cat = catResult?.docs?.[0] as { name?: string; description?: string } | undefined
+
+  // Fall back to the static articles dataset when the CMS has no such category.
+  if (!cat || !articlesResult) {
+    const fb = getArticlesForCategory(slug)
+    if (fb) {
+      return (
+        <StaticCategoryView title={fb.title} description={fb.description} articles={fb.articles} />
+      )
+    }
     notFound()
-  })
-
-  if (!catResult || !articlesResult) notFound()
-
-  const cat = catResult.docs[0] as { name?: string; description?: string } | undefined
-  if (!cat) notFound()
+  }
 
   const articles = articlesResult.docs as unknown as Array<{
     id: string

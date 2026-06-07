@@ -74,41 +74,43 @@ export function DailyJumlaBar() {
             'repeating-linear-gradient(45deg, rgba(255,255,255,.0) 0 14px, rgba(255,255,255,.08) 14px 16px)',
         }}
       />
-      <div className="relative mx-auto max-w-[1440px] px-5 sm:px-6 py-3 sm:py-3.5 flex items-center gap-3 sm:gap-5">
-        {/* Pulse dot + label */}
+      <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 py-2.5 sm:py-3.5 flex items-center gap-2.5 sm:gap-5">
+        {/* Pulse dot + label (label hidden on phones to free room for the claim) */}
         <span className="flex items-center gap-2 shrink-0">
           <span className="relative inline-flex h-2 w-2">
             <span className="absolute inset-0 rounded-full bg-white animate-ping opacity-70" />
             <span className="relative inline-block h-2 w-2 rounded-full bg-white" />
           </span>
-          <span className="font-ui font-black uppercase tracking-[0.22em] text-[10px] sm:text-[11px]">
+          <span className="hidden sm:inline font-ui font-black uppercase tracking-[0.22em] text-[10px] sm:text-[11px]">
             {t('dailyJumla.kicker')}
           </span>
         </span>
 
         <span aria-hidden className="hidden sm:inline-block h-3 w-px bg-white/40 shrink-0" />
 
-        {/* Verdict chip */}
-        <span className="font-ui font-black uppercase tracking-[0.16em] text-[9px] sm:text-[10px] bg-black/85 text-white px-2 py-1 shrink-0">
-          {lead.verdictLabel} · {lead.yearsSince}y old
+        {/* Verdict chip — compact on phones (just the verdict, no age) */}
+        <span className="font-ui font-black uppercase tracking-[0.12em] sm:tracking-[0.16em] text-[9px] sm:text-[10px] bg-black/85 text-white px-1.5 sm:px-2 py-0.5 sm:py-1 shrink-0">
+          {lead.verdictLabel}
+          <span className="hidden sm:inline"> · {lead.yearsSince}y old</span>
         </span>
 
-        {/* Rotating content */}
+        {/* Rotating claim — the priority; now has room on every screen */}
         <div
           key={i}
-          className="flex-1 min-w-0 font-display text-[13px] sm:text-[15px] md:text-[17px] leading-tight truncate animate-[jumla-roll_400ms_ease-out]"
+          className="flex-1 min-w-0 font-display text-[12.5px] sm:text-[15px] md:text-[17px] leading-tight truncate animate-[jumla-roll_400ms_ease-out]"
         >
           <span className="font-bold">&ldquo;{lead.promise}&rdquo;</span>{' '}
           <span className="text-white/85 hidden md:inline">— {lead.punchline}</span>
         </div>
 
-        {/* CTA */}
+        {/* CTA — icon-tightened on phones */}
         <Link
           href="/promises"
-          className="shrink-0 group font-ui font-black uppercase tracking-[0.16em] text-[10px] sm:text-[11px] bg-white text-[var(--red-tag)] px-3 py-1.5 sm:px-4 sm:py-2 hover:bg-black hover:text-white transition-colors"
+          className="shrink-0 group font-ui font-black uppercase tracking-[0.12em] sm:tracking-[0.16em] text-[10px] sm:text-[11px] bg-white text-[var(--red-tag)] px-2.5 py-1 sm:px-4 sm:py-2 hover:bg-black hover:text-white transition-colors whitespace-nowrap"
           aria-label="See the full Jumla Meter"
         >
-          {t('dailyJumla.cta')} <span className="transition-transform group-hover:translate-x-0.5 inline-block">→</span>
+          {t('dailyJumla.cta')}{' '}
+          <span className="transition-transform group-hover:translate-x-0.5 inline-block">→</span>
         </Link>
       </div>
 

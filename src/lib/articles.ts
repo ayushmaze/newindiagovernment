@@ -784,3 +784,49 @@ export function listArticles(): StaticArticle[] {
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   )
 }
+
+/**
+ * Map a /category/<slug> URL to a display title and the static articles that
+ * belong in it. Used as a fallback so category pages never 404 before the CMS
+ * has content. Returns null for unknown slugs.
+ */
+const CATEGORY_MAP: Record<
+  string,
+  { title: string; description: string; categories?: StaticArticle['category'][] }
+> = {
+  investigations: {
+    title: 'Investigations',
+    description: 'Sourced explainers and deep-dives on the record behind the headlines.',
+  },
+  'fact-check': {
+    title: 'Fact-Check',
+    description: 'Claims weighed against the evidence — every figure traceable to a source.',
+  },
+  policy: {
+    title: 'Policy',
+    description: 'How policy promises measure up against outcomes.',
+    categories: ['Economy', 'Governance', 'Welfare', 'Health', 'Education', 'Environment'],
+  },
+  economy: { title: 'Economy', description: 'Jobs, growth, inequality and the numbers behind them.', categories: ['Economy', 'Jobs'] },
+  elections: { title: 'Elections & Democracy', description: 'The health of India’s democratic institutions.', categories: ['Democracy'] },
+  leaders: { title: 'Leaders & Accountability', description: 'Holding power to its own promises.', categories: ['Governance', 'Democracy'] },
+  democracy: { title: 'Democracy', description: 'Rights, institutions, and transparency.', categories: ['Democracy'] },
+  health: { title: 'Health', description: 'Public health, spending and outcomes.', categories: ['Health'] },
+  education: { title: 'Education', description: 'Schools, exams and opportunity.', categories: ['Education'] },
+  environment: { title: 'Environment', description: 'Air, water, climate and the cost of inaction.', categories: ['Environment'] },
+  governance: { title: 'Governance', description: 'How the state works — and where it fails.', categories: ['Governance'] },
+  jobs: { title: 'Jobs', description: 'Work, wages and the employment record.', categories: ['Jobs', 'Economy'] },
+  welfare: { title: 'Welfare', description: 'Schemes meant to be a floor under the poorest.', categories: ['Welfare'] },
+}
+
+export function getArticlesForCategory(
+  slug: string,
+): { title: string; description: string; articles: StaticArticle[] } | null {
+  const meta = CATEGORY_MAP[slug]
+  if (!meta) return null
+  const all = listArticles()
+  const articles = meta.categories
+    ? all.filter((a) => meta.categories!.includes(a.category))
+    : all
+  return { title: meta.title, description: meta.description, articles }
+}
