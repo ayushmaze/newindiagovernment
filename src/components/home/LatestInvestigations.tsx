@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { listArticles } from '@/lib/articles'
 
 type MediaDoc = {
   url?: string
@@ -31,7 +32,22 @@ function formatDate(s?: string) {
 }
 
 export function LatestInvestigations({ articles }: { articles: Article[] }) {
-  if (!articles.length) return null
+  // Fall back to curated, sourced explainers when the CMS has no published
+  // articles yet, so the section is never empty. DB articles take precedence.
+  const list: Article[] =
+    articles.length > 0
+      ? articles
+      : listArticles().map((a) => ({
+          id: a.slug,
+          title: a.title,
+          slug: a.slug,
+          kicker: a.kicker,
+          excerpt: a.excerpt,
+          heroImage: null,
+          publishedAt: a.publishedAt,
+        }))
+
+  if (!list.length) return null
 
   return (
     <section
@@ -62,7 +78,7 @@ export function LatestInvestigations({ articles }: { articles: Article[] }) {
 
         {/* 3-up clean grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-px bg-[var(--hairline)] border border-[var(--hairline)]">
-          {articles.slice(0, 3).map((a, idx) => {
+          {list.slice(0, 3).map((a, idx) => {
             const img = a.heroImage?.sizes?.card?.url ?? a.heroImage?.url
             return (
               <Link

@@ -5,6 +5,8 @@ import { EditorialImage } from '@/components/article/EditorialImage'
 import { ArticleCard } from '@/components/article/ArticleCard'
 import { generateArticleMetadata } from '@/lib/seo'
 import { formatShortDate } from '@/lib/format'
+import { StaticArticleView } from '@/components/article/StaticArticleView'
+import { getArticle as getStaticArticle } from '@/lib/articles'
 import { VerdictHero } from '@/components/factCheck/VerdictHero'
 import { ClaimVsTruthPanel } from '@/components/factCheck/ClaimVsTruthPanel'
 import { RightWrongColumns } from '@/components/factCheck/RightWrongColumns'
@@ -44,7 +46,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     })
 
     const article = docs[0] as Record<string, unknown> | undefined
-    if (!article) return {}
+    if (!article) {
+      // Fall back to a static sourced explainer's metadata
+      const s = getStaticArticle(slug)
+      if (s) {
+        return generateArticleMetadata({
+          title: s.title,
+          description: s.excerpt,
+          publishedAt: s.publishedAt,
+        })
+      }
+      return {}
+    }
 
     const heroImage = article.heroImage as { url?: string } | null | undefined
 
@@ -89,7 +102,12 @@ export default async function ArticlePage({ params }: PageProps) {
   })
 
   const rawArticle = docs[0] as Record<string, unknown> | undefined
-  if (!rawArticle) notFound()
+  if (!rawArticle) {
+    // No CMS article — fall back to a static sourced explainer if one exists
+    const staticArticle = getStaticArticle(slug)
+    if (staticArticle) return <StaticArticleView article={staticArticle} />
+    notFound()
+  }
 
   const article = rawArticle!
 
