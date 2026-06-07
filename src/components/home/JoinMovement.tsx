@@ -1,4 +1,5 @@
 import { SignupCard } from '@/components/newsletter/SignupCard'
+import { Reveal } from '@/components/animation/Reveal'
 
 export function JoinMovement() {
   return (
@@ -10,7 +11,7 @@ export function JoinMovement() {
       <div className="mx-auto max-w-[1440px] px-6 py-20 md:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left: pitch */}
-          <div className="lg:col-span-7">
+          <Reveal variant="left" className="lg:col-span-7">
             <p className="font-ui font-black uppercase tracking-[0.28em] text-[11px] text-[var(--pink-chip)] mb-5">
               Add Your Voice
             </p>
@@ -39,17 +40,17 @@ export function JoinMovement() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
 
           {/* Right: signup card */}
-          <div className="lg:col-span-5">
+          <Reveal variant="scale" delay={120} className="lg:col-span-5">
             <div className="bg-[var(--bg)] text-[var(--ink)] p-8 border-2 border-[var(--pink-chip)]">
               <SignupCard />
             </div>
             <p className="font-ui uppercase tracking-[0.16em] text-[10px] text-[var(--bg)]/40 mt-5 text-center">
               By subscribing, you are not buying a service. You are joining a movement.
             </p>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

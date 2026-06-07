@@ -1,3 +1,5 @@
+import { Reveal } from '@/components/animation/Reveal'
+
 type Pillar = {
   num: string
   title: string
@@ -55,19 +57,21 @@ export function Pillars() {
         </div>
 
         <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-px bg-[var(--hairline)] border border-[var(--hairline)]">
-          {PILLARS.map((p) => (
-            <li key={p.num} className="bg-[var(--bg)] p-8 flex flex-col">
-              <span className="font-display font-black text-[64px] leading-none text-[var(--pink-chip)]">
-                {p.num}
-              </span>
-              <h3 className="font-display font-black uppercase tracking-tight text-[22px] leading-[1.1] mt-6 text-[var(--ink)]">
-                {p.title}
-              </h3>
-              <p
-                className="font-body text-[15px] leading-relaxed text-[var(--ink-2)] mt-4"
-                dangerouslySetInnerHTML={{ __html: p.body }}
-              />
-            </li>
+          {PILLARS.map((p, i) => (
+            <Reveal key={p.num} delay={i * 70} as="li">
+              <div className="bg-[var(--bg)] p-8 flex flex-col h-full hover:bg-[var(--bg-soft)] transition-colors">
+                <span className="font-display font-black text-[64px] leading-none text-[var(--pink-chip)]">
+                  {p.num}
+                </span>
+                <h3 className="font-display font-black uppercase tracking-tight text-[22px] leading-[1.1] mt-6 text-[var(--ink)]">
+                  {p.title}
+                </h3>
+                <p
+                  className="font-body text-[15px] leading-relaxed text-[var(--ink-2)] mt-4"
+                  dangerouslySetInnerHTML={{ __html: p.body }}
+                />
+              </div>
+            </Reveal>
           ))}
         </ol>
       </div>

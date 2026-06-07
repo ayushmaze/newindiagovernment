@@ -36,6 +36,13 @@
   }
 }
 
+/* Perf: skip rendering/layout of off-screen blocks until they scroll near.
+   contain-intrinsic-size reserves space so there is no scroll jump. */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
 /* ── Nav drawer (sidebar) animations ───────────────────────────── */
 @keyframes drawer-slide-in {
   from { transform: translateX(-100%); }

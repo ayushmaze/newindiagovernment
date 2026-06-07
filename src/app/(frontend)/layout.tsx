@@ -38,7 +38,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
             {children}
           </div>
 
-        <footer className="border-t-2 border-[var(--divider)] bg-[var(--bg)] mt-16 py-12 pb-28 lg:pb-12">
+        <footer className="cv-auto border-t-2 border-[var(--divider)] bg-[var(--bg)] mt-16 py-12 pb-28 lg:pb-12">
           <div className="mx-auto max-w-[1440px] px-6">
             {/* Wordmark */}
             <div className="text-center mb-10">
