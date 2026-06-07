@@ -12,6 +12,7 @@ const NAV_ITEMS: NavItem[] = [
   { labelKey: 'nav.jumlaMeter', fallback: 'Jumla Meter', href: '/promises' },
   { labelKey: 'nav.realOrJumla', fallback: 'Real or Jumla?', href: '/quiz' },
   { labelKey: 'nav.movement', fallback: 'The Movement', href: '/movement' },
+  { labelKey: 'nav.goodNews', fallback: 'Good News', href: '/good-news' },
   { labelKey: 'nav.factCheck', fallback: 'Fact-Check', href: '/category/fact-check' },
   { labelKey: 'nav.policy', fallback: 'Policy', href: '/category/policy' },
   { labelKey: 'nav.investigations', fallback: 'Investigations', href: '/category/investigations' },

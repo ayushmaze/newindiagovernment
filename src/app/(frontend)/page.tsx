@@ -202,7 +202,7 @@ export default async function HomePage() {
       <VoteWidget question={voteQuestion} options={voteOptions} />
 
       {/* 9.5 Good news worldwide — hope beat: proof change is possible */}
-      <GoodNewsWorld />
+      <GoodNewsWorld limit={6} />
 
       {/* 10. Latest investigations (now populated by sourced explainers) */}
       <LatestInvestigations articles={articles} />

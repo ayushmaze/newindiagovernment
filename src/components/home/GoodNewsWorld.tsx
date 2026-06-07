@@ -12,10 +12,12 @@
  * engagement and counters fatigue — people return for hope, not just outrage.
  */
 
+import Link from 'next/link'
 import { Reveal } from '@/components/animation/Reveal'
 import { GOOD_NEWS } from '@/lib/goodNews'
 
-export function GoodNewsWorld() {
+export function GoodNewsWorld({ limit }: { limit?: number }) {
+  const items = typeof limit === 'number' ? GOOD_NEWS.slice(0, limit) : GOOD_NEWS
   return (
     <section
       className="bg-[var(--bg)] border-b-2 border-[var(--divider)]"
@@ -38,11 +40,20 @@ export function GoodNewsWorld() {
                 something, it works — here’s the evidence, sourced and verifiable.
               </p>
             </div>
+            {typeof limit === 'number' && GOOD_NEWS.length > limit && (
+              <Link
+                href="/good-news"
+                className="font-ui font-bold uppercase tracking-[0.18em] text-[12px] text-[var(--ink)] border-b-2 border-[#3a7d44] pb-1 hover:text-[#3a7d44] transition-colors inline-flex items-center gap-2 shrink-0"
+              >
+                All {GOOD_NEWS.length} good-news stories
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+            )}
           </div>
         </Reveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-          {GOOD_NEWS.map((item, i) => (
+          {items.map((item, i) => (
             <Reveal key={item.id} delay={i * 70}>
               <a
                 href={item.source.url}

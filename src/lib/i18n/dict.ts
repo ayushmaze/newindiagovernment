@@ -42,6 +42,7 @@ export type DictKey =
   | 'nav.movement'
   | 'nav.jumlaMeter'
   | 'nav.realOrJumla'
+  | 'nav.goodNews'
   // Daily Jumla bar
   | 'dailyJumla.kicker'
   | 'dailyJumla.cta'
@@ -105,6 +106,7 @@ const en: Dict = {
   'nav.movement': 'The Movement',
   'nav.jumlaMeter': 'Jumla Meter',
   'nav.realOrJumla': 'Real or Jumla?',
+  'nav.goodNews': 'Good News',
 
   // Daily Jumla bar
   'dailyJumla.kicker': 'Jumla of the Day',
@@ -179,6 +181,7 @@ const hi: Dict = {
   'nav.movement': 'आंदोलन',
   'nav.jumlaMeter': 'जुमला मीटर',
   'nav.realOrJumla': 'सच या जुमला?',
+  'nav.goodNews': 'अच्छी ख़बरें',
 
   'dailyJumla.kicker': 'आज का जुमला',
   'dailyJumla.cta': 'सबूत देखें',
