@@ -773,6 +773,38 @@ export const ARTICLES: StaticArticle[] = [
     ],
     tags: ['governance', 'railways', 'safety', 'balasore'],
   },
+  {
+    slug: 'rupee-at-90-dollar',
+    title: 'The rupee just crossed 90 to the dollar',
+    kicker: 'ECONOMY · CURRENCY',
+    category: 'Economy',
+    publishedAt: '2026-01-30',
+    readMins: 4,
+    keyStat: { value: '₹61 → ₹90', label: 'rupee per US dollar, 2014 → Dec 2025' },
+    excerpt:
+      'A decade ago a strong rupee was sold as the mark of a strong government. The rupee hit a record low past 90 to the dollar in December 2025.',
+    dek: 'Currencies move for many reasons — but a promise was once built on this number, so it’s fair to check it.',
+    body: [
+      {
+        paragraphs: [
+          'In December 2025, the rupee slipped to a record low past 90 to the US dollar. In 2014 it averaged about 61. That’s a depreciation of roughly 47% over eleven years.',
+          'A weaker rupee isn’t automatically a failure — many factors drive exchange rates, and some exporters benefit. But before 2014, a falling rupee was repeatedly invoked as a sign of weak economic management, so it’s fair to hold the same yardstick now.',
+        ],
+      },
+      {
+        heading: 'Why it touches everyone',
+        paragraphs: [
+          'A cheaper rupee makes imports — crude oil, electronics, edible oil, foreign education and travel — more expensive, feeding into prices at home. It also quietly works against the "$5 trillion economy" goal, because the target is measured in dollars: when the rupee falls, nominal growth in rupees translates into fewer dollars.',
+          'The honest framing isn’t "the rupee fell, therefore failure." It’s: the same standard should apply across governments — and the citizen deserves a clear explanation, not a change of subject.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'Bloomberg: rupee slides to record low', url: 'https://www.bloomberg.com/news/articles/2025-12-01/indian-rupee-slides-to-record-low-as-central-bank-steps-away' },
+      { label: 'Exchange-rate history of the Indian rupee · Wikipedia', url: 'https://en.wikipedia.org/wiki/Exchange_rate_history_of_the_Indian_rupee' },
+    ],
+    tags: ['economy', 'rupee', 'currency', 'inflation'],
+  },
 ]
 
 export function getArticle(slug: string): StaticArticle | undefined {

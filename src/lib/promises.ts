@@ -298,4 +298,36 @@ export const PROMISES: GovPromise[] = [
       { label: 'ORF: India’s fuel-tax revenue', url: 'https://www.orfonline.org/expert-speak/indias-tax-revenue-from-petroleum-products' },
     ],
   },
+  {
+    id: 'five-trillion-economy',
+    promise: 'A $5 trillion economy by 2024-25',
+    attribution: 'PM Modi · 2019',
+    year: '2019',
+    category: 'Economy',
+    verdict: 'broken',
+    progress: 38,
+    reality:
+      'In 2019 the goal was a $5-trillion economy by the end of the second term (2024-25). Per IMF data, GDP was about $3.76 trillion in 2024-25 — well short. The deadline was quietly moved to 2027-28, rupee depreciation ate into nominal gains, and in Parliament the government even denied the PM had promised it.',
+    punchline: 'Promised by 2024-25. We hit ~$3.76T — then the goalpost moved to 2027-28.',
+    sources: [
+      { label: 'ThePrint: target moved to 2027-28', url: 'https://theprint.in/economy/sitharaman-says-indian-economy-will-hit-5-trillion-by-2027-28-3-yrs-after-modis-2025-target/1919287/' },
+      { label: 'The Quint: $5T target off track', url: 'https://www.thequint.com/opinion/modis-third-largest-and-5-trillion-economy-targets-are-off-track-india' },
+    ],
+  },
+  {
+    id: 'skill-india-40-crore',
+    promise: 'Skill 40 crore Indians by 2022 (Skill India)',
+    attribution: 'Skill India Mission / PMKVY · 2015',
+    year: '2015',
+    category: 'Jobs',
+    verdict: 'broken',
+    progress: 12,
+    reality:
+      'Launched in 2015 with a headline goal of skilling 40 crore people by 2022. By official accounts roughly 2.27 crore benefited across schemes — under 6% of the target — and placement rates under PMKVY hovered around 28–43%. The scheme was later restructured and extended.',
+    punchline: '40 crore to be skilled by 2022. Under 6% were — and most weren’t placed.',
+    sources: [
+      { label: 'IBEF: Skill India Mission', url: 'https://www.ibef.org/government-schemes/skill-india' },
+      { label: 'Asian Age: PMKVY misses placement target', url: 'https://www.asianage.com/india/all-india/010719/pmkvy-fails-to-achieve-its-job-placement-target.html' },
+    ],
+  },
 ]
