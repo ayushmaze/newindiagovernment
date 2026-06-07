@@ -15,6 +15,7 @@ import { DailyJumlaBar } from '@/components/home/DailyJumlaBar'
 import { LiveActivityStrip } from '@/components/home/LiveActivityStrip'
 import { WhyItMatters } from '@/components/home/WhyItMatters'
 import { StickyPlayCTA } from '@/components/home/StickyPlayCTA'
+import { RecentVerdicts } from '@/components/home/RecentVerdicts'
 import { generateBaseMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 
@@ -173,6 +174,9 @@ export default async function HomePage() {
 
       {/* 4. The Jumla Meter (compact) — the viral hook */}
       <JumlaMeter compact />
+
+      {/* 4.5 Recent verdicts — tap-friendly fact-check grid */}
+      <RecentVerdicts />
 
       {/* 5. Real or Jumla? — interactive moment */}
       <QuizTeaser />
