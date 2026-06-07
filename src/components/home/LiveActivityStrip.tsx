@@ -10,6 +10,7 @@
  */
 
 import { useEffect, useState } from 'react'
+import { useLang } from '@/components/i18n/LangProvider'
 
 const ITEMS = [
   { tag: 'PUBLISHED', text: 'Jumla Meter — 7 major promises tracked, each sourced.' },
@@ -41,6 +42,7 @@ function useLiveCount(seed = 184) {
 }
 
 export function LiveActivityStrip() {
+  const { t } = useLang()
   const viewers = useLiveCount(187)
   // Duplicate items for a seamless marquee loop
   const loop = [...ITEMS, ...ITEMS]
@@ -54,7 +56,7 @@ export function LiveActivityStrip() {
             <span className="absolute inset-0 rounded-full bg-[var(--pink-chip)] animate-ping opacity-80" />
             <span className="relative inline-block h-1.5 w-1.5 rounded-full bg-[var(--pink-chip)]" />
           </span>
-          <span className="text-[var(--bg)]/80">Now reading</span>
+          <span className="text-[var(--bg)]/80">{t('live.nowReading')}</span>
           <strong className="text-[var(--bg)] tabular-nums">{viewers}</strong>
         </span>
 

@@ -1,5 +1,6 @@
 import { Badge } from './Badge'
 import { formatDate } from '@/lib/format'
+import { LangPicker } from '@/components/i18n/LangPicker'
 
 export function Masthead() {
   const today = formatDate(new Date())
@@ -8,19 +9,22 @@ export function Masthead() {
     <header className="border-b-2 border-[var(--divider)]">
       <div className="mx-auto max-w-[1440px] px-6">
         {/* Utility row */}
-        <div className="flex justify-between items-center py-2 border-b border-[var(--hairline)]">
+        <div className="flex justify-between items-center py-2 border-b border-[var(--hairline)] gap-3">
           <span className="font-ui uppercase tracking-[0.16em] text-[10px] md:text-[11px] text-[var(--ink-3)]">
             {today}
           </span>
-          <span className="hidden sm:inline font-ui uppercase tracking-[0.16em] text-[10px] md:text-[11px] text-[var(--ink-3)]">
+          <span className="hidden md:inline font-ui uppercase tracking-[0.16em] text-[10px] md:text-[11px] text-[var(--ink-3)]">
             Edition: National
           </span>
-          <a
-            href="/admin"
-            className="font-ui uppercase tracking-[0.16em] text-[10px] md:text-[11px] text-[var(--ink-3)] hover:text-[var(--ink)]"
-          >
-            Sign In
-          </a>
+          <div className="flex items-center gap-4">
+            <LangPicker />
+            <a
+              href="/admin"
+              className="font-ui uppercase tracking-[0.16em] text-[10px] md:text-[11px] text-[var(--ink-3)] hover:text-[var(--ink)]"
+            >
+              Sign In
+            </a>
+          </div>
         </div>
 
         {/* Masthead row — badge | wordmark | subscribe */}

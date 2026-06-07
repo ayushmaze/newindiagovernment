@@ -5,6 +5,7 @@ import { FactCheckTicker } from '@/components/ticker/FactCheckTicker'
 import { PrimaryNav } from '@/components/nav/PrimaryNav'
 import { MobileTabBar } from '@/components/nav/MobileTabBar'
 import { PerformancePatch } from '@/components/util/PerformancePatch'
+import { LangProvider } from '@/components/i18n/LangProvider'
 import { display, ui, body } from '@/app/fonts'
 import '../globals.css'
 
@@ -23,18 +24,19 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
     <html lang="en" data-scroll-behavior="smooth" className={`${display.variable} ${ui.variable} ${body.variable}`}>
       <body className="font-body bg-[var(--bg)] text-[var(--ink)]">
         <PerformancePatch />
-        {/* Skip to content */}
-        <a href="#main-content" className="skip-to-content">
-          Skip to content
-        </a>
+        <LangProvider>
+          {/* Skip to content */}
+          <a href="#main-content" className="skip-to-content">
+            Skip to content
+          </a>
 
-        <Masthead />
-        <FactCheckTicker />
-        <PrimaryNav />
+          <Masthead />
+          <FactCheckTicker />
+          <PrimaryNav />
 
-        <div id="main-content" className="pb-16 lg:pb-0">
-          {children}
-        </div>
+          <div id="main-content" className="pb-16 lg:pb-0">
+            {children}
+          </div>
 
         <footer className="border-t-2 border-[var(--divider)] bg-[var(--bg)] mt-16 py-12 pb-28 lg:pb-12">
           <div className="mx-auto max-w-[1440px] px-6">
@@ -137,7 +139,8 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
           </div>
         </footer>
 
-        <MobileTabBar />
+          <MobileTabBar />
+        </LangProvider>
       </body>
     </html>
   )

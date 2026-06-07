@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { StatCounter } from './StatCounter'
 import { PROMISES } from '@/lib/promises'
+import { T } from '@/components/i18n/T'
 
 type Props = {
   factChecks: number
@@ -43,9 +44,11 @@ export function HeroManifesto({
         {/* Kicker */}
         <div className="flex items-center gap-3 mb-8 fade-up">
           <span className="h-px w-10 bg-[var(--ink)]"></span>
-          <span className="font-ui font-black uppercase tracking-[0.28em] text-[11px] text-[var(--red-tag)]">
-            We&apos;re keeping score · Est. 2026
-          </span>
+          <T
+            k="hero.kicker"
+            fallback="We're keeping score · Est. 2026"
+            className="font-ui font-black uppercase tracking-[0.28em] text-[11px] text-[var(--red-tag)]"
+          />
         </div>
 
         {/* Headline */}
@@ -80,39 +83,47 @@ export function HeroManifesto({
             href="/promises"
             className="group inline-flex items-center gap-3 bg-[var(--ink)] text-[var(--bg)] px-7 py-4 hover:bg-[var(--red-tag)] transition-colors tap-shrink"
           >
-            <span className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]">
-              See the Jumla Meter
-            </span>
+            <T
+              k="hero.ctaPrimary"
+              fallback="See the Jumla Meter"
+              className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]"
+            />
             <span className="transition-transform group-hover:translate-x-1">→</span>
           </Link>
           <Link
             href="/quiz"
             className="group inline-flex items-center gap-3 bg-[var(--pink-chip)] text-[var(--ink)] px-7 py-4 border-2 border-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--bg)] transition-colors tap-shrink"
           >
-            <span className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]">
-              Play Real or Jumla?
-            </span>
+            <T
+              k="hero.ctaSecondary"
+              fallback="Play Real or Jumla?"
+              className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]"
+            />
             <span aria-hidden>🎯</span>
           </Link>
           <Link
             href="/movement"
             className="group inline-flex items-center gap-3 bg-transparent text-[var(--ink)] px-6 py-4 border-2 border-[var(--ink)]/30 hover:border-[var(--ink)] transition-colors tap-shrink"
           >
-            <span className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]">
-              About the Movement
-            </span>
+            <T
+              k="hero.ctaTertiary"
+              fallback="About the Movement"
+              className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]"
+            />
           </Link>
         </div>
 
         {/* Government scorecard — the actual stats people care about */}
         <div className="mt-16 md:mt-20 pt-10 border-t border-[var(--ink)]/20 fade-up fade-up-delay-4">
           <div className="flex items-center gap-3 mb-6">
-            <span className="font-ui font-black uppercase tracking-[0.22em] text-[10px] text-[var(--red-tag)]">
-              The Scorecard
-            </span>
+            <T
+              k="hero.scorecard"
+              fallback="The Scorecard"
+              className="font-ui font-black uppercase tracking-[0.22em] text-[10px] text-[var(--red-tag)]"
+            />
             <span aria-hidden className="h-px flex-1 bg-[var(--ink)]/15" />
             <span className="font-ui uppercase tracking-[0.18em] text-[10px] text-[var(--ink-3)]">
-              Verified · {new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
+              <T k="hero.verified" fallback="Verified" /> · {new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
             </span>
           </div>
 

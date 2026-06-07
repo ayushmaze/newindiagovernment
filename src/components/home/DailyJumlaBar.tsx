@@ -14,6 +14,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { PROMISES } from '@/lib/promises'
+import { useLang } from '@/components/i18n/LangProvider'
 
 type Lead = {
   promise: string
@@ -51,6 +52,8 @@ export function DailyJumlaBar() {
     return () => window.clearInterval(id)
   }, [leads.length, paused])
 
+  const { t } = useLang()
+
   if (leads.length === 0) return null
   const lead = leads[i]
 
@@ -79,7 +82,7 @@ export function DailyJumlaBar() {
             <span className="relative inline-block h-2 w-2 rounded-full bg-white" />
           </span>
           <span className="font-ui font-black uppercase tracking-[0.22em] text-[10px] sm:text-[11px]">
-            Jumla of the Day
+            {t('dailyJumla.kicker')}
           </span>
         </span>
 
@@ -105,7 +108,7 @@ export function DailyJumlaBar() {
           className="shrink-0 group font-ui font-black uppercase tracking-[0.16em] text-[10px] sm:text-[11px] bg-white text-[var(--red-tag)] px-3 py-1.5 sm:px-4 sm:py-2 hover:bg-black hover:text-white transition-colors"
           aria-label="See the full Jumla Meter"
         >
-          See proof <span className="transition-transform group-hover:translate-x-0.5 inline-block">→</span>
+          {t('dailyJumla.cta')} <span className="transition-transform group-hover:translate-x-0.5 inline-block">→</span>
         </Link>
       </div>
 

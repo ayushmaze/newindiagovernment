@@ -13,6 +13,8 @@ import { QuizTeaser } from '@/components/home/QuizTeaser'
 import { MovementBanner } from '@/components/movement/MovementBanner'
 import { DailyJumlaBar } from '@/components/home/DailyJumlaBar'
 import { LiveActivityStrip } from '@/components/home/LiveActivityStrip'
+import { WhyItMatters } from '@/components/home/WhyItMatters'
+import { StickyPlayCTA } from '@/components/home/StickyPlayCTA'
 import { generateBaseMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 
@@ -178,6 +180,9 @@ export default async function HomePage() {
       {/* 6. Movement banner — join the cause, live counter */}
       <MovementBanner />
 
+      {/* 6.5 Why it matters — sourced persuasion block */}
+      <WhyItMatters />
+
       {/* 7. The Reckoning — the four data-shock cards */}
       <CrisisGrid />
 
@@ -228,6 +233,9 @@ export default async function HomePage() {
       <Pillars />
 
       <JoinMovement />
+
+      {/* Floating CTA — fades in after the hero */}
+      <StickyPlayCTA />
     </>
   )
 }
