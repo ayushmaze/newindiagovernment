@@ -23,7 +23,19 @@ export type GovPromise = {
   /** Who said it / where, and roughly when */
   attribution: string
   year: string
-  category: 'Jobs' | 'Economy' | 'Farmers' | 'Cities' | 'Water' | 'Environment' | 'Money'
+  category:
+    | 'Jobs'
+    | 'Economy'
+    | 'Farmers'
+    | 'Cities'
+    | 'Water'
+    | 'Environment'
+    | 'Money'
+    | 'Energy'
+    | 'Sanitation'
+    | 'Digital'
+    | 'Health'
+    | 'Welfare'
   verdict: Verdict
   /** 0–100 — how much of the promise the public record shows was actually met */
   progress: number
@@ -156,6 +168,86 @@ export const PROMISES: GovPromise[] = [
     sources: [
       { label: 'Namami Gange · Wikipedia', url: 'https://en.wikipedia.org/wiki/Namami_Gange_Programme' },
       { label: 'PIB programme status', url: 'https://www.pib.gov.in/PressReleasePage.aspx?PRID=2109078' },
+    ],
+  },
+  {
+    id: 'demonetisation-black-money',
+    promise: 'Demonetisation will wipe out black money',
+    attribution: 'PM Modi, national address · 8 Nov 2016',
+    year: '2016',
+    category: 'Money',
+    verdict: 'broken',
+    progress: 5,
+    reality:
+      'The stated aim was to extinguish unaccounted cash hoarded outside the banking system. The RBI’s 2018 report found that ₹15.31 lakh crore of the ₹15.41 lakh crore demonetised — about 99.3% — came back into the banking system. Almost no cash was left unreturned, undercutting the black-money rationale, while the cash economy and informal-sector disruption drew lasting criticism.',
+    punchline: '99.3% of the banned cash came straight back (RBI). The black money never showed up.',
+    sources: [
+      { label: '2016 demonetisation · Wikipedia (RBI figures)', url: 'https://en.wikipedia.org/wiki/2016_Indian_banknote_demonetisation' },
+      { label: 'National Herald: RBI report', url: 'https://www.nationalheraldindia.com/india/demonetisation-rbi-report-leaves-modi-govt-red-faced-on-black-money-digital-economy' },
+    ],
+  },
+  {
+    id: 'ujjwala-lpg',
+    promise: 'Clean cooking gas for every poor household (Ujjwala)',
+    attribution: 'Pradhan Mantri Ujjwala Yojana · 2016',
+    year: '2016',
+    category: 'Energy',
+    verdict: 'partial',
+    progress: 55,
+    reality:
+      'Connections were a genuine success — crores of LPG connections reached poor households. But the harder goal, sustained clean-fuel use, lagged: a CAG audit and later official data showed many beneficiaries took few or no refills because the unsubsidised refill cost was unaffordable. In 2025-26, roughly 1.67 crore beneficiaries took no refill and 1.12 crore booked only one.',
+    punchline: 'The cylinders arrived. For many families, the affordable refills did not.',
+    sources: [
+      { label: 'National Herald: CAG on Ujjwala refills', url: 'https://www.nationalheraldindia.com/india/lpg-refill-declines-in-pm-modis-flagship-ujjwala-yojana-cylinders-diverted-for-commercial-use-cag' },
+      { label: 'PMUY household study (arXiv)', url: 'https://arxiv.org/pdf/2403.17112' },
+    ],
+  },
+  {
+    id: 'swachh-bharat-odf',
+    promise: 'An open-defecation-free India by 2 Oct 2019',
+    attribution: 'Swachh Bharat Mission · 2014',
+    year: '2014',
+    category: 'Sanitation',
+    verdict: 'partial',
+    progress: 60,
+    reality:
+      'Crores of toilets were built and open defecation fell sharply — real progress. But independent and official data complicate the "100% ODF" declaration: NSO and NFHS-5 surveys, a CAG report, and academic studies found large shares of rural households in several "ODF-declared" states still lacked working toilets or had members still defecating in the open.',
+    punchline: 'Millions of toilets built — but the "100% open-defecation-free" claim didn’t survive the surveys.',
+    sources: [
+      { label: 'ORF: ODF claims vs reality', url: 'https://www.orfonline.org/expert-speak/odf-status-claims-vs-reality-swachh-bharat-mission' },
+      { label: 'IDEAs: Claim versus Reality', url: 'https://www.networkideas.org/news-analysis/2019/11/claim-versus-reality-defecation-free/' },
+    ],
+  },
+  {
+    id: 'saubhagya-electrification',
+    promise: 'Electricity to every village and household',
+    attribution: 'Saubhagya / DDUGJY · 2017',
+    year: '2017',
+    category: 'Energy',
+    verdict: 'kept',
+    progress: 92,
+    reality:
+      'This one largely delivered. All inhabited un-electrified census villages were electrified by April 2018, and ~2.86 crore households were connected under Saubhagya before it closed in March 2022 having met its target. The IEA called India’s electrification drive one of the great success stories of 2018. The remaining gap is reliability of supply, not access.',
+    punchline: 'A promise mostly kept: villages and crores of homes got connected on schedule.',
+    sources: [
+      { label: 'PIB: 2.86 crore households electrified', url: 'https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=1907728' },
+      { label: 'Saubhagya scheme · Wikipedia', url: 'https://en.wikipedia.org/wiki/Saubhagya_scheme' },
+    ],
+  },
+  {
+    id: 'upi-digital-payments',
+    promise: 'A world-leading digital-payments economy',
+    attribution: 'Digital India / UPI · 2016 onward',
+    year: '2016',
+    category: 'Digital',
+    verdict: 'kept',
+    progress: 95,
+    reality:
+      'A clear success. UPI grew from ~2 crore transactions in FY2016-17 to hundreds of billions a year, handled ~83% of India’s payment volume by end-2024, and — per an IMF note — accounts for nearly half of the world’s real-time payment transactions. It is genuinely world-leading public digital infrastructure.',
+    punchline: 'Credit where due: UPI became the world’s largest real-time payments system.',
+    sources: [
+      { label: 'PIB: UPI, world’s largest real-time platform', url: 'https://www.pib.gov.in/PressReleasePage.aspx?PRID=2257087&reg=3&lang=2' },
+      { label: 'Worldline: 228bn UPI transactions in 2025', url: 'https://worldline.com/en-in/home/top-navigation/media-relations/press-releases/worldline-reports-that-india-digital-payments-cross-new-milestones-as-upi-reaches-228-billion-transactions-in-2025' },
     ],
   },
 ]
