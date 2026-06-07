@@ -23,10 +23,10 @@ export function Masthead() {
           </a>
         </div>
 
-        {/* Masthead row — single line, badge | wordmark | subscribe */}
-        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4 md:gap-8 py-4 md:py-5">
+        {/* Masthead row — badge | wordmark | subscribe */}
+        <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 sm:gap-4 md:gap-8 py-3 sm:py-4 md:py-5">
           {/* Left: Badge + tagline */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 min-w-0">
             <Badge />
             <div className="hidden lg:block">
               <p className="font-ui font-bold uppercase tracking-[0.2em] text-[10px] text-[var(--ink-3)] leading-tight">
@@ -38,9 +38,9 @@ export function Masthead() {
             </div>
           </div>
 
-          {/* Center: Wordmark on a single line */}
+          {/* Center: Wordmark — min-w-0 lets it shrink/wrap on phones */}
           <h1
-            className="masthead-title font-display font-black uppercase text-[var(--ink)] text-center"
+            className="masthead-title font-display font-black uppercase text-[var(--ink)] text-center min-w-0"
           >
             The New India Government
           </h1>

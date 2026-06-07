@@ -1,8 +1,9 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import Link from 'next/link'
+import { FALLBACK_TICKER_ITEMS, type FallbackVerdict } from '@/lib/factCheckFallback'
 
-type Verdict = 'misleading' | 'false' | 'mostly-false' | 'mixed' | 'true' | undefined
+type Verdict = FallbackVerdict | undefined
 
 function verdictBadge(v: Verdict): { label: string; cls: string } {
   switch (v) {
@@ -21,18 +22,19 @@ function verdictBadge(v: Verdict): { label: string; cls: string } {
   }
 }
 
-export async function FactCheckTicker() {
-  const payload = await getPayload({ config })
+type TickerEntry = {
+  id: string
+  claim: string
+  credibilityScore: number
+  verdict?: Verdict
+  href?: string
+}
 
-  let docs: Array<{
-    id: string
-    claim: string
-    credibilityScore: number
-    verdict?: Verdict
-    linkedArticle?: { slug?: string } | string | null
-  }> = []
+export async function FactCheckTicker() {
+  let entries: TickerEntry[] = []
 
   try {
+    const payload = await getPayload({ config })
     const result = await payload.find({
       collection: 'ticker-items',
       where: { active: { equals: true } },
@@ -40,79 +42,98 @@ export async function FactCheckTicker() {
       limit: 40,
       depth: 1,
     })
-    docs = result.docs as typeof docs
+    const docs = result.docs as Array<{
+      id: string
+      claim: string
+      credibilityScore: number
+      verdict?: Verdict
+      linkedArticle?: { slug?: string } | string | null
+    }>
+    entries = docs.map((d) => {
+      const linked =
+        d.linkedArticle && typeof d.linkedArticle === 'object' ? d.linkedArticle : null
+      return {
+        id: d.id,
+        claim: d.claim,
+        credibilityScore: d.credibilityScore,
+        verdict: d.verdict,
+        href: linked?.slug ? `/article/${linked.slug}` : undefined,
+      }
+    })
   } catch {
-    // Return empty ticker if DB unavailable
+    // DB unavailable — fall through to fallback below.
   }
 
-  const items = [...docs, ...docs]
+  // If editorial hasn't seeded any ticker items yet, use the curated fallback
+  // so visitors never see "no fact-checks yet".
+  if (entries.length === 0) {
+    entries = FALLBACK_TICKER_ITEMS.map((f) => ({
+      id: f.id,
+      claim: f.claim,
+      credibilityScore: f.credibilityScore,
+      verdict: f.verdict,
+      href: f.href,
+    }))
+  }
+
+  // Duplicate for a seamless marquee loop
+  const items = [...entries, ...entries]
 
   return (
     <div className="w-full bg-[var(--pink-ticker-bg)] border-y-2 border-[var(--divider)] overflow-hidden">
-      <div className="mx-auto max-w-[1440px] flex items-stretch gap-0 px-6 h-12">
+      <div className="mx-auto max-w-[1440px] flex items-stretch gap-0 px-4 sm:px-6 h-11 sm:h-12">
         {/* Bold red label block */}
-        <div className="flex items-center gap-2 pr-5 border-r border-[var(--ink)]/15 shrink-0">
+        <div className="flex items-center gap-2 pr-3 sm:pr-5 border-r border-[var(--ink)]/15 shrink-0">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--red-tag)] opacity-60 pulse-dot"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--red-tag)]"></span>
           </span>
-          <span className="font-ui font-black uppercase tracking-[0.22em] text-[12px] text-[var(--red-tag)] whitespace-nowrap">
+          <span className="font-ui font-black uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[10px] sm:text-[12px] text-[var(--red-tag)] whitespace-nowrap">
             Fact-Check · Live
           </span>
         </div>
 
-        <div className="marquee-wrap relative flex-1 overflow-hidden flex items-center pl-5">
-          {items.length > 0 ? (
-            <ul
-              className="flex gap-10 whitespace-nowrap animate-marquee"
-              aria-label="Scrolling fact-check verdicts"
-            >
-              {items.map((it, i) => {
-                const article =
-                  it.linkedArticle && typeof it.linkedArticle === 'object'
-                    ? it.linkedArticle
-                    : null
-                const slug = article?.slug
-                const v = verdictBadge(it.verdict)
-                const content = (
-                  <span className="flex items-center gap-2.5 font-ui text-[13px] text-[var(--ink)]">
-                    <span
-                      className={`px-2 py-0.5 font-bold tracking-[0.1em] text-[10px] ${v.cls} shrink-0`}
-                    >
-                      {v.label}
-                    </span>
-                    <span className="truncate max-w-[52ch] font-ui">{it.claim}</span>
-                    <span
-                      className="bg-white border border-[var(--ink)]/15 px-2 py-0.5 font-bold tracking-wide text-[12px] shrink-0"
-                      title={`Credibility score: ${it.credibilityScore.toFixed(1)}/10`}
-                    >
-                      {it.credibilityScore.toFixed(1)}
-                      <span className="opacity-50 text-[10px]">/10</span>
-                    </span>
+        <div className="marquee-wrap relative flex-1 overflow-hidden flex items-center pl-3 sm:pl-5">
+          <ul
+            className="flex gap-8 sm:gap-10 whitespace-nowrap animate-marquee"
+            aria-label="Scrolling fact-check verdicts"
+          >
+            {items.map((it, i) => {
+              const v = verdictBadge(it.verdict)
+              const content = (
+                <span className="flex items-center gap-2 sm:gap-2.5 font-ui text-[12px] sm:text-[13px] text-[var(--ink)]">
+                  <span
+                    className={`px-1.5 sm:px-2 py-0.5 font-bold tracking-[0.1em] text-[9px] sm:text-[10px] ${v.cls} shrink-0`}
+                  >
+                    {v.label}
                   </span>
-                )
+                  <span className="font-ui">{it.claim}</span>
+                  <span
+                    className="bg-white border border-[var(--ink)]/15 px-1.5 sm:px-2 py-0.5 font-bold tracking-wide text-[11px] sm:text-[12px] shrink-0"
+                    title={`Credibility score: ${it.credibilityScore.toFixed(1)}/10`}
+                  >
+                    {it.credibilityScore.toFixed(1)}
+                    <span className="opacity-50 text-[9px] sm:text-[10px]">/10</span>
+                  </span>
+                </span>
+              )
 
-                return (
-                  <li key={i} className="shrink-0">
-                    {slug ? (
-                      <Link
-                        href={`/article/${slug}`}
-                        className="hover:opacity-70 transition-opacity"
-                      >
-                        {content}
-                      </Link>
-                    ) : (
-                      content
-                    )}
-                  </li>
-                )
-              })}
-            </ul>
-          ) : (
-            <p className="font-ui text-[13px] text-[var(--ink-3)]">
-              No fact-checks yet. Check back soon.
-            </p>
-          )}
+              return (
+                <li key={`${it.id}-${i}`} className="shrink-0">
+                  {it.href ? (
+                    <Link
+                      href={it.href}
+                      className="hover:opacity-70 transition-opacity"
+                    >
+                      {content}
+                    </Link>
+                  ) : (
+                    content
+                  )}
+                </li>
+              )
+            })}
+          </ul>
         </div>
       </div>
     </div>
