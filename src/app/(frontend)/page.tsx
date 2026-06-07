@@ -18,6 +18,8 @@ import { StickyPlayCTA } from '@/components/home/StickyPlayCTA'
 import { RecentVerdicts } from '@/components/home/RecentVerdicts'
 import { StanceStrip } from '@/components/home/StanceStrip'
 import { GoodNewsWorld } from '@/components/home/GoodNewsWorld'
+import { NumbersThatMatter } from '@/components/home/NumbersThatMatter'
+import { SpotTheSpin } from '@/components/home/SpotTheSpin'
 import { generateBaseMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 
@@ -183,8 +185,14 @@ export default async function HomePage() {
       {/* 4.5 Recent verdicts — tap-friendly fact-check grid */}
       <RecentVerdicts />
 
+      {/* 4.7 Numbers that matter — shareable animated stats */}
+      <NumbersThatMatter />
+
       {/* 5. Real or Jumla? — interactive moment */}
       <QuizTeaser />
+
+      {/* 5.5 Spot the Spin — bite-sized flip cards */}
+      <SpotTheSpin />
 
       {/* 6. Movement banner — join the cause, live counter */}
       <MovementBanner />
