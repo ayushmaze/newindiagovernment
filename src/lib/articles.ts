@@ -983,6 +983,82 @@ export const ARTICLES: StaticArticle[] = [
     ],
     tags: ['governance', 'civil-service', 'reservation', 'upsc'],
   },
+  {
+    slug: 'digital-arrest-scams',
+    title: '"Digital arrest": the scam that cost Indians ₹22,000 crore',
+    kicker: 'GOVERNANCE · CYBERCRIME',
+    category: 'Governance',
+    publishedAt: '2026-02-16',
+    readMins: 4,
+    keyStat: { value: '₹22,845 cr', label: 'lost to cyber fraud in 2024 (+206% on 2023)' },
+    excerpt:
+      'Fraudsters posing as police "arrest" victims over video call and drain their savings. The losses are staggering — but a public-awareness push actually worked.',
+    dek: 'A rare story with both halves: real, devastating harm — and proof that a determined response can cut it.',
+    body: [
+      {
+        paragraphs: [
+          'In a "digital arrest" scam, fraudsters impersonate police or agencies, claim the victim is implicated in a crime, and keep them on a video call under threat until they transfer money. Indians lost over ₹22,845 crore to cyber fraud in 2024 — a 206% jump over 2023 — with cyber-crime complaints crossing 22 lakh.',
+          'The human cost is real: a retired engineer in Pune lost ₹19 lakh; in March 2025 an elderly couple in Karnataka died by suicide after being defrauded of ₹50 lakh.',
+        ],
+      },
+      {
+        heading: 'The part that worked',
+        paragraphs: [
+          'Here’s the encouraging half. After digital-arrest cases spiked 465% in 2024, a concerted awareness push — SMS alerts, caller tunes, advertisements, and a mention in the PM’s "Mann Ki Baat" — coincided with digital-arrest cases falling about 86% in 2025 and losses down ~66%.',
+          'It’s a useful, non-partisan lesson: when the state communicates clearly and acts, citizens respond. That deserves acknowledgement.',
+        ],
+      },
+      {
+        heading: 'What still needs fixing',
+        paragraphs: [
+          'The wider cyber-fraud numbers remain huge. Faster freezing of fraudulent transfers, stricter mule-account checks by banks, and quicker victim redressal are the obvious next steps so the money can be stopped, not just mourned.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'ThePrint: digital-arrest scams decline after 465% spike', url: 'https://theprint.in/india/governance/after-465-spike-in-2024-mha-data-shows-digital-arrest-scams-are-on-a-decline-in-india/2857002/' },
+      { label: 'Digital arrest scam · Wikipedia', url: 'https://en.wikipedia.org/wiki/Digital_arrest_scam' },
+    ],
+    tags: ['governance', 'cybercrime', 'fraud', 'scam'],
+  },
+  {
+    slug: 'doctor-population-ratio',
+    title: 'Did India really hit the WHO doctor ratio? It’s complicated.',
+    kicker: 'HEALTH · WORKFORCE',
+    category: 'Health',
+    publishedAt: '2026-02-22',
+    readMins: 5,
+    keyStat: { value: '~70%', label: 'of specialist posts vacant at Community Health Centres' },
+    excerpt:
+      'The government says India now meets the WHO’s 1:1000 doctor-to-population standard. Two catches: that "WHO standard" is a misattribution, and rural specialist posts sit largely empty.',
+    dek: 'A reassuring headline can rest on a number that isn’t quite what it claims to be.',
+    body: [
+      {
+        paragraphs: [
+          'The health ministry has said India’s doctor-population ratio reached about 1:834 — "better than the WHO standard of 1:1000" — counting ~13.86 lakh registered allopathic doctors (and, in some versions, AYUSH practitioners).',
+          'First catch: researchers point out the oft-quoted "WHO 1:1000 standard" is a misattribution — the WHO does not actually publish that as a target. So clearing a benchmark that was never quite real is a soft kind of success.',
+        ],
+      },
+      {
+        heading: 'The averages hide the gaps',
+        paragraphs: [
+          'Second catch: a national average doesn’t reach the village. Roughly 70% of specialist posts at Community Health Centres were vacant, and rural and northern states carry the worst shortfalls. A doctor registered in a city doesn’t staff a rural clinic.',
+          'So the honest reading: India has genuinely expanded its medical workforce — real progress — but "we met the WHO ratio" papers over where care is actually missing.',
+        ],
+      },
+      {
+        heading: 'Where effort should go',
+        paragraphs: [
+          'Filling rural and specialist posts, expanding postgraduate seats, and counting availability by district rather than by national average would turn a headline into healthcare people can reach.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'The India Forum: the costly number behind medical education', url: 'https://www.theindiaforum.in/education/costly-number-behind-indias-medical-education-woes' },
+      { label: 'JFMPC: doctor-population ratio analysis', url: 'https://journals.lww.com/jfmpc/fulltext/2018/07050/india_achieves_who_recommended_doctor_population.1.aspx' },
+    ],
+    tags: ['health', 'doctors', 'workforce', 'rural'],
+  },
 ]
 
 export function getArticle(slug: string): StaticArticle | undefined {
