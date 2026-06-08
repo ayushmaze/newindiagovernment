@@ -805,6 +805,76 @@ export const ARTICLES: StaticArticle[] = [
     ],
     tags: ['economy', 'rupee', 'currency', 'inflation'],
   },
+  {
+    slug: 'farmer-suicides-ncrb',
+    title: 'One farmer or farm worker dies by suicide every hour',
+    kicker: 'WELFARE · AGRICULTURE',
+    category: 'Welfare',
+    publishedAt: '2026-01-08',
+    readMins: 4,
+    keyStat: { value: '11,290', label: 'farming-sector suicides in 2022 (NCRB)' },
+    excerpt:
+      'The government’s own crime bureau recorded 11,290 suicides in the farming sector in 2022 — and the worst-hit are the landless who work the fields.',
+    dek: 'The agrarian crisis isn’t an abstraction. It shows up, year after year, in one statistic.',
+    body: [
+      {
+        paragraphs: [
+          'In 2022, the National Crime Records Bureau recorded 11,290 suicides among people in the farming sector — 5,207 farmers/cultivators and 6,083 agricultural labourers. That is at least one farming-sector death by suicide every hour, and a 3.7% rise over 2021.',
+          'A telling detail: more than half (6,083) were agricultural labourers — the landless who depend on daily wages, and who rarely feature in farm-relief headlines.',
+        ],
+      },
+      {
+        heading: 'Where, and why',
+        paragraphs: [
+          'Maharashtra (4,248) recorded the most, followed by Karnataka (2,392), Andhra Pradesh, Tamil Nadu and Madhya Pradesh. Researchers consistently link the deaths to debt, crop failure, volatile prices and the absence of a reliable income floor.',
+          'This connects directly to other gaps documented on this site: an unmet MSP-guarantee promise, a shrinking MGNREGA safety net, and farm incomes that didn’t double as pledged.',
+        ],
+      },
+      {
+        heading: 'What a floor looks like',
+        paragraphs: [
+          'The constructive asks are concrete and non-partisan: assured remunerative prices, accessible crop insurance that actually pays out, debt relief that reaches labourers (not just landowners), and rural employment funded to meet demand.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'Down To Earth: one farmer/labourer dies every hour', url: 'https://www.downtoearth.org.in/agriculture/one-farmer-farm-labourer-dies-by-suicide-every-hour-in-india-ncrb-data-93184' },
+      { label: 'Farmers’ suicides in India · Wikipedia', url: "https://en.wikipedia.org/wiki/Farmers'_suicides_in_India" },
+    ],
+    tags: ['welfare', 'farmers', 'agriculture', 'ncrb'],
+  },
+  {
+    slug: 'women-at-work-participation',
+    title: 'More women are working — but mostly for no pay',
+    kicker: 'JOBS · GENDER',
+    category: 'Jobs',
+    publishedAt: '2026-02-20',
+    readMins: 4,
+    keyStat: { value: '41.7%', label: 'female labour-force participation (PLFS 2023-24)' },
+    excerpt:
+      'India’s female labour-force participation has nearly doubled since 2017-18 — but the rise is largely in unpaid family work, not salaried jobs.',
+    dek: 'A rising number can hide a falling-short reality. Here, the headline gain is real — and so is the catch.',
+    body: [
+      {
+        paragraphs: [
+          'India’s female labour-force participation rate (FLFPR) rose to 41.7% in 2023-24, up sharply from 23.3% in 2017-18 (PLFS). On its face, that’s a big, genuine improvement worth acknowledging.',
+          'But look at what kind of work grew. Much of the increase is in unpaid help in household enterprises (up from 9.1% to 19.6%) and own-account work (4.5% to 14.6%) — not salaried or regular wage jobs. Analysts note the rise has been driven heavily by rural women, partly under the pressure of inflation and household need.',
+        ],
+      },
+      {
+        heading: 'Why it still matters',
+        paragraphs: [
+          'Counting unpaid family labour as "participation" lifts the statistic without necessarily lifting women’s economic independence. India’s rate also remains low for its region — below Bangladesh, Bhutan and others on comparable measures.',
+          'The constructive goal isn’t to dismiss the gain — it’s to convert it: safe workplaces and transport, childcare support, and salaried opportunities so that "more women working" means "more women earning".',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'Drishti IAS: Female Labour Force Participation', url: 'https://www.drishtiias.com/daily-updates/daily-news-analysis/female-labour-force-participation-in-india' },
+      { label: 'IWWAGE: Women and Work 2024', url: 'https://iwwage.org/wp-content/uploads/2025/11/Women-and-Work-2024.pdf' },
+    ],
+    tags: ['jobs', 'women', 'gender', 'plfs'],
+  },
 ]
 
 export function getArticle(slug: string): StaticArticle | undefined {
