@@ -1059,6 +1059,82 @@ export const ARTICLES: StaticArticle[] = [
     ],
     tags: ['health', 'doctors', 'workforce', 'rural'],
   },
+  {
+    slug: 'ed-pmla-conviction-rate',
+    title: 'The agency that raids everyone and convicts almost no one',
+    kicker: 'DEMOCRACY · RULE OF LAW',
+    category: 'Democracy',
+    publishedAt: '2026-02-12',
+    readMins: 5,
+    keyStat: { value: '<5%', label: 'PMLA conviction rate (≈40 of 5,297 cases, 2014-24)' },
+    excerpt:
+      'The Enforcement Directorate files money-laundering cases that dominate headlines — but secures convictions in under 5% of them, and 95% of politicians it probes are from the opposition.',
+    dek: 'A law-enforcement body is judged by its convictions. By that test, the numbers raise hard questions.',
+    body: [
+      {
+        paragraphs: [
+          'The Enforcement Directorate (ED) enforces the Prevention of Money Laundering Act (PMLA), a law with harsh bail conditions. Yet of roughly 5,297 PMLA cases registered between 2014 and 2024, only about 40 ended in conviction — a rate under 5%, the government itself told Parliament.',
+          'The process, critics note, can be the punishment: PMLA makes bail hard, so an accused can spend long periods in custody even when a conviction never comes.',
+        ],
+      },
+      {
+        heading: 'Who gets investigated',
+        paragraphs: [
+          'ED cases against politicians jumped roughly four-fold after 2014, and by multiple analyses about 95% of the politicians investigated belonged to opposition parties. In its first five recent years the ED filed 911 cases, versus 102 across the previous government’s ten years.',
+          'In August 2024 the Supreme Court itself questioned the "quality of prosecution and quality of evidence" in ED cases, and 14 opposition parties petitioned the court alleging misuse.',
+        ],
+      },
+      {
+        heading: 'What rule of law requires',
+        paragraphs: [
+          'Fighting money laundering is essential — no one disputes that. The test of fairness is whether the law is applied on evidence and even-handedly across the political spectrum, and whether cases end in verdicts rather than open-ended detention. A near-zero conviction rate alongside a lopsided target list is what fuels the "agency as weapon" critique.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'The Wire: <5% PMLA conviction since 2019', url: 'https://m.thewire.in/article/politics/less-than-5-pmla-cases-registered-by-ed-resulted-in-conviction-since-2019-govt-tells-parliament' },
+      { label: 'National Herald: ED conviction rate', url: 'https://www.nationalheraldindia.com/india/eds-conviction-rate-05-just-23-out-of-5422-charge-sheets-parliament-informed' },
+    ],
+    tags: ['democracy', 'ed', 'pmla', 'rule-of-law'],
+  },
+  {
+    slug: 'caste-census',
+    title: 'India will count caste for the first time since 1931',
+    kicker: 'GOVERNANCE · DATA',
+    category: 'Governance',
+    publishedAt: '2026-01-31',
+    readMins: 4,
+    keyStat: { value: 'Since 1931', label: 'the last time India counted caste in its census' },
+    excerpt:
+      'After a four-decade demand, the government agreed in 2025 to enumerate caste in the next census — the first such count since 1931.',
+    dek: 'Sometimes accountability works the other way: a long-resisted demand is finally met. Here’s one.',
+    body: [
+      {
+        paragraphs: [
+          'On 30 April 2025, the Union Cabinet announced that caste will be enumerated in the upcoming national census — the first official caste count since 1931, under British rule.',
+          'It marks a genuine shift. For years the government had resisted the demand, arguing it could deepen social divisions; the reversal followed sustained pressure from opposition parties and the salience of the issue in the 2024 elections.',
+        ],
+      },
+      {
+        heading: 'Why the count matters',
+        paragraphs: [
+          'India runs one of the world’s largest affirmative-action systems, yet the data underpinning it is nearly a century old. Bihar’s own 2023 caste survey found far more people in marginalised groups than assumed — fuelling demands to revisit reservation quotas.',
+          'Better data can make policy fairer and more targeted. The census will run in two stages, with enumeration slated to conclude by 1 March 2027.',
+        ],
+      },
+      {
+        heading: 'The test now',
+        paragraphs: [
+          'The credit is real — but the value depends on execution: an accurate, transparent count, with the data published openly so citizens and courts can use it. A census promised is good; a census delivered and disclosed is what counts.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'NPR: India to include caste in its census', url: 'https://www.npr.org/2025/05/02/nx-s1-5384777/india-caste-census' },
+      { label: 'CNN: why caste is in the next census', url: 'https://www.cnn.com/2025/05/16/india/india-census-caste-counting-intl-hnk-dst' },
+    ],
+    tags: ['governance', 'caste', 'census', 'data'],
+  },
 ]
 
 export function getArticle(slug: string): StaticArticle | undefined {
