@@ -875,6 +875,114 @@ export const ARTICLES: StaticArticle[] = [
     ],
     tags: ['jobs', 'women', 'gender', 'plfs'],
   },
+  {
+    slug: 'evm-vvpat-supreme-court',
+    title: 'EVMs and VVPATs: what the Supreme Court actually ruled',
+    kicker: 'DEMOCRACY · ELECTIONS',
+    category: 'Democracy',
+    publishedAt: '2026-01-15',
+    readMins: 5,
+    keyStat: { value: '0', label: 'proven EVM-VVPAT vote mismatches (bar one mock-poll error)' },
+    excerpt:
+      'In April 2024 the Supreme Court rejected demands for 100% VVPAT counting — and explained why. Here’s the verified version, minus the WhatsApp panic.',
+    dek: 'Few topics generate more heat and less light. This is what the court said, and what it didn’t.',
+    body: [
+      {
+        paragraphs: [
+          'On 26 April 2024, a two-judge Supreme Court bench (Justices Sanjiv Khanna and Dipankar Datta) dismissed petitions — led by ADR — seeking a return to paper ballots, voter self-verification of VVPAT slips, or 100% counting of VVPAT slips against EVM totals.',
+          'The court’s reasoning: a mere suspicion of a mismatch isn’t grounds to overhaul the system, and across crores of votes there were no proven EVM-VVPAT mismatches — except one 2019 case in Andhra Pradesh where a presiding officer forgot to delete mock-poll data.',
+        ],
+      },
+      {
+        heading: 'What the court did order',
+        paragraphs: [
+          'It wasn’t a blanket dismissal of scrutiny. The court directed that the symbol-loading units be sealed and stored for 45 days after results, and kept a small VVPAT-verification check available to runners-up on request and payment.',
+          'So the honest summary: the court found no evidence of rigging and declined 100% counting — while adding transparency safeguards. Both halves matter.',
+        ],
+      },
+      {
+        heading: 'Where legitimate scrutiny goes next',
+        paragraphs: [
+          'Trust in elections is itself democratic infrastructure. The constructive path isn’t viral doubt or blind faith — it’s open audits, published verification data, and election-commission transparency strong enough that no one needs to take the result on faith.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'Supreme Court Observer: VVPAT judgement summary', url: 'https://www.scobserver.in/reports/vvpat-vote-verification-judgement-summary/' },
+      { label: 'SCC Online: court rejects 100% verification plea', url: 'https://www.scconline.com/blog/post/2024/04/26/supreme-court-rejects-plea-for-100-evm-vvpat-verification-legal-news/' },
+    ],
+    tags: ['democracy', 'evm', 'vvpat', 'elections'],
+  },
+  {
+    slug: 'manual-scavenging-sewer-deaths',
+    title: 'Officially, no one dies of manual scavenging. People keep dying in sewers.',
+    kicker: 'WELFARE · DIGNITY',
+    category: 'Welfare',
+    publishedAt: '2026-01-26',
+    readMins: 5,
+    keyStat: { value: '63 + 52', label: 'sewer/septic-tank cleaning deaths, 2023 + 2024' },
+    excerpt:
+      'The government told Parliament there were "no manual-scavenging deaths." Official data also records 63 sewer-cleaning deaths in 2023 and 52 in 2024. Both can’t be the full truth.',
+    dek: 'This is a story about a definition — and the people who fall through the gap inside it.',
+    body: [
+      {
+        paragraphs: [
+          'In 2025 the government told Parliament that no deaths had been reported "due to manual scavenging" and that states reported no such practice. Yet official figures also record 63 deaths from hazardous cleaning of sewers and septic tanks in 2023 and 52 in 2024.',
+          'How can both be true? Because of wording. The 2013 law bans "hazardous cleaning" without protective gear but doesn’t fully outlaw humans entering sewers and tanks — so a death cleaning a sewer can be classified as something other than a "manual scavenging" death.',
+        ],
+      },
+      {
+        heading: 'The human number',
+        paragraphs: [
+          'By one compilation, at least 1,276 sanitation workers have died cleaning sewers and septic tanks since 2001. Activists such as Bezwada Wilson of the Safai Karmachari Andolan say even these figures are undercounts.',
+          'Almost all the dead are from marginalised caste communities — which is why this is a question of dignity, not just labour safety.',
+        ],
+      },
+      {
+        heading: 'The fix already has a name',
+        paragraphs: [
+          'The government’s own NAMASTE scheme (2023-24) aims to mechanise sanitation so no human enters a sewer. The constructive demand is simple: fund and enforce it, count every death honestly, and stop arguing about the label while people suffocate in tanks.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'Outlook: "no manual scavenger, hence no deaths"', url: 'https://www.outlookindia.com/national/no-manual-scavenger-hence-no-scavenging-deaths-indian-government-in-parliament' },
+      { label: 'The News Minute: activists slam "no deaths" claim', url: 'https://www.thenewsminute.com/news/union-govt-says-no-manual-scavenging-deaths-2023-activists-slam-misleading-data-180292' },
+    ],
+    tags: ['welfare', 'sanitation', 'caste', 'dignity'],
+  },
+  {
+    slug: 'lateral-entry-bureaucracy',
+    title: 'Lateral entry into the bureaucracy: announced, then withdrawn',
+    kicker: 'GOVERNANCE · CIVIL SERVICE',
+    category: 'Governance',
+    publishedAt: '2026-01-12',
+    readMins: 4,
+    keyStat: { value: '45 posts', label: 'lateral-entry roles advertised, then pulled' },
+    excerpt:
+      'In August 2024 the government advertised 45 senior bureaucratic posts via lateral entry — then withdrew the ad within days amid a reservation row.',
+    dek: 'A real policy question — expertise vs. equity — collided with politics, and the policy blinked.',
+    body: [
+      {
+        paragraphs: [
+          'On 17 August 2024, the UPSC advertised 45 senior posts (Joint Secretary, Director, Deputy Secretary) to be filled by "lateral entry" — hiring specialists directly from outside, bypassing the regular civil-services exam.',
+          'Within days, the government directed the UPSC to withdraw the advertisement.',
+        ],
+      },
+      {
+        heading: 'Why it was pulled',
+        paragraphs: [
+          'The core objection: lateral entry bypasses constitutional reservation for SC, ST and OBC candidates, since these individual posts carry no quota. Critics also argued it blocks promotions for career civil servants.',
+          'There’s a genuine policy tension here. Bringing in domain experts can improve governance; doing it in a way that quietly sidesteps social-justice safeguards is what drew the backlash. The withdrawal acknowledged the second point without resolving the first.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'Civilsdaily: why lateral entry was criticised', url: 'https://www.civilsdaily.com/news/centre-directs-upsc-to-withdraw-ad-for-lateral-entry-into-bureaucracy-why-has-the-policy-been-criticized/' },
+      { label: 'Indian Masterminds: lateral entry ad withdrawn', url: 'https://indianmasterminds.com/news/big-breaking-central-government-bans-lateral-entry-advertisements-amid-controversy-93218/' },
+    ],
+    tags: ['governance', 'civil-service', 'reservation', 'upsc'],
+  },
 ]
 
 export function getArticle(slug: string): StaticArticle | undefined {
