@@ -1135,6 +1135,120 @@ export const ARTICLES: StaticArticle[] = [
     ],
     tags: ['governance', 'caste', 'census', 'data'],
   },
+  {
+    slug: 'vdem-electoral-autocracy',
+    title: 'A global index calls India an "electoral autocracy." What that means.',
+    kicker: 'DEMOCRACY · INSTITUTIONS',
+    category: 'Democracy',
+    publishedAt: '2026-02-06',
+    readMins: 5,
+    keyStat: { value: '~100 / 179', label: 'India’s Liberal Democracy Index rank (V-Dem 2025)' },
+    excerpt:
+      'The V-Dem Institute has classified India as an "electoral autocracy" since 2017. The government rejects the label — so it’s worth understanding what the data actually measures.',
+    dek: 'Labels provoke arguments. The underlying indicators are where the real conversation is.',
+    body: [
+      {
+        paragraphs: [
+          'Sweden’s V-Dem (Varieties of Democracy) Institute, one of the most-cited democracy datasets, has classified India as an "electoral autocracy" since 2017 — meaning elections still happen, but the wider conditions for liberal democracy (press freedom, civil-society space, checks on power) have weakened.',
+          'In the 2025 Democracy Report, India ranked roughly 100th of 179 on the Liberal Democracy Index, and far lower on the egalitarian component. V-Dem also listed India among the 20 worst countries for media censorship over 2014-24.',
+        ],
+      },
+      {
+        heading: 'The fair caveats',
+        paragraphs: [
+          'Two honest caveats. First, the Indian government rejects these indices as subjective and Western-biased — a position that deserves to be stated. Second, there was a small bright spot: 2024 was the first year since 2008 with no *further* deterioration recorded for India.',
+          'But a single foreign index isn’t the whole case. It echoes domestic evidence documented elsewhere on this site — press-freedom decline, internet shutdowns, agencies with near-zero conviction rates — which is why it’s hard to wave away entirely.',
+        ],
+      },
+      {
+        heading: 'What strengthens a democracy',
+        paragraphs: [
+          'Whatever one thinks of the ranking, the remedies are uncontroversial and constitutional: a free press, independent institutions, space for civil society and protest, and even-handed law enforcement. Defending those isn’t partisan — it’s how a democracy stays one.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'The Wire: India falls on Liberal Democracy Index', url: 'https://m.thewire.in/article/politics/v-dem-india-2025-fall-liberal-democracy-index' },
+      { label: 'V-Dem Democracy Indices · Wikipedia', url: 'https://en.wikipedia.org/wiki/V-Dem_Democracy_Indices' },
+    ],
+    tags: ['democracy', 'v-dem', 'institutions', 'press-freedom'],
+  },
+  {
+    slug: 'gdp-per-capita-neighbours',
+    title: 'A $4 trillion economy — and per-person income near Bangladesh’s',
+    kicker: 'ECONOMY · DEVELOPMENT',
+    category: 'Economy',
+    publishedAt: '2026-01-24',
+    readMins: 4,
+    keyStat: { value: '$2,675', label: 'India’s GDP per capita in 2025 (Bangladesh: $2,635)' },
+    excerpt:
+      'India is the world’s 4th-largest economy by total size — but split across 1.4 billion people, per-person income sits close to Bangladesh’s, and the IMF expects Bangladesh to edge ahead in 2026.',
+    dek: 'Total size and per-person prosperity are different stories. The gap between them is the point.',
+    body: [
+      {
+        paragraphs: [
+          'India’s economy is enormous in aggregate — around $4 trillion, the world’s fourth largest. But prosperity is felt per person, and there India’s GDP per capita was about $2,675 in 2025, only marginally above Bangladesh’s $2,635 (current US dollars).',
+          'The IMF projects Bangladesh to slightly overtake India on this measure in 2026 ($2,911 vs $2,812), with India expected to regain the lead from 2027.',
+        ],
+      },
+      {
+        heading: 'Why "5th largest economy" can mislead',
+        paragraphs: [
+          'A big total divided by a huge population yields a modest average — and averages themselves hide inequality (recall the top 1% holding 40%+ of wealth). So "world’s 4th/5th largest economy" and "an ordinary family feels squeezed" can both be true at once.',
+          'In the region, Sri Lanka’s per-capita income is higher than India’s; Pakistan’s is much lower.',
+        ],
+      },
+      {
+        heading: 'The measure that matters',
+        paragraphs: [
+          'The honest yardstick for "achhe din" isn’t the size of the economy in headlines — it’s whether the median household’s real income is rising. On that, the work is far from done.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'Scroll/IMF: India per-capita below Bangladesh in 2026', url: 'https://scroll.in/latest/1092272/indias-per-capita-gdp-estimated-below-bangladesh-in-2026-imf' },
+      { label: 'The Daily Star: Bangladesh to overtake India', url: 'https://www.thedailystar.net/business/news/imf-projects-bangladesh-overtake-india-capita-gdp-2026-4160546' },
+    ],
+    tags: ['economy', 'gdp-per-capita', 'development', 'bangladesh'],
+  },
+  {
+    slug: 'gst-compensation-states',
+    title: 'When the GST promise to states quietly expired',
+    kicker: 'ECONOMY · FEDERALISM',
+    category: 'Economy',
+    publishedAt: '2026-01-20',
+    readMins: 4,
+    keyStat: { value: 'June 2022', label: 'when guaranteed GST compensation to states ended' },
+    excerpt:
+      'States gave up their tax powers for GST on a five-year promise of compensation. That guarantee lapsed in June 2022 — and what replaced it was debt, not assurance.',
+    dek: 'Cooperative federalism rests on trust between the Centre and the states. This is a test of it.',
+    body: [
+      {
+        paragraphs: [
+          'When GST launched in 2017, states surrendered much of their independent taxation power in exchange for a five-year guarantee: the Centre would compensate any revenue shortfall, via a dedicated cess, until June 2022.',
+          'That guarantee duly expired on 30 June 2022. But many states still faced shortfalls — worsened by the pandemic — and the Centre had already borrowed and released ₹1.1 lakh crore (2020-21) and ₹1.59 lakh crore (2021-22) as back-to-back loans to part-cover the gap.',
+        ],
+      },
+      {
+        heading: 'From guarantee to loan',
+        paragraphs: [
+          'The compensation cess didn’t end in 2022 — it was extended to March 2026, but now to repay those loans rather than to compensate states. In effect, the assured-compensation model gave way to a debt-repayment one, leaving several states arguing they were short-changed.',
+          'Many states have since pressed to extend compensation, citing strained finances. The dispute is fundamentally about fiscal federalism: whether states that pooled their tax sovereignty are kept whole.',
+        ],
+      },
+      {
+        heading: 'What trust requires',
+        paragraphs: [
+          'A durable fix is predictable, rules-based revenue sharing the states can plan around — so the next big reform doesn’t depend on goodwill that expires on a deadline.',
+        ],
+      },
+    ],
+    sources: [
+      { label: 'EPW: revenue shortfall and GST compensation', url: 'https://www.epw.in/journal/2023/9/special-articles/revenue-shortfall-and-gst-compensation.html' },
+      { label: 'The Federal: Centre vs states on GST compensation', url: 'https://thefederal.com/the-federal-focus/how-centre-has-bullied-states-over-gst-compensation-over-the-years-205587' },
+    ],
+    tags: ['economy', 'gst', 'federalism', 'states'],
+  },
 ]
 
 export function getArticle(slug: string): StaticArticle | undefined {
