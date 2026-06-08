@@ -20,6 +20,8 @@ import { TickerItems } from './collections/TickerItems.ts'
 import { AdBanners } from './collections/AdBanners.ts'
 import { NewsletterSubscribers } from './collections/NewsletterSubscribers.ts'
 import { FactCheckSubmissions } from './collections/FactCheckSubmissions.ts'
+import { NewsSource } from './collections/NewsSource.ts'
+import { NewsItem } from './collections/NewsItem.ts'
 import { Users } from './collections/Users.ts'
 import { SiteSettings } from './globals/SiteSettings.ts'
 import { Integrations } from './globals/Integrations.ts'
@@ -50,6 +52,8 @@ export default buildConfig({
     AdBanners,
     NewsletterSubscribers,
     FactCheckSubmissions,
+    NewsSource,
+    NewsItem,
     Users,
   ],
   globals: [
