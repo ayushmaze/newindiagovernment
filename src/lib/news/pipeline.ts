@@ -218,7 +218,7 @@ export async function runPipeline(
           verdict: result.verdict,
           route: result.route,
           confidence: result.confidence,
-          linkedArticle: articleId,
+          linkedArticle: Number(articleId),
           pipelineLog: `Drafted via ${result.route}. Verdict: ${result.verdict} (${result.confidence}).`,
         } as never,
       })
