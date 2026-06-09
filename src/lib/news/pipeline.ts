@@ -13,6 +13,7 @@ import crypto from 'crypto'
 import type { Payload } from 'payload'
 import { fetchFeed } from './rss'
 import { researchHeadline } from './research'
+import { notifyDraftsReady } from './notify'
 import { createArticleFromAgent } from '@/lib/factCheck/persist'
 
 type Leaning = 'neutral' | 'independent' | 'godi-leaning'
@@ -236,6 +237,9 @@ export async function runPipeline(
         .catch(() => undefined)
     }
   }
+
+  // Notify the editor if anything new is ready to review.
+  await notifyDraftsReady(payload, summary.drafted)
 
   return summary
 }

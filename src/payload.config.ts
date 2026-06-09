@@ -22,6 +22,7 @@ import { NewsletterSubscribers } from './collections/NewsletterSubscribers.ts'
 import { FactCheckSubmissions } from './collections/FactCheckSubmissions.ts'
 import { NewsSource } from './collections/NewsSource.ts'
 import { NewsItem } from './collections/NewsItem.ts'
+import { PushToken } from './collections/PushToken.ts'
 import { Users } from './collections/Users.ts'
 import { SiteSettings } from './globals/SiteSettings.ts'
 import { Integrations } from './globals/Integrations.ts'
@@ -54,6 +55,7 @@ export default buildConfig({
     FactCheckSubmissions,
     NewsSource,
     NewsItem,
+    PushToken,
     Users,
   ],
   globals: [
