@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import { runPipeline } from '@/lib/news/pipeline'
 
 export const runtime = 'nodejs'
 export const maxDuration = 300
@@ -29,19 +30,18 @@ export const maxDuration = 300
 
 function authorized(req: NextRequest): boolean {
   const secret = process.env.NEWS_PIPELINE_SECRET
-  if (!secret) return false
+  const cronSecret = process.env.CRON_SECRET // Vercel Cron auto-sends this as Bearer
+  if (!secret && !cronSecret) return false
   const header = req.headers.get('authorization') ?? ''
-  const bearer = header.toLowerCase().startsWith('bearer ')
-    ? header.slice(7).trim()
-    : ''
-  // Vercel Cron also supports a `?key=` fallback for manual triggering.
+  const bearer = header.toLowerCase().startsWith('bearer ') ? header.slice(7).trim() : ''
   const url = new URL(req.url)
   const queryKey = url.searchParams.get('key') ?? ''
-  return bearer === secret || queryKey === secret
+  const accepted = [secret, cronSecret].filter(Boolean) as string[]
+  return accepted.includes(bearer) || accepted.includes(queryKey)
 }
 
 async function run(req: NextRequest) {
-  if (!process.env.NEWS_PIPELINE_SECRET) {
+  if (!process.env.NEWS_PIPELINE_SECRET && !process.env.CRON_SECRET) {
     return NextResponse.json(
       { error: 'pipeline_not_configured', hint: 'Set NEWS_PIPELINE_SECRET in env' },
       { status: 503 },
@@ -53,21 +53,30 @@ async function run(req: NextRequest) {
 
   const payload = await getPayload({ config })
 
-  // Phase 1 health check: confirm the pipeline collections exist & are queryable.
-  const [sources, queue] = await Promise.all([
-    payload.find({ collection: 'news-sources', where: { active: { equals: true } }, limit: 0 }),
-    payload.find({ collection: 'news-items', where: { status: { equals: 'drafted' } }, limit: 0 }),
-  ])
+  const url = new URL(req.url)
 
-  return NextResponse.json({
-    ok: true,
-    phase: 1,
-    message:
-      'Pipeline skeleton live. Ingestion/research stages activate in Phase 2.',
-    activeSources: sources.totalDocs,
-    draftsAwaitingReview: queue.totalDocs,
-    ranAt: new Date().toISOString(),
-  })
+  // ?dry=1 → health check only (no ingestion, no paid LLM calls)
+  if (url.searchParams.get('dry') === '1') {
+    const [sources, queue] = await Promise.all([
+      payload.find({ collection: 'news-sources', where: { active: { equals: true } }, limit: 0 }),
+      payload.find({ collection: 'news-items', where: { status: { equals: 'drafted' } }, limit: 0 }),
+    ])
+    return NextResponse.json({
+      ok: true,
+      dryRun: true,
+      activeSources: sources.totalDocs,
+      draftsAwaitingReview: queue.totalDocs,
+      ranAt: new Date().toISOString(),
+    })
+  }
+
+  // ?limit=N → cap the (paid) research calls this run. Default 3.
+  const limitParam = Number(url.searchParams.get('limit'))
+  const researchLimit = Number.isFinite(limitParam) && limitParam > 0 ? Math.min(limitParam, 10) : 3
+
+  const summary = await runPipeline(payload, { researchLimit })
+
+  return NextResponse.json({ ok: true, ranAt: new Date().toISOString(), ...summary })
 }
 
 export async function POST(req: NextRequest) {
