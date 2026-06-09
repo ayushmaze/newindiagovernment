@@ -23,6 +23,10 @@ export type ResearchResult = {
   route: 'explainer' | 'debunk'
 }
 
+export type ResearchOutcome =
+  | { ok: true; result: ResearchResult }
+  | { ok: false; reason: string }
+
 type FeedContext = {
   headline: string
   summary: string
@@ -107,9 +111,9 @@ function extractJson(text: string): unknown | null {
   }
 }
 
-export async function researchHeadline(ctx: FeedContext): Promise<ResearchResult | null> {
+export async function researchHeadline(ctx: FeedContext): Promise<ResearchOutcome> {
   const apiKey = process.env.ANTHROPIC_API_KEY
-  if (!apiKey) return null
+  if (!apiKey) return { ok: false, reason: 'ANTHROPIC_API_KEY not set' }
 
   let res: Response
   try {
@@ -120,21 +124,26 @@ export async function researchHeadline(ctx: FeedContext): Promise<ResearchResult
         'anthropic-version': '2023-06-01',
         'content-type': 'application/json',
       },
-      signal: AbortSignal.timeout(240000),
+      signal: AbortSignal.timeout(280000),
       body: JSON.stringify({
         model: MODEL,
-        max_tokens: 4000,
+        max_tokens: 8000,
         system: systemPrompt(),
         tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 6 }],
         messages: [{ role: 'user', content: userPrompt(ctx) }],
       }),
     })
-  } catch {
-    return null
+  } catch (e) {
+    return { ok: false, reason: `fetch failed: ${e instanceof Error ? e.message : String(e)}` }
   }
 
-  if (!res.ok) return null
+  if (!res.ok) {
+    const body = await res.text().catch(() => '')
+    return { ok: false, reason: `Anthropic ${res.status}: ${body.slice(0, 200)}` }
+  }
+
   const data = (await res.json()) as {
+    stop_reason?: string
     content?: Array<{ type: string; text?: string }>
   }
   const text = (data.content ?? [])
@@ -142,10 +151,20 @@ export async function researchHeadline(ctx: FeedContext): Promise<ResearchResult
     .map((b) => b.text as string)
     .join('\n')
 
+  if (!text) {
+    return { ok: false, reason: `no text block (stop_reason: ${data.stop_reason ?? '?'})` }
+  }
+
   const parsed = extractJson(text) as
     | { verdict?: string; confidence?: string; article?: AgentArticleInput }
     | null
-  if (!parsed?.article || !parsed.verdict) return null
+  if (!parsed) {
+    const trunc = data.stop_reason === 'max_tokens' ? ' (hit max_tokens — truncated)' : ''
+    return { ok: false, reason: `JSON parse failed${trunc}. Text head: ${text.slice(0, 160)}` }
+  }
+  if (!parsed.article || !parsed.verdict) {
+    return { ok: false, reason: 'JSON missing article/verdict' }
+  }
 
   const verdict = String(parsed.verdict)
   const confidence = (['low', 'medium', 'high'].includes(String(parsed.confidence))
@@ -156,8 +175,7 @@ export async function researchHeadline(ctx: FeedContext): Promise<ResearchResult
   const route: 'explainer' | 'debunk' =
     isFalse && ctx.leaning === 'godi-leaning' ? 'debunk' : 'explainer'
 
-  // Ensure the persisted article carries the verdict
   parsed.article.verdict = parsed.article.verdict ?? verdict
 
-  return { article: parsed.article, verdict, confidence, route }
+  return { ok: true, result: { article: parsed.article, verdict, confidence, route } }
 }

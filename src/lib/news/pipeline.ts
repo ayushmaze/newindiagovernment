@@ -166,7 +166,7 @@ export async function runPipeline(
     }
 
     try {
-      const result = await researchHeadline({
+      const outcome = await researchHeadline({
         headline: String(item.sourceTitle ?? ''),
         summary: String(item.summary ?? ''),
         sourceName: String(item.sourceName ?? ''),
@@ -174,17 +174,19 @@ export async function runPipeline(
         leaning,
       })
 
-      if (!result) {
+      if (!outcome.ok) {
         summary.errors++
+        summary.details.push(`✗ ${outcome.reason.slice(0, 80)}`)
         await payload
           .update({
             collection: 'news-items',
             id,
-            data: { status: 'error', pipelineLog: 'Research returned no result.' } as never,
+            data: { status: 'error', pipelineLog: outcome.reason.slice(0, 500) } as never,
           })
           .catch(() => undefined)
         continue
       }
+      const result = outcome.result
 
       const submission = await payload.create({
         collection: 'fact-check-submissions',
