@@ -129,7 +129,7 @@ export async function researchHeadline(ctx: FeedContext): Promise<ResearchOutcom
         model: MODEL,
         max_tokens: 8000,
         system: systemPrompt(),
-        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 6 }],
+        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 4 }],
         messages: [{ role: 'user', content: userPrompt(ctx) }],
       }),
     })
