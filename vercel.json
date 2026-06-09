@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "crons": [
     {
-      "path": "/api/agents/news-pipeline?limit=2",
+      "path": "/api/agents/news-pipeline?limit=2&chain=3",
       "schedule": "0 3 * * *"
     }
   ]

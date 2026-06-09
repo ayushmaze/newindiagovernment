@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse, after } from 'next/server'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { runPipeline } from '@/lib/news/pipeline'
@@ -74,9 +74,37 @@ async function run(req: NextRequest) {
   const limitParam = Number(url.searchParams.get('limit'))
   const researchLimit = Number.isFinite(limitParam) && limitParam > 0 ? Math.min(limitParam, 10) : 3
 
+  // ?chain=N → bounded self-chaining for throughput (Phase 5). Each invocation
+  // stays under the 300s function cap; after a successful batch it triggers the
+  // next invocation (chain-1) to drain more of the queue. Hard-capped so cost
+  // is bounded: a daily cron of limit=2&chain=3 processes up to ~8 items/day.
+  const chain = Math.max(0, Math.min(5, Number(url.searchParams.get('chain')) || 0))
+
   const summary = await runPipeline(payload, { researchLimit })
 
-  return NextResponse.json({ ok: true, ranAt: new Date().toISOString(), ...summary })
+  // Decide whether to chain: only if budget remains, we made progress this run
+  // (avoids looping on persistent errors), and fresh items remain.
+  if (chain > 0 && summary.drafted > 0) {
+    const remaining = await payload.find({
+      collection: 'news-items',
+      where: { status: { equals: 'new' } },
+      limit: 0,
+    })
+    if (remaining.totalDocs > 0) {
+      const secret = process.env.NEWS_PIPELINE_SECRET ?? process.env.CRON_SECRET ?? ''
+      const next = `${url.origin}/api/agents/news-pipeline?limit=${researchLimit}&chain=${chain - 1}&key=${encodeURIComponent(secret)}`
+      // Fire the next invocation AFTER the response is sent (Next `after`).
+      after(async () => {
+        try {
+          await fetch(next, { method: 'GET' })
+        } catch {
+          /* best-effort */
+        }
+      })
+    }
+  }
+
+  return NextResponse.json({ ok: true, ranAt: new Date().toISOString(), chain, ...summary })
 }
 
 export async function POST(req: NextRequest) {
