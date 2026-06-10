@@ -5,6 +5,7 @@ import { FactCheckTicker } from '@/components/ticker/FactCheckTicker'
 import { PrimaryNav } from '@/components/nav/PrimaryNav'
 import { MobileTabBar } from '@/components/nav/MobileTabBar'
 import { PerformancePatch } from '@/components/util/PerformancePatch'
+import { TruthMeter } from '@/components/fx/TruthMeter'
 import { LangProvider } from '@/components/i18n/LangProvider'
 import { display, ui, body } from '@/app/fonts'
 import '../globals.css'
@@ -24,6 +25,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
     <html lang="en" data-scroll-behavior="smooth" className={`${display.variable} ${ui.variable} ${body.variable}`}>
       <body className="font-body bg-[var(--bg)] text-[var(--ink)]">
         <PerformancePatch />
+        <TruthMeter />
         <LangProvider>
           {/* Skip to content */}
           <a href="#main-content" className="skip-to-content">

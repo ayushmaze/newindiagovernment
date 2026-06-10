@@ -318,3 +318,74 @@ body {
     width: 0;
   }
 }
+
+/* ── FX pack: stamp, ripple, orbs, ink-reveal ─────────────────── */
+
+/* Rubber stamp slam: drops from above at 2.4×, sticks with recoil */
+@keyframes stamp-slam {
+  0%   { opacity: 0; transform: scale(2.4) rotate(calc(var(--stamp-angle, -8deg) - 14deg)); filter: blur(2px); }
+  55%  { opacity: 1; transform: scale(0.94) rotate(var(--stamp-angle, -8deg)); filter: blur(0); }
+  72%  { transform: scale(1.05) rotate(calc(var(--stamp-angle, -8deg) + 1.5deg)); }
+  100% { opacity: 1; transform: scale(1) rotate(var(--stamp-angle, -8deg)); }
+}
+.stamp-slam {
+  animation: stamp-slam 480ms cubic-bezier(0.34, 1.2, 0.64, 1) both;
+  transform: rotate(var(--stamp-angle, -8deg));
+}
+
+/* Tap ink ripple (Magnetic on coarse pointers) */
+@keyframes fx-ripple {
+  from { transform: translate(-50%, -50%) scale(0); opacity: 0.35; }
+  to   { transform: translate(-50%, -50%) scale(7); opacity: 0; }
+}
+.fx-ripple {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 9999px;
+  background: currentColor;
+  pointer-events: none;
+  animation: fx-ripple 600ms ease-out forwards;
+}
+
+/* Hero parallax orbs — slow tricolour drift behind the headline */
+@keyframes orb-drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(26px, -34px) scale(1.12); }
+}
+@keyframes orb-drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1.08); }
+  50%      { transform: translate(-30px, 24px) scale(0.95); }
+}
+.fx-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(46px);
+  opacity: 0.16;
+  pointer-events: none;
+  will-change: transform;
+}
+.fx-orb-a { animation: orb-drift-a 13s ease-in-out infinite; }
+.fx-orb-b { animation: orb-drift-b 17s ease-in-out infinite; }
+
+/* Ink-reveal: headline wipes in from the left like fresh newsprint */
+@keyframes ink-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+.ink-reveal {
+  animation: ink-reveal 900ms cubic-bezier(0.65, 0, 0.35, 1) 150ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp-slam,
+  .fx-ripple,
+  .fx-orb-a,
+  .fx-orb-b,
+  .ink-reveal {
+    animation: none !important;
+    opacity: 1;
+    clip-path: none !important;
+  }
+  .fx-orb { opacity: 0.1; }
+}

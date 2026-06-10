@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { StatCounter } from './StatCounter'
 import { AnimatedShockStat } from './AnimatedShockStat'
+import { Magnetic } from '@/components/fx/Magnetic'
 import { PROMISES } from '@/lib/promises'
 import { T } from '@/components/i18n/T'
 
@@ -41,6 +42,18 @@ export function HeroManifesto({
         className="absolute inset-0 bg-lavender-stripe opacity-40 pointer-events-none"
       />
 
+      {/* drifting tricolour orbs — slow ambient depth behind the headline */}
+      <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="fx-orb fx-orb-a w-[42vw] max-w-[420px] aspect-square -top-[8%] right-[4%]"
+          style={{ background: '#ff9933' }}
+        />
+        <div
+          className="fx-orb fx-orb-b w-[36vw] max-w-[360px] aspect-square bottom-[6%] left-[-6%]"
+          style={{ background: '#138808' }}
+        />
+      </div>
+
       <div className="relative mx-auto max-w-[1440px] px-6 py-14 md:py-20">
         {/* Kicker */}
         <div className="flex items-center gap-3 mb-8 fade-up">
@@ -58,7 +71,7 @@ export function HeroManifesto({
           <br />
           Deserves
           <br />
-          <span className="relative inline-block">
+          <span className="relative inline-block ink-reveal">
             Better.
             <span
               aria-hidden="true"
@@ -78,40 +91,46 @@ export function HeroManifesto({
           No party line. Just the receipts — and the courage to keep them in plain sight.
         </p>
 
-        {/* CTAs — direct to viral product pages, no anchor jumps */}
+        {/* CTAs — magnetic on desktop, ink-ripple squash on touch */}
         <div className="mt-10 flex flex-wrap gap-4 fade-up fade-up-delay-3">
-          <Link
-            href="/promises"
-            className="group inline-flex items-center gap-3 bg-[var(--ink)] text-[var(--bg)] px-7 py-4 hover:bg-[var(--red-tag)] transition-colors tap-shrink"
-          >
-            <T
-              k="hero.ctaPrimary"
-              fallback="See the Jumla Meter"
-              className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]"
-            />
-            <span className="transition-transform group-hover:translate-x-1">→</span>
-          </Link>
-          <Link
-            href="/quiz"
-            className="group inline-flex items-center gap-3 bg-[var(--pink-chip)] text-[var(--ink)] px-7 py-4 border-2 border-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--bg)] transition-colors tap-shrink"
-          >
-            <T
-              k="hero.ctaSecondary"
-              fallback="Play Real or Jumla?"
-              className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]"
-            />
-            <span aria-hidden>🎯</span>
-          </Link>
-          <Link
-            href="/movement"
-            className="group inline-flex items-center gap-3 bg-transparent text-[var(--ink)] px-6 py-4 border-2 border-[var(--ink)]/30 hover:border-[var(--ink)] transition-colors tap-shrink"
-          >
-            <T
-              k="hero.ctaTertiary"
-              fallback="About the Movement"
-              className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]"
-            />
-          </Link>
+          <Magnetic>
+            <Link
+              href="/promises"
+              className="group inline-flex items-center gap-3 bg-[var(--ink)] text-[var(--bg)] px-7 py-4 hover:bg-[var(--red-tag)] transition-colors"
+            >
+              <T
+                k="hero.ctaPrimary"
+                fallback="See the Jumla Meter"
+                className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]"
+              />
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          </Magnetic>
+          <Magnetic>
+            <Link
+              href="/quiz"
+              className="group inline-flex items-center gap-3 bg-[var(--pink-chip)] text-[var(--ink)] px-7 py-4 border-2 border-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--bg)] transition-colors"
+            >
+              <T
+                k="hero.ctaSecondary"
+                fallback="Play Real or Jumla?"
+                className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]"
+              />
+              <span aria-hidden>🎯</span>
+            </Link>
+          </Magnetic>
+          <Magnetic>
+            <Link
+              href="/movement"
+              className="group inline-flex items-center gap-3 bg-transparent text-[var(--ink)] px-6 py-4 border-2 border-[var(--ink)]/30 hover:border-[var(--ink)] transition-colors"
+            >
+              <T
+                k="hero.ctaTertiary"
+                fallback="About the Movement"
+                className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]"
+              />
+            </Link>
+          </Magnetic>
         </div>
 
         {/* Government scorecard — the actual stats people care about */}

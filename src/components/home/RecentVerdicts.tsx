@@ -11,6 +11,8 @@
 
 import Link from 'next/link'
 import { Reveal } from '@/components/animation/Reveal'
+import { RubberStamp } from '@/components/fx/RubberStamp'
+import { TiltCard } from '@/components/fx/TiltCard'
 import {
   FALLBACK_TICKER_ITEMS,
   type FallbackVerdict,
@@ -40,9 +42,12 @@ export function RecentVerdicts() {
         <Reveal>
           <div className="flex items-end justify-between gap-6 flex-wrap mb-10 md:mb-14">
             <div>
-              <p className="font-ui font-black uppercase tracking-[0.28em] text-[11px] text-[var(--red-tag)] mb-4">
-                Recent Verdicts · Citable
-              </p>
+              <div className="flex items-center gap-4 mb-4 flex-wrap">
+                <p className="font-ui font-black uppercase tracking-[0.28em] text-[11px] text-[var(--red-tag)]">
+                  Recent Verdicts · Citable
+                </p>
+                <RubberStamp label="Fact-Checked" angle={-6} />
+              </div>
               <h2 className="font-display font-black uppercase tracking-[-0.01em] leading-[0.95] text-[clamp(32px,5.6vw,68px)] text-[var(--ink)]">
                 The receipts,
                 <br />
@@ -101,18 +106,20 @@ export function RecentVerdicts() {
               </article>
             )
             return (
-              <Reveal key={it.id} delay={i * 60}>
-                {it.href ? (
-                  <Link
-                    href={it.href}
-                    className="block h-full tap-shrink"
-                    aria-label={`Read the verdict: ${it.claim}`}
-                  >
-                    {body}
-                  </Link>
-                ) : (
-                  body
-                )}
+              <Reveal key={it.id} delay={i * 60} className="h-full">
+                <TiltCard className="h-full">
+                  {it.href ? (
+                    <Link
+                      href={it.href}
+                      className="block h-full"
+                      aria-label={`Read the verdict: ${it.claim}`}
+                    >
+                      {body}
+                    </Link>
+                  ) : (
+                    body
+                  )}
+                </TiltCard>
               </Reveal>
             )
           })}
