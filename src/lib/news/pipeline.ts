@@ -141,6 +141,14 @@ export async function runPipeline(
   }
 
   // ---- RESEARCH + DRAFT (capped) ----
+  // researchLimit 0 = ingest-only mode: the queue is drained by Claude Code
+  // (the /newsrun skill) under the operator's subscription — no API calls
+  // are made from the server at all.
+  if (researchLimit === 0) {
+    await notifyDraftsReady(payload, summary.drafted)
+    return summary
+  }
+
   const queue = await payload.find({
     collection: 'news-items',
     where: { status: { equals: 'new' } },

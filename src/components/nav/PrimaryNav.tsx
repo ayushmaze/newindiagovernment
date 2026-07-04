@@ -16,6 +16,7 @@ const NAV_ITEMS: NavItem[] = [
   { labelKey: 'nav.factCheck', fallback: 'Fact-Check', href: '/category/fact-check' },
   { labelKey: 'nav.policy', fallback: 'Policy', href: '/category/policy' },
   { labelKey: 'nav.investigations', fallback: 'Investigations', href: '/category/investigations' },
+  { labelKey: 'nav.raise', fallback: 'Raise Your Issue', href: '/raise' },
   { labelKey: 'nav.petitions', fallback: 'Petitions', href: '/petitions' },
   { labelKey: 'nav.vote', fallback: 'Vote', href: '/#vote' },
 ]

@@ -88,7 +88,8 @@ export function HeroManifesto({
           </span>{' '}
           Every claim sourced, every verdict citable.
           <br className="hidden md:block" />
-          No party line. Just the receipts — and the courage to keep them in plain sight.
+          We keep the receipts — and we carry your voice into the system that must
+          answer it. Not anti-government. Pro-answers.
         </p>
 
         {/* CTAs — magnetic on desktop, ink-ripple squash on touch */}
@@ -117,6 +118,19 @@ export function HeroManifesto({
                 className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]"
               />
               <span aria-hidden>🎯</span>
+            </Link>
+          </Magnetic>
+          <Magnetic>
+            <Link
+              href="/raise"
+              className="group inline-flex items-center gap-3 bg-[var(--gold-petition)] text-white px-7 py-4 hover:bg-[var(--ink)] transition-colors"
+            >
+              <T
+                k="hero.ctaRaise"
+                fallback="Raise Your Issue"
+                className="font-ui font-bold uppercase tracking-[0.18em] text-[12px]"
+              />
+              <span aria-hidden>📣</span>
             </Link>
           </Magnetic>
           <Magnetic>

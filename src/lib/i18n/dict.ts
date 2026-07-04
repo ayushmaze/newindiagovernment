@@ -60,6 +60,8 @@ export type DictKey =
   | 'hero.ctaPrimary'
   | 'hero.ctaSecondary'
   | 'hero.ctaTertiary'
+  | 'hero.ctaRaise'
+  | 'nav.raise'
   | 'hero.scorecard'
   | 'hero.verified'
   | 'hero.stat1Label'
@@ -128,6 +130,8 @@ const en: Dict = {
   'hero.ctaPrimary': 'See the Jumla Meter',
   'hero.ctaSecondary': 'Play Real or Jumla?',
   'hero.ctaTertiary': 'About the Movement',
+  'hero.ctaRaise': 'Raise Your Issue',
+  'nav.raise': 'Raise Your Issue',
   'hero.scorecard': 'The Scorecard',
   'hero.verified': 'Verified',
   'hero.stat1Label': 'Promises broken or jumla',
@@ -200,6 +204,8 @@ const hi: Dict = {
   'hero.ctaPrimary': 'जुमला मीटर देखें',
   'hero.ctaSecondary': 'सच या जुमला खेलें',
   'hero.ctaTertiary': 'आंदोलन के बारे में',
+  'hero.ctaRaise': 'अपनी समस्या उठाइए',
+  'nav.raise': 'अपनी समस्या उठाइए',
   'hero.scorecard': 'स्कोरकार्ड',
   'hero.verified': 'सत्यापित',
   'hero.stat1Label': 'टूटे या जुमला वादे',

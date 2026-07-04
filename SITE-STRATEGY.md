@@ -1,0 +1,154 @@
+# The New India Government — Strategy: Bridge, Not Battering Ram
+
+_Last updated: 4 July 2026. Owner: Ayush. This document is the product's north star._
+
+## 1. The repositioning
+
+Old frame: **watchdog vs government** — "we catch your lies."
+New frame: **civic bridge with teeth** — "we route citizens' problems into the
+system, we verify what the system says, and we publish both sides' receipts."
+
+The two halves reinforce each other and neither is negotiable:
+
+| Bridge half (government-facing value) | Teeth half (citizen-facing value) |
+| --- | --- |
+| Janta Desk (/raise): RTI, CPGRAMS, MP letters — issues arrive in the state's own legal formats | Jumla Meter: promises tracked with sources |
+| We surface *resolved* grievances and *kept* promises as loudly as broken ones | Fact-checks with claim-vs-truth receipts |
+| Structured citizen-issue data (anonymised, aggregated) any ministry would pay for | Media-manipulation literacy (Spot the Spin, quiz) |
+
+## 2. Why the government should fund (or at least tolerate) us
+
+You don't get government money by attacking it; you get it by being
+**infrastructure it needs and can't cheaply build**:
+
+1. **Grievance intelligence.** CPGRAMS gets complaints one by one. We can show
+   *patterns*: "1,400 road complaints in district X this quarter, 60% about
+   the same contractor." Aggregated, anonymised, exportable — this is what
+   NITI Aayog and district collectors actually want. Fundable via:
+   - **MyGov / MeitY civic-tech grants and challenges** (they run them yearly)
+   - **CSR funding** (companies must spend 2% — civic-tech qualifies)
+   - **Multilateral civic-tech funds** (Omidyar, Luminate, ICFJ, Google News
+     Initiative — no strings on editorial)
+2. **Verified-information rails.** PIB Fact Check exists because the state
+   fears misinformation. An independent verifier with a public methodology is
+   *useful to the honest parts of the state* — cite us when we confirm a
+   government claim as TRUE (we already have several), and make those as
+   shareable as the debunks.
+3. **The credibility rule.** Every TRUE verdict on a government claim is an
+   asset that buys the right to publish FALSE verdicts. Target mix in
+   published output: never let the site look like 100% negative — the data
+   decides, but we actively look for kept promises too.
+
+## 3. Safety: "whoever raises a voice gets shut down"
+
+The protection is structural, not rhetorical:
+
+1. **Method over mouth.** Never publish an accusation — publish a *comparison*
+   (claim vs primary source). The government's own Gazette/PIB/MoSPI documents
+   do the talking. That's why the editorial guardrails (2+ sources, defamation
+   gate, no motive-speculation, sub judice care, IT Rules compliance) are
+   binding — they are the legal shield.
+2. **Be needed.** The Janta Desk makes MPs, collectors and honest officers
+   *beneficiaries* of the platform (issues arrive pre-formatted, resolutions
+   get public credit). People don't shut down what makes them look good.
+3. **Redundancy.** Static-export mirror of all published articles (repo is the
+   source of truth; any push deploys anywhere — Vercel today, any host
+   tomorrow). Keep the domain registrar, DNS and hosting in separate accounts.
+   Weekly `pg_dump` of Neon. If one head is cut, the site regrows from git.
+4. **No single face.** Publish as an editorial board ("The NIG Desk"), not as
+   one named individual, until the org is bigger than one person.
+5. **Paper trail as product.** RTI/CPGRAMS IDs created via /raise are held by
+   the *citizens*, not us. Shutting us down doesn't delete ten thousand
+   citizens' legal filings — the accountability is distributed.
+
+## 4. What Indian users actually need (research-backed)
+
+- **Jobs and prices first.** Every credible survey (Lokniti-CSDS pre-poll
+  2024; Pew 2023) puts unemployment and inflation at the top. Content that
+  connects a national number to *"what it means for your city"* outperforms
+  abstract GDP talk.
+- **WhatsApp is the battlefield.** News reaches most Indians as forwards.
+  Content must be *forwardable*: one image, one claim, one verdict, one
+  source link. (This is what the share-card work below is for.)
+- **Hindi >> English for reach.** EN gets the elite and press; HI gets the
+  volume. Full HI parity is growth work, not polish work.
+- **Distrust is symmetric.** People distrust *media* as much as government
+  (Reuters Institute Digital News Report, India). The winning position is
+  "we show our work" — methodology page, sources on every claim, corrections
+  log. Nobody else in the Indian market does radical transparency.
+- **Agency beats outrage.** Outrage content burns out; *agency* content
+  ("here's the RTI that gets you the answer") builds loyal users. The Janta
+  Desk is the retention engine, not the articles.
+
+## 5. Zero-budget, automatic viral plan
+
+Principle: **every article ships with its own distribution artifacts,
+generated by Claude Code in the same run that writes the article.** No ad
+spend, no social media manager.
+
+### Loop A — the daily content engine (already built)
+Cron ingests RSS → `/newsrun` researches, verifies, drafts → you tap publish.
+Marginal cost: ₹0 (subscription only).
+
+### Loop B — share-cards (build next)
+For each published article, generate an **OG/WhatsApp card** (SVG→PNG at the
+edge, no external API): claim on top, verdict stamp, one receipt, QR to the
+article. WhatsApp/X/Instagram-story sized. A "Share the receipt" button on
+every verdict. People don't share links; they share *images that win
+arguments*.
+
+### Loop C — the daily ritual hooks (already live, lean into them)
+- **Daily Jumla** and **Real or Jumla quiz** are streak-able. Add a share
+  card to quiz results ("I scored 7/10 spotting jumlas — can you?").
+- Fact-check ticker items double as ready-made X posts (one claim + verdict
+  + link) — `/newsrun` can emit a `social.md` per article with pre-written
+  posts in EN + HI for you to paste (posting itself stays human = no bot
+  bans, no API costs).
+
+### Loop D — SEO compounding (free, automatic)
+Every fact-check targets the exact phrase people search after seeing a viral
+claim ("did modi surpass nehru", "sensex 400 points"). Next.js SSR + clean
+metadata already ranks; keep slugs literal-question shaped. Long-tail civic
+queries ("how to file RTI for road repair") — the /raise page + one explainer
+per department = evergreen traffic magnets.
+
+### Loop E — other people's audiences
+- Every debunk names its primary sources; email the researchers/orgs cited
+  (AltNews, BOOM, academics) — they retweet what cites them. `/newsrun` can
+  draft the outreach note per article.
+- RTI activists and civic YouTubers (there are hundreds) need exactly the
+  /raise tooling — offer it as an embeddable widget. Their embed = our
+  backlink + brand.
+
+### Loop F — the government itself as distributor
+When a verdict is TRUE, tag the ministry's press handle in the pre-written
+post. Ministries retweet favourable fact-checks — that's free reach *and*
+safety credit. (This is why the TRUE verdicts matter strategically.)
+
+### What we deliberately don't do
+- No engagement-bait, no rage-farming: it attracts takedowns and repels the
+  funders in §2.
+- No auto-posting bots: platform bans cost more than the time saved.
+
+## 6. System architecture after the rebuild (all-Claude, zero API)
+
+```
+Vercel cron (03:00 UTC) ──> /api/agents/news-pipeline?mode=ingest   [RSS only, no LLM]
+                                        │
+                              news-items queue (status: new)
+                                        │
+You run /newsrun N  ──> Claude Code (subscription):
+                          reads queue  (GET /api/agents/news-queue)
+                          researches   (WebSearch / WebFetch)
+                          writes article JSON (+ SVG cover semantics)
+                          files draft  (POST /api/agents/fact-check-ingest)
+                          closes item  (POST /api/agents/news-queue)
+                          notifies     (ntfy.sh/nig-alerts-11e0c95f)
+                                        │
+                          review-pending drafts in /admin
+                                        │
+You publish (admin UI, APK, or "post all drafts")
+```
+
+`ANTHROPIC_API_KEY` / `GEMINI_API_KEY` on Vercel are now unused by the daily
+flow and can be removed once you're happy with `/newsrun`.

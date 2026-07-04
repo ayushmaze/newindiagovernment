@@ -77,6 +77,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
                 </h4>
                 <ul className="space-y-2">
                   {[
+                    { label: 'Raise Your Issue', href: '/raise' },
                     { label: 'Vote', href: '/#vote' },
                     { label: 'Petitions', href: '/petitions' },
                     { label: 'Wall of Voices', href: '/voices' },

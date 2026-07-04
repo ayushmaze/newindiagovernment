@@ -70,9 +70,19 @@ async function run(req: NextRequest) {
     })
   }
 
+  // ?mode=ingest → RSS ingestion only, ZERO server-side LLM calls. Research
+  // and drafting are done by Claude Code (the /newsrun skill) under the
+  // operator's subscription: it reads the queue endpoint and POSTs finished
+  // articles to fact-check-ingest. This is the cron's default mode now.
+  const ingestOnly = url.searchParams.get('mode') === 'ingest'
+
   // ?limit=N → cap the (paid) research calls this run. Default 3.
   const limitParam = Number(url.searchParams.get('limit'))
-  const researchLimit = Number.isFinite(limitParam) && limitParam > 0 ? Math.min(limitParam, 10) : 3
+  const researchLimit = ingestOnly
+    ? 0
+    : Number.isFinite(limitParam) && limitParam > 0
+      ? Math.min(limitParam, 10)
+      : 3
 
   // ?chain=N → bounded self-chaining for throughput (Phase 5). Each invocation
   // stays under the 300s function cap; after a successful batch it triggers the
@@ -84,7 +94,7 @@ async function run(req: NextRequest) {
 
   // Decide whether to chain: only if budget remains, we made progress this run
   // (avoids looping on persistent errors), and fresh items remain.
-  if (chain > 0 && summary.drafted > 0) {
+  if (!ingestOnly && chain > 0 && summary.drafted > 0) {
     const remaining = await payload.find({
       collection: 'news-items',
       where: { status: { equals: 'new' } },

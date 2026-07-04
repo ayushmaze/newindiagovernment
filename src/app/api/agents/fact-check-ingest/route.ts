@@ -21,9 +21,10 @@ export const runtime = 'nodejs'
  * any LLM calls server-side.
  *
  * Auth: shared secret in `X-Ingest-Secret` header, matched against
- * `FACT_CHECK_INGEST_SECRET` in `.env`. The endpoint also rejects
- * any request that isn't from localhost in production — in dev we
- * trust the secret alone so Lando proxying works.
+ * `FACT_CHECK_INGEST_SECRET`. Remote calls are intentional: Claude Code
+ * runs on the operator's machine and POSTs finished articles here. The
+ * secret is the gate; everything lands as draft + review-pending, so a
+ * leaked secret can litter the review queue but can never publish.
  */
 
 interface IngestBody {
@@ -34,15 +35,6 @@ interface IngestBody {
     durationMs?: number
     toolCallCount?: number
   }
-}
-
-function isLocalRequest(req: NextRequest): boolean {
-  const fwd = req.headers.get('x-forwarded-for') ?? ''
-  const remote = req.headers.get('x-real-ip') ?? ''
-  const candidates = [fwd.split(',')[0]?.trim(), remote, '127.0.0.1', '::1']
-  return candidates.some((ip) =>
-    ['127.0.0.1', '::1', 'localhost', '::ffff:127.0.0.1', ''].includes(ip ?? ''),
-  )
 }
 
 export async function POST(req: NextRequest) {
@@ -57,10 +49,6 @@ export async function POST(req: NextRequest) {
   const headerSecret = req.headers.get('x-ingest-secret')
   if (headerSecret !== secret) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
-  }
-
-  if (process.env.NODE_ENV === 'production' && !isLocalRequest(req)) {
-    return NextResponse.json({ error: 'forbidden_remote' }, { status: 403 })
   }
 
   let body: IngestBody
