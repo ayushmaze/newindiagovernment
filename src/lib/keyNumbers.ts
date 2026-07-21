@@ -82,13 +82,25 @@ export const KEY_NUMBERS: KeyNumber[] = [
   },
   {
     id: 'jumla-scorecard',
-    countTo: 7,
-    suffix: '/17',
+    countTo: 9,
+    suffix: '/19',
     label: 'Promises broken or jumla',
     sub: 'on our sourced, citable Jumla Meter',
     accent: 'red',
     source: { label: 'The Jumla Meter', url: '/promises' },
     shareText:
-      'Of 17 major promises we tracked, 7 are broken or were literally called a jumla. Every one sourced. #JumlaMeter',
+      'Of 19 major promises we tracked, 9 are broken or were literally called a jumla. Every one sourced. #JumlaMeter',
+  },
+  {
+    id: 'neet-aspirants-affected',
+    countTo: 2.27,
+    suffix: ' crore',
+    decimals: 2,
+    label: 'NEET aspirants hit by the 2026 leak',
+    sub: 'exam cancelled and re-conducted after a guess paper matched real questions',
+    accent: 'red',
+    source: { label: 'Wikipedia: 2026 NEET controversy', url: 'https://en.wikipedia.org/wiki/2026_NEET_controversy' },
+    shareText:
+      '2.27 crore NEET aspirants had their exam cancelled after a leak — the same racket had compromised the paper the year before too. #NEET2026',
   },
 ]

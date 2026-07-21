@@ -173,4 +173,103 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
       'Taps reached ~98% of rural homes — genuinely big. But a 2024 government-commissioned survey found only ~75% get regular, safe, adequate water; the gap between a tap and a working tap is the story.',
     source: { label: 'Jal Jeevan Mission · Wikipedia', url: 'https://en.wikipedia.org/wiki/Jal_Jeevan_Mission' },
   },
+  {
+    id: 'q-cji-cockroach',
+    claim: '“India’s Chief Justice really called unemployed youth ‘cockroaches’ in court.”',
+    context: 'The remark that sparked a nationwide youth movement, May 2026.',
+    truth: 'real',
+    explanation:
+      'True. Chief Justice Surya Kant said "there are youngsters like cockroaches, who don\'t get any employment" at a 15 May 2026 Supreme Court hearing. A satirical movement adopted the insult as its name the very next day.',
+    source: { label: 'Wikipedia: Cockroach Janta Party', url: 'https://en.wikipedia.org/wiki/Cockroach_Janta_Party' },
+  },
+  {
+    id: 'q-cjp-instagram-bjp',
+    claim: '“A brand-new protest movement’s Instagram overtook the ruling party’s in under a week.”',
+    context: 'The Cockroach Janta Party’s viral growth, May 2026.',
+    truth: 'real',
+    explanation:
+      'Largely true. Founded 16 May 2026, the movement hit 22 million Instagram followers within about two weeks, reportedly overtaking the BJP’s own Instagram following within roughly five days.',
+    source: { label: 'CNN: Cockroach Janta Party', url: 'https://www.cnn.com/2026/06/26/india/india-cockroach-janta-party-delhi-protest-intl-hnk' },
+  },
+  {
+    id: 'q-neet-2026-leak',
+    claim: '“NEET 2026 had to be cancelled after a leaked ‘guess paper’ matched the real exam.”',
+    context: 'The exam sat by 2.27 crore medical aspirants, May 2026.',
+    truth: 'real',
+    explanation:
+      'True. A chemistry teacher in Rajasthan flagged up to 140 overlapping questions between a WhatsApp-circulated guess paper and the real exam; NTA cancelled it on 12 May 2026 and handed the case to the CBI.',
+    source: { label: 'Wikipedia: 2026 NEET controversy', url: 'https://en.wikipedia.org/wiki/2026_NEET_controversy' },
+  },
+  {
+    id: 'q-neet-same-racket-2025',
+    claim: '“The 2026 NEET leak was a one-off — the exam was clean the year before.”',
+    context: 'On the scope of the exam-security failure.',
+    truth: 'jumla',
+    explanation:
+      'False as stated. CBI investigators found the identical racket behind the 2026 leak had also compromised the 2025 NEET-UG paper — the vulnerability was systemic, not a single incident.',
+    source: { label: 'Wikipedia: 2026 NEET controversy', url: 'https://en.wikipedia.org/wiki/2026_NEET_controversy' },
+  },
+  {
+    id: 'q-wangchuk-court-order',
+    claim: '“Sonam Wangchuk was hospitalised on a Delhi High Court order, not a random police decision.”',
+    context: 'His removal from Jantar Mantar, 18 July 2026.',
+    truth: 'real',
+    explanation:
+      'True. Police said the removal followed a Delhi High Court order for "essential medical care," based on expert medical advice — 20 days into his hunger strike. His wife said she wasn’t informed beforehand.',
+    source: { label: 'Al Jazeera: forcible hospitalisation', url: 'https://www.aljazeera.com/news/2026/7/18/indian-police-forcibly-hospitalise-activist-after-20-day-hunger-strike' },
+  },
+  {
+    id: 'q-parliament-march-talks',
+    claim: '“The government offered talks the same morning police used tear gas on the Parliament march.”',
+    context: '20 July 2026, the first day of the monsoon session.',
+    truth: 'real',
+    explanation:
+      'True, and easy to miss. A government spokesperson said talks were offered that morning — before over 10,000 marched and police responded with tear gas and baton charges near Jantar Mantar.',
+    source: { label: 'Al Jazeera: police attack Cockroach activists', url: 'https://www.aljazeera.com/news/2026/7/20/police-attack-cockroach-activists-as-thousands-march-on-indian-parliament' },
+  },
+  {
+    id: 'q-ladakh-sixth-schedule-promise',
+    claim: '“Sixth Schedule status for Ladakh was a top-three promise in two BJP election manifestos.”',
+    context: '2019 Lok Sabha and 2020 Hill Council elections.',
+    truth: 'real',
+    explanation:
+      'True. The BJP listed it among its top three Ladakh priorities in 2019 and repeated the pledge for the 2020 Hill Development Council poll, which it won. Seven years on, Ladakh still has no Sixth Schedule status.',
+    source: { label: 'PMF IAS: Ladakh protests explainer', url: 'https://www.pmfias.com/ladakh-protests/' },
+  },
+  {
+    id: 'q-ladakh-97-tribal',
+    claim: '“Ladakh, demanding Sixth Schedule status, is India’s most tribal Union Territory.”',
+    context: 'The demographic case behind the statehood movement.',
+    truth: 'real',
+    explanation:
+      'True. Roughly 97% of Ladakh’s population is Scheduled Tribe — the highest proportion of any Indian Union Territory — which is central to its case for Sixth Schedule autonomous-council protections.',
+    source: { label: 'PMF IAS: Ladakh protests explainer', url: 'https://www.pmfias.com/ladakh-protests/' },
+  },
+  {
+    id: 'q-cjp-x-blocked',
+    claim: '“The government got the Cockroach Janta Party’s X account blocked, then a court ordered it unblocked.”',
+    context: 'A free-speech fight that ran alongside the street protests.',
+    truth: 'real',
+    explanation:
+      'True. MeitY had the account withheld in India on 21 June 2026 under IT Act Section 69A, citing national-security concerns. Weeks later a Delhi court ordered it unblocked after the Centre said it had "no objection."',
+    source: { label: 'US News: court orders unblocking', url: 'https://www.usnews.com/news/world/articles/2026-07-07/indian-court-orders-government-to-unblock-cockroach-partys-x-account' },
+  },
+  {
+    id: 'q-neet-cbt-2027',
+    claim: '“After the leak, the government committed to a fully computer-based NEET from 2027.”',
+    context: 'The reform announced after the 2026 cancellation.',
+    truth: 'real',
+    explanation:
+      'True. Education Minister Dharmendra Pradhan admitted a "breach in the command chain" and announced NEET will shift to computer-based testing from 2027, alongside tighter paper-security measures.',
+    source: { label: 'Wikipedia: 2026 NEET controversy', url: 'https://en.wikipedia.org/wiki/2026_NEET_controversy' },
+  },
+  {
+    id: 'q-surveillance-pil-decided',
+    claim: '“Courts have already ruled that Delhi Police illegally surveilled the Jantar Mantar protesters.”',
+    context: 'The PIL filed by ex-JNUSU president Aishe Ghosh.',
+    truth: 'jumla',
+    explanation:
+      'Not yet true. A PIL alleging intimidatory surveillance is real and pending before the Delhi High Court — but as of this writing no ruling has been issued; the government disputes the claim as routine law-and-order filming.',
+    source: { label: 'LiveLaw: surveillance allegations denied', url: 'https://www.livelaw.in/high-court/delhi-high-court/cjp-protest-surveillance-allegations-denied-delhi-police-542064' },
+  },
 ]

@@ -36,6 +36,8 @@ export type GovPromise = {
     | 'Digital'
     | 'Health'
     | 'Welfare'
+    | 'Education'
+    | 'Governance'
   verdict: Verdict
   /** 0–100 — how much of the promise the public record shows was actually met */
   progress: number
@@ -328,6 +330,38 @@ export const PROMISES: GovPromise[] = [
     sources: [
       { label: 'IBEF: Skill India Mission', url: 'https://www.ibef.org/government-schemes/skill-india' },
       { label: 'Asian Age: PMKVY misses placement target', url: 'https://www.asianage.com/india/all-india/010719/pmkvy-fails-to-achieve-its-job-placement-target.html' },
+    ],
+  },
+  {
+    id: 'neet-exam-integrity',
+    promise: 'A secure, leak-proof national medical entrance exam (NEET)',
+    attribution: 'National Testing Agency / Ministry of Education',
+    year: '2024',
+    category: 'Education',
+    verdict: 'broken',
+    progress: 20,
+    reality:
+      'NEET-UG 2026 was cancelled on 12 May 2026 after a WhatsApp-circulated "guess paper" was found to overlap with up to 140 real exam questions, affecting 2.27 crore aspirants. CBI investigators went on to find the identical racket had also compromised the 2025 paper — meaning the same vulnerability persisted across two consecutive exam cycles despite a near-identical scandal in 2024. The government has announced a shift to computer-based testing from 2027 and made several arrests, but no minister or NTA leader has resigned.',
+    punchline: 'Exam security was promised after 2024. It was breached again in 2025 and 2026.',
+    sources: [
+      { label: 'Wikipedia: 2026 NEET controversy (sourced timeline)', url: 'https://en.wikipedia.org/wiki/2026_NEET_controversy' },
+      { label: 'newindiagovernment.com: the 2026 NEET leak, fully verified', url: 'https://newindiagovernment.com/article/the-2026-neet-leak-fully-verified-what-actually-happened' },
+    ],
+  },
+  {
+    id: 'ladakh-sixth-schedule',
+    promise: "Sixth Schedule constitutional status for Ladakh",
+    attribution: 'BJP election manifesto · 2019 and 2020',
+    year: '2019',
+    category: 'Governance',
+    verdict: 'delayed',
+    progress: 10,
+    reality:
+      'The BJP listed Sixth Schedule implementation for Ladakh among its top-three manifesto priorities in the 2019 Lok Sabha election, and repeated the pledge ahead of the 2020 Hill Development Council election it went on to win. Seven years after Ladakh became a Union Territory without a legislature in August 2019, the roughly 97%-tribal region still has no Sixth Schedule status, no restored legislature, and no published timeline — the exact grievance driving activist Sonam Wangchuk\'s repeated hunger strikes since 2023, including a fresh one begun 28 June 2026.',
+    punchline: 'Promised in two manifestos. Seven years on, still no Sixth Schedule for Ladakh.',
+    sources: [
+      { label: 'PMF IAS: Ladakh protests — statehood & Sixth Schedule explainer', url: 'https://www.pmfias.com/ladakh-protests/' },
+      { label: 'newindiagovernment.com: did the BJP promise Ladakh Sixth Schedule status twice?', url: 'https://newindiagovernment.com/article/did-the-bjp-promise-ladakh-sixth-schedule-status-twice-and-skip-it' },
     ],
   },
 ]

@@ -127,4 +127,32 @@ export const FALLBACK_TICKER_ITEMS: FallbackTickerItem[] = [
     credibilityScore: 9.5,
     href: '/promises',
   },
+  {
+    id: 'cji-cockroach-remark',
+    claim: '"CJI called unemployed youth \'cockroaches\'" — TRUE, 15 May 2026 SC hearing; sparked the Cockroach Janta Party the next day',
+    verdict: 'true',
+    credibilityScore: 9,
+    href: '/article/did-the-cji-really-compare-unemployed-youth-to-cockroaches',
+  },
+  {
+    id: 'neet-2026-leak-verdict',
+    claim: '"NEET 2026 was leaked" — TRUE: guess paper matched up to 140 real questions, exam cancelled, CBI made 7+ arrests',
+    verdict: 'true',
+    credibilityScore: 9,
+    href: '/article/the-2026-neet-leak-fully-verified-what-actually-happened',
+  },
+  {
+    id: 'wangchuk-hospitalised-verdict',
+    claim: '"Wangchuk was forcibly hospitalised" — TRUE, under a Delhi HC order on day 20 of his fast; family says not informed beforehand',
+    verdict: 'true',
+    credibilityScore: 9,
+    href: '/article/was-sonam-wangchuk-forcibly-taken-off-his-hunger-strike',
+  },
+  {
+    id: 'tear-gas-parliament-march',
+    claim: '"Police tear-gassed the 20 July Parliament march" — TRUE: 10,000+ marchers, tear gas, batons, 70+ detained',
+    verdict: 'true',
+    credibilityScore: 9,
+    href: '/article/did-police-use-tear-gas-on-the-20-july-parliament-march',
+  },
 ]
