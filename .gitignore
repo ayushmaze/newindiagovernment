@@ -48,3 +48,6 @@ test-results/
 .claude/proxy.mjs
 LIGHTHOUSE-*.json
 
+DEPLOY-HANDOFF.md
+.claude-progress.md
+AI-HANDOFF.md
