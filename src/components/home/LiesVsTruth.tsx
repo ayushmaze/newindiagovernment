@@ -26,7 +26,9 @@ const ROWS: Row[] = [
   },
 ]
 
-export function LiesVsTruth() {
+export function LiesVsTruth({ items: propItems }: { items?: any[] }) {
+  const activeRows = propItems && propItems.length > 0 ? propItems : ROWS
+
   return (
     <section
       className="border-b border-[var(--hairline)] bg-[var(--bg)]"
@@ -49,7 +51,7 @@ export function LiesVsTruth() {
 
         {/* Rows */}
         <div className="space-y-px bg-[var(--hairline)] border border-[var(--hairline)]">
-          {ROWS.map((r, i) => (
+          {activeRows.map((r, i) => (
             <div
               key={i}
               className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--hairline)]"

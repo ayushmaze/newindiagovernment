@@ -63,8 +63,23 @@ const POINTS = [
   },
 ]
 
-export function WhyItMatters() {
+export function WhyItMatters({ items: propItems }: { items?: any[] }) {
   const { t } = useLang()
+
+  const activePoints = propItems && propItems.length > 0 
+    ? propItems.map((item, idx) => ({
+        n: `0${idx + 1}`.slice(-2),
+        accent: item.accent || 'red',
+        bigStat: item.bigStat || '',
+        statSub: item.statSub || '',
+        titleFallback: item.title,
+        bodyFallback: item.body,
+        // Since it's dynamic, we don't have i18n keys for them directly, 
+        // so we'll just fall back to the text
+        titleKey: `dynamic-title-${idx}` as any,
+        bodyKey: `dynamic-body-${idx}` as any,
+      }))
+    : POINTS
   return (
     <section
       className="relative bg-[var(--bg)] border-b-2 border-[var(--divider)]"
@@ -93,7 +108,7 @@ export function WhyItMatters() {
         </Reveal>
 
         <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-          {POINTS.map((p, i) => (
+          {activePoints.map((p, i) => (
             <Reveal key={p.n} delay={i * 90}>
               <article className="group relative h-full bg-[var(--bg-soft)] border border-[var(--ink)]/10 p-6 md:p-8 transition-all hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.25)] hover:border-[var(--ink)]/30 hover:-translate-y-0.5 duration-200">
                 <div className="flex items-start justify-between gap-4 mb-5">

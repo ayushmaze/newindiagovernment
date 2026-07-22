@@ -29,9 +29,11 @@ const VERDICT_DISPLAY: Record<
   true: { label: 'TRUE', bg: '#3a7d44', fg: '#ffffff' },
 }
 
-export function RecentVerdicts() {
+export function RecentVerdicts({ items: propItems }: { items?: { id: string; claim: string; verdict: FallbackVerdict; credibilityScore: number; href?: string }[] }) {
   // Show the six most recent / impactful items as cards.
-  const items = FALLBACK_TICKER_ITEMS.slice(0, 6)
+  const items = propItems && propItems.length > 0 
+    ? propItems.slice(0, 6) 
+    : FALLBACK_TICKER_ITEMS.slice(0, 6)
 
   return (
     <section

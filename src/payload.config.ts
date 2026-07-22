@@ -26,6 +26,9 @@ import { PushToken } from './collections/PushToken.ts'
 import { Users } from './collections/Users.ts'
 import { SiteSettings } from './globals/SiteSettings.ts'
 import { Integrations } from './globals/Integrations.ts'
+import { Promises } from './collections/Promises.ts'
+import { WhyItMattersItems } from './collections/WhyItMattersItems.ts'
+import { LiesVsTruthItems } from './collections/LiesVsTruthItems.ts'
 import { invalidateIntegrationsCache } from './lib/integrations.ts'
 
 const filename = fileURLToPath(import.meta.url)
@@ -57,6 +60,9 @@ export default buildConfig({
     NewsItem,
     PushToken,
     Users,
+    Promises,
+    WhyItMattersItems,
+    LiesVsTruthItems,
   ],
   globals: [
     SiteSettings,
@@ -113,6 +119,9 @@ export default buildConfig({
         voices: { enabled: { find: true, update: true } },
         petitions: { enabled: { find: true, create: true, update: true } },
         'fact-check-submissions': { enabled: { find: true, create: true, update: true } },
+        promises: { enabled: { find: true, create: true, update: true, delete: true } },
+        'why-it-matters-items': { enabled: { find: true, create: true, update: true, delete: true } },
+        'lies-vs-truth-items': { enabled: { find: true, create: true, update: true, delete: true } },
       },
     }),
   ],

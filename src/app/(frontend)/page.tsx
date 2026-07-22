@@ -24,6 +24,7 @@ import { generateBaseMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = generateBaseMetadata()
 
@@ -72,6 +73,9 @@ export default async function HomePage() {
     siteResult,
     factCheckResult,
     sigResult,
+    promisesResult,
+    whyItMattersResult,
+    liesVsTruthResult,
   ] = await Promise.allSettled([
     payload.find({
       collection: 'articles',
@@ -97,6 +101,18 @@ export default async function HomePage() {
       collection: 'petition-signatures',
       limit: 0,
     }),
+    payload.find({
+      collection: 'promises',
+      limit: 10,
+    }),
+    payload.find({
+      collection: 'why-it-matters-items',
+      limit: 4,
+    }),
+    payload.find({
+      collection: 'lies-vs-truth-items',
+      limit: 10,
+    }),
   ])
 
   const articles =
@@ -116,6 +132,16 @@ export default async function HomePage() {
 
   const factCheckCount =
     factCheckResult.status === 'fulfilled' ? factCheckResult.value.totalDocs : 0
+
+  const tickerItems = factCheckResult.status === 'fulfilled'
+    ? factCheckResult.value.docs.map((doc: any) => ({
+        id: doc.id,
+        claim: doc.claim,
+        verdict: doc.verdict,
+        credibilityScore: doc.credibilityScore,
+        href: doc.linkedArticle?.slug ? `/article/${doc.linkedArticle.slug}` : undefined,
+      }))
+    : []
 
   const signaturesCount =
     sigResult.status === 'fulfilled' ? sigResult.value.totalDocs : 0
@@ -152,6 +178,10 @@ export default async function HomePage() {
     description: 'Truth · Transparency · Voice',
   }
 
+  const promises = (promisesResult.status === 'fulfilled' ? promisesResult.value.docs : []) as any[]
+  const whyItMattersItems = whyItMattersResult.status === 'fulfilled' ? whyItMattersResult.value.docs : []
+  const liesVsTruthItems = liesVsTruthResult.status === 'fulfilled' ? liesVsTruthResult.value.docs : []
+
   return (
     <>
       <script
@@ -179,11 +209,11 @@ export default async function HomePage() {
       {/* 3. Social proof + tiny news ticker — feels alive */}
       <LiveActivityStrip />
 
-      {/* 4. The Jumla Meter (compact) — the viral hook */}
-      <JumlaMeter compact />
+      {/* 4. Jumla Meter — promises vs reality scoreboard */}
+      <JumlaMeter compact promises={promises} />
 
       {/* 4.5 Recent verdicts — tap-friendly fact-check grid */}
-      <RecentVerdicts />
+      <RecentVerdicts items={tickerItems} />
 
       {/* 4.7 Numbers that matter — shareable animated stats */}
       <NumbersThatMatter />
@@ -197,14 +227,14 @@ export default async function HomePage() {
       {/* 6. Movement banner — join the cause, live counter */}
       <MovementBanner />
 
-      {/* 6.5 Why it matters — sourced persuasion block */}
-      <WhyItMatters />
+      {/* 2. Why it matters — data-driven context */}
+      <WhyItMatters items={whyItMattersItems} />
 
       {/* 7. The Reckoning — the four data-shock cards */}
       <CrisisGrid />
 
-      {/* 8. Claim vs Truth — receipts on the table */}
-      <LiesVsTruth />
+      {/* 3.5 Lies vs Truth — The gap between podium and paperwork */}
+      <LiesVsTruth items={liesVsTruthItems} />
 
       {/* 9. People's poll */}
       <VoteWidget question={voteQuestion} options={voteOptions} />

@@ -117,21 +117,23 @@ function PromiseRow({ p }: { p: GovPromise }) {
   )
 }
 
-export function JumlaMeter({ compact = false }: { compact?: boolean }) {
+export function JumlaMeter({ compact = false, promises: propPromises }: { compact?: boolean; promises?: GovPromise[] }) {
   const [filter, setFilter] = useState<Verdict | 'all'>('all')
 
+  const activePromises = propPromises && propPromises.length > 0 ? propPromises : PROMISES
+
   const counts = useMemo(() => {
-    const broken = PROMISES.filter((p) => p.verdict === 'broken' || p.verdict === 'jumla').length
-    const avg = Math.round(PROMISES.reduce((s, p) => s + p.progress, 0) / PROMISES.length)
-    return { broken, total: PROMISES.length, avg }
-  }, [])
+    const broken = activePromises.filter((p) => p.verdict === 'broken' || p.verdict === 'jumla').length
+    const avg = Math.round(activePromises.reduce((s, p) => s + p.progress, 0) / activePromises.length)
+    return { broken, total: activePromises.length, avg }
+  }, [activePromises])
 
   const shown = useMemo(
-    () => (filter === 'all' ? PROMISES : PROMISES.filter((p) => p.verdict === filter)),
-    [filter],
+    () => (filter === 'all' ? activePromises : activePromises.filter((p) => p.verdict === filter)),
+    [filter, activePromises],
   )
 
-  const list = compact ? PROMISES.slice(0, 3) : shown
+  const list = compact ? activePromises.slice(0, 3) : shown
 
   return (
     <section
